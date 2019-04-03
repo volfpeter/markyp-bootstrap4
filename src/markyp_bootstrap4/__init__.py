@@ -141,10 +141,12 @@ class __BootstrapRequirements(object):
         """
         All the JavaScript elements that are required by Bootstrap.
         """
+        # Bootstrap must be the last item on the list (or at least it should come
+        # after jQuery), otherwise some components won't work.
         return (
-            self.bootstrap_js,
             self.jquery,
-            self.popper_js
+            self.popper_js,
+            self.bootstrap_js
         )
 
     @property

@@ -34,7 +34,7 @@ def test_req():
     assert req.popper_js.markup ==\
         '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>'
 
-    bs4, jquery, popper = req.all_js
+    jquery, popper, bs4 = req.all_js
     assert bs4.markup ==\
         '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>'
     assert jquery.markup ==\
