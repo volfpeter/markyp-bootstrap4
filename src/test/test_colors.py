@@ -1,4 +1,4 @@
-from markyp_bootstrap4.colors import bg, text, mix
+from markyp_bootstrap4.colors import bg, text
 
 def test_bg():
     assert bg.primary == "bg-primary"
@@ -22,15 +22,3 @@ def test_text():
     assert text.dark == "text-dark"
     assert text.muted == "text-muted"
     assert text.white == "text-white"
-
-def test_mix():
-    assert mix() == ""
-    assert mix(bg.primary) == "bg-primary"
-    assert mix(text.success) == "text-success"
-    assert mix(bg.primary, text.light) == "bg-primary text-light"
-    assert mix(text.light, bg.primary) == "text-light bg-primary"
-
-    # Duplicates are permitted, user error
-    assert mix(text.light, bg.primary, text.light) == "text-light bg-primary text-light"
-    assert mix(text.light, bg.primary, bg.primary) == "text-light bg-primary bg-primary"
-    assert mix(text.light, bg.primary, bg.success) == "text-light bg-primary bg-success"

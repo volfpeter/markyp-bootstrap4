@@ -111,18 +111,3 @@ CSS class names for text coloring.
 
 See https://getbootstrap.com/docs/4.0/utilities/colors/.
 """
-
-
-def mix(*args: str) -> str:
-    """
-    Conveniance method that returns a string that contains all the color names
-    the method received as positional arguments.
-
-    Example:
-
-    ```Python
-    >>> mix(bg.dark, text.light, text.muted)
-    "bg-dark text-light text-muted"
-    ```
-    """
-    return " ".join((c for c in args if c))
