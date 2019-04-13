@@ -8,7 +8,7 @@ from markyp_bootstrap4.buttons import a_button, a_toggle,\
                                       l_button, l_toggle,\
                                       ButtonStyle
 from markyp_bootstrap4.colors import bg, text
-from markyp_bootstrap4.layout import container, row, row_item, one, two, three, format_column_sizes
+from markyp_bootstrap4.layout import container, row, row_item, one, two, three, col
 
 from markyp_highlightjs import highlight, js as hljs, themes as hlthemes
 
@@ -75,7 +75,7 @@ def get_buttons():
         l_button.light("Light", active=True),
         l_button.dark("Dark", active=True),
         l_button.link("Link", active=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_buttons_large():
@@ -90,7 +90,7 @@ def get_buttons_large():
         b_button.light("Light", class_=ButtonStyle.LARGE),
         b_button.dark("Dark", class_=ButtonStyle.LARGE),
         b_button.link("Link", class_=ButtonStyle.LARGE),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_buttons_small():
@@ -105,7 +105,7 @@ def get_buttons_small():
         i_button.light("Light", class_=ButtonStyle.SMALL),
         i_button.dark("Dark", class_=ButtonStyle.SMALL),
         i_button.link("Link", class_=ButtonStyle.SMALL),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_buttons_disabled():
@@ -120,7 +120,7 @@ def get_buttons_disabled():
         b_button.light("Light", disabled=True),
         b_button.dark("Dark", disabled=True),
         b_button.link("Link", disabled=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_buttons_block():
@@ -135,7 +135,7 @@ def get_buttons_block():
         a_button.light("Light", class_=ButtonStyle.BLOCK),
         a_button.dark("Dark", class_=ButtonStyle.BLOCK),
         a_button.link("Link", class_=ButtonStyle.BLOCK),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_buttons():
@@ -150,7 +150,7 @@ def get_outline_buttons():
         l_button.light_outline("Light", active=True),
         l_button.dark_outline("Dark", active=True),
         l_button.link_outline("Link", active=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_buttons_large():
@@ -165,7 +165,7 @@ def get_outline_buttons_large():
         b_button.light_outline("Light", class_=ButtonStyle.LARGE),
         b_button.dark_outline("Dark", class_=ButtonStyle.LARGE),
         b_button.link_outline("Link", class_=ButtonStyle.LARGE),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_buttons_small():
@@ -180,7 +180,7 @@ def get_outline_buttons_small():
         i_button.light_outline("Light", class_=ButtonStyle.SMALL),
         i_button.dark_outline("Dark", class_=ButtonStyle.SMALL),
         i_button.link_outline("Link", class_=ButtonStyle.SMALL),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_buttons_disabled():
@@ -195,7 +195,7 @@ def get_outline_buttons_disabled():
         b_button.light_outline("Light", disabled=True),
         b_button.dark_outline("Dark", disabled=True),
         b_button.link_outline("Link", disabled=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_buttons_block():
@@ -210,7 +210,7 @@ def get_outline_buttons_block():
         a_button.light_outline("Light", class_=ButtonStyle.BLOCK),
         a_button.dark_outline("Dark", class_=ButtonStyle.BLOCK),
         a_button.link_outline("Link", class_=ButtonStyle.BLOCK),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_toggle_buttons():
@@ -225,7 +225,7 @@ def get_toggle_buttons():
         l_toggle.light("Light", active=True),
         l_toggle.dark("Dark", active=True),
         l_toggle.link("Link", active=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_toggle_buttons_large():
@@ -240,7 +240,7 @@ def get_toggle_buttons_large():
         b_toggle.light("Light", class_=ButtonStyle.LARGE),
         b_toggle.dark("Dark", class_=ButtonStyle.LARGE),
         b_toggle.link("Link", class_=ButtonStyle.LARGE),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_toggle_buttons_small():
@@ -255,7 +255,7 @@ def get_toggle_buttons_small():
         i_toggle.light("Light", class_=ButtonStyle.SMALL),
         i_toggle.dark("Dark", class_=ButtonStyle.SMALL),
         i_toggle.link("Link", class_=ButtonStyle.SMALL),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_toggle_buttons_disabled():
@@ -270,7 +270,7 @@ def get_toggle_buttons_disabled():
         b_toggle.light("Light", disabled=True),
         b_toggle.dark("Dark", disabled=True),
         b_toggle.link("Link", disabled=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_toggle_buttons_block():
@@ -285,7 +285,7 @@ def get_toggle_buttons_block():
         a_toggle.light("Light", class_=ButtonStyle.BLOCK),
         a_toggle.dark("Dark", class_=ButtonStyle.BLOCK),
         a_toggle.link("Link", class_=ButtonStyle.BLOCK),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_toggle_buttons():
@@ -300,7 +300,7 @@ def get_outline_toggle_buttons():
         l_toggle.light_outline("Light", active=True),
         l_toggle.dark_outline("Dark", active=True),
         l_toggle.link_outline("Link", active=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_large():
@@ -315,7 +315,7 @@ def get_outline_toggle_buttons_large():
         b_toggle.light_outline("Light", class_=ButtonStyle.LARGE),
         b_toggle.dark_outline("Dark", class_=ButtonStyle.LARGE),
         b_toggle.link_outline("Link", class_=ButtonStyle.LARGE),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_small():
@@ -330,7 +330,7 @@ def get_outline_toggle_buttons_small():
         i_toggle.light_outline("Light", class_=ButtonStyle.SMALL),
         i_toggle.dark_outline("Dark", class_=ButtonStyle.SMALL),
         i_toggle.link_outline("Link", class_=ButtonStyle.SMALL),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_disabled():
@@ -345,7 +345,7 @@ def get_outline_toggle_buttons_disabled():
         b_toggle.light_outline("Light", disabled=True),
         b_toggle.dark_outline("Dark", disabled=True),
         b_toggle.link_outline("Link", disabled=True),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_block():
@@ -360,7 +360,7 @@ def get_outline_toggle_buttons_block():
         a_toggle.light_outline("Light", class_=ButtonStyle.BLOCK),
         a_toggle.dark_outline("Dark", class_=ButtonStyle.BLOCK),
         a_toggle.link_outline("Link", class_=ButtonStyle.BLOCK),
-        class_=format_column_sizes(md=12)
+        class_=col(md=12)
     )
 
 page = webpage(
