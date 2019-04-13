@@ -11,6 +11,9 @@ Bootstrap's aforementioned layout system components (see `container()`, `row()` 
 
 See https://getbootstrap.com/docs/4.3/layout/grid/ for more information on
 Bootstrap's grid layout system.
+
+See https://getbootstrap.com/docs/4.0/utilities/spacing/ for more information
+on Bootstrap's spacing and margin definition system.
 """
 
 from typing import Optional, Tuple, Union
@@ -26,7 +29,27 @@ from markyp_html.block import div
 ColumnSize = Union[int, str]
 """
 Column size type. Valid values for arguments of this type are integers in the
-[1, 12] range (in integer or string form) and the string `auto`.
+[1, 12] interval (in integer or string form) and the string `auto`.
+"""
+
+
+MarginSize = Union[int, str]
+"""
+Margin size type. Values values for arguments of this type integers in the
+[0, 5] interval (in integer or string form) and the string `auto`.
+"""
+
+
+PaddingSize = Union[int, str]
+"""
+Padding size type. Values values for arguments of this type integers in the
+[0, 5] interval (in integer or string form) and the string `auto`.
+"""
+
+
+_side_names: Tuple[str, str, str, str, str, str] = ("t", "b", "l", "r", "x", "y")
+"""
+The ordered list of side names for spacing and margin definitions.
 """
 
 
@@ -246,8 +269,8 @@ def row_item(*args: ElementType,
     Returns:
         A `div` with that wraps `content` and has the required column size classes.
     """
-    class_ = f"{format_column_sizes(xs, sm, md, lg, xl)} {class_}"\
-        if class_ else format_column_sizes(xs, sm, md, lg, xl)
+    class_ = f"{autocol(xs, sm, md, lg, xl)} {class_}"\
+        if class_ else autocol(xs, sm, md, lg, xl)
     return div(*args, class_=class_)
 
 
@@ -255,13 +278,13 @@ def row_item(*args: ElementType,
 # -----------------------------------------------------------------------------
 
 
-def format_column_sizes(xs: Optional[ColumnSize] = None,
-                        sm: Optional[ColumnSize] = None,
-                        md: Optional[ColumnSize] = None,
-                        lg: Optional[ColumnSize] = None,
-                        xl: Optional[ColumnSize] = None) -> str:
+def autocol(xs: Optional[ColumnSize] = None,
+            sm: Optional[ColumnSize] = None,
+            md: Optional[ColumnSize] = None,
+            lg: Optional[ColumnSize] = None,
+            xl: Optional[ColumnSize] = None) -> str:
     """
-    Formats the specified list of column sizes into a class string of "col-..." items.
+    Formats the specified column sizes into a class string of `col-{brakpoint}-{size}` items.
 
     Arguments:
         xs: Column size for extra small screens.
@@ -271,6 +294,73 @@ def format_column_sizes(xs: Optional[ColumnSize] = None,
         xl: Column size for extra large screens.
 
     Returns:
-        The formatted class string or the `col-sm` string if all arguments were `None`.
+        The formatted class string or `col-sm` if no sizes were specified.
     """
-    return " ".join(f"col-{c}-{w}" for c, w in zip(_size_names, (xs, sm, md, lg, xl)) if w) or "col-sm"
+    return col(xs, sm, md, lg, xl) or "col-sm"
+
+
+def col(xs: Optional[ColumnSize] = None,
+        sm: Optional[ColumnSize] = None,
+        md: Optional[ColumnSize] = None,
+        lg: Optional[ColumnSize] = None,
+        xl: Optional[ColumnSize] = None) -> Optional[str]:
+    """
+    Formats the specified column sizes into a class string of `col-{brakpoint}-{size}` items.
+
+    Arguments:
+        xs: Column size for extra small screens.
+        sm: Column size for small screens.
+        md: Column size for mid-sized screens.
+        lg: Column size for large screens.
+        xl: Column size for extra large screens.
+
+    Returns:
+        The formatted class string or `None` if no sizes were specified.
+    """
+    return " ".join(f"col-{c}-{w}" for c, w in zip(_size_names, (xs, sm, md, lg, xl)) if w) or None
+
+
+def margin(top: Optional[MarginSize] = None,
+           bottom: Optional[MarginSize] = None,
+           left: Optional[MarginSize] = None,
+           right: Optional[MarginSize] = None,
+           x: Optional[MarginSize] = None,
+           y: Optional[MarginSize] = None) -> Optional[str]:
+    """
+    Formats the specified margin sizes into a class string of `m{side}-{size}` items.
+
+    Arguments:
+        top: Margin size on the top.
+        bottom: Margin size at the bottom.
+        left: Margin size on the left side.
+        right: Margin size on the right side.
+        x: Margin size on the X axis (both left and right side).
+        y: Margin size on the Y axis (both top and bottom).
+
+    Returns:
+        The formatted class string or `None` if no sizes were specified.
+    """
+    return " ".join(f"m{s}-{m}" for s, m in zip(_side_names, (top, bottom, left, right, x, y)) if m or m == 0) or None
+
+
+def padding(top: Optional[PaddingSize] = None,
+            bottom: Optional[PaddingSize] = None,
+            left: Optional[PaddingSize] = None,
+            right: Optional[PaddingSize] = None,
+            x: Optional[PaddingSize] = None,
+            y: Optional[PaddingSize] = None) -> Optional[str]:
+    """
+    Formats the specified padding sizes into a class string of `p{side}-{size}` items.
+
+    Arguments:
+        top: Padding size on the top.
+        bottom: Padding size at the bottom.
+        left: Padding size on the left side.
+        right: Padding size on the right side.
+        x: Padding size on the X axis (both left and right side).
+        y: Padding size on the Y axis (both top and bottom).
+
+    Returns:
+        The formatted class string or `None` if no sizes were specified.
+    """
+    return " ".join(f"p{s}-{p}" for s, p in zip(_side_names, (top, bottom, left, right, x, y)) if p or p == 0) or None
