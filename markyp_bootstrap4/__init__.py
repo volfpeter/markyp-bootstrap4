@@ -7,7 +7,12 @@ from typing import Tuple
 from markyp_html import link, script
 
 
-__version__ = "0.1903.0"
+__author__ = "Peter Volf"
+__copyright__ = "Copyright 2019, Peter Volf"
+__email__ = "do.volfp@gmail.com"
+__license__ = "MIT"
+__url__ = "https://github.com/volfpeter/markyp-bootstrap4"
+__version__ = "0.1904.0"
 
 
 class CDNs(object):
