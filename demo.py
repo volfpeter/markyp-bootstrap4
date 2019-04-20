@@ -1,3 +1,4 @@
+from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.alerts import alert, dismissable
 from markyp_bootstrap4.badges import span_badge
@@ -363,6 +364,23 @@ def get_outline_toggle_buttons_block():
         class_=col(md=12)
     )
 
+def get_card():
+    return cards.card(
+        cards.image_top("https://images.pexels.com/photos/59701/pexels-photo-59701.jpeg"),
+        cards.card_body(
+            cards.title.h5("Buda Castle"),
+            cards.subtitle.h6("Budapest, Hungary"),
+            cards.text.p(
+                "Buda Castle is the historical castle and palace complex of the "
+                "Hungarian kings in Budapest. It was first completed in 1265, but "
+                "the massive Baroque palace today occupying most of the site was "
+                "built between 1749 and 1769."
+            )
+        ),
+        class_=join(bg.light, text.dark),
+        style="width: 18rem;"
+    )
+
 page = webpage(
     container(
         one(
@@ -420,7 +438,13 @@ page = webpage(
         hr(),
         get_outline_toggle_buttons_disabled(),
         hr(),
-        get_outline_toggle_buttons_block()
+        get_outline_toggle_buttons_block(),
+        one(h2("Cards", md=12)),
+        three(
+            div(), get_card(), div(),
+            md=(4, 4, 4)
+        )
+
     ),
     page_title="markyp-html demo page",
     head_elements=[
