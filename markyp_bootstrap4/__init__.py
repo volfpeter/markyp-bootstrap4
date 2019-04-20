@@ -12,7 +12,10 @@ __copyright__ = "Copyright 2019, Peter Volf"
 __email__ = "do.volfp@gmail.com"
 __license__ = "MIT"
 __url__ = "https://github.com/volfpeter/markyp-bootstrap4"
-__version__ = "0.1904.0"
+__version__ = "0.1905.0"
+
+
+__all__ = ("CDNs", "req")
 
 
 class CDNs(object):
