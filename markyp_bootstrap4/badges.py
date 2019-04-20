@@ -9,6 +9,9 @@ from markyp.elements import Element
 from markyp_html.inline import a, span
 
 
+__all__ = ("BadgeFactory", "a_badge", "span_badge")
+
+
 class BadgeFactory(object):
     """
     Badge element factory.

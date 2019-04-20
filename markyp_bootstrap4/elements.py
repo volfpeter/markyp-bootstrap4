@@ -9,6 +9,9 @@ from markyp_html.entities import times
 from markyp_html.inline import span
 
 
+__all__ = ("clone_icon",)
+
+
 def close_icon(**kwargs: PropertyValue) -> button:
     """
     Bootstrap's generic close icon.

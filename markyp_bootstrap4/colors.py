@@ -5,6 +5,9 @@ See https://getbootstrap.com/docs/4.0/utilities/colors/ for more information.
 """
 
 
+__all__ = ("bg", "text")
+
+
 class __Background(object):
     """
     CSS class names for background coloring.

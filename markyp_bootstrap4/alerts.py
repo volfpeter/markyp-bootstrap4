@@ -11,6 +11,9 @@ from markyp_bootstrap4.elements import close_icon
 from markyp_html.block import div
 
 
+__all__ = ("alert", "dismissable")
+
+
 class alert(div):
     """
     Bootstrap alert element.
