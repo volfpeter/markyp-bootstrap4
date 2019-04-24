@@ -364,21 +364,55 @@ def get_outline_toggle_buttons_block():
         class_=col(md=12)
     )
 
-def get_card():
+def get_card_left():
     return cards.card(
-        cards.image_top("https://images.pexels.com/photos/59701/pexels-photo-59701.jpeg"),
-        cards.card_body(
-            cards.title.h5("Buda Castle"),
-            cards.subtitle.h6("Budapest, Hungary"),
+        cards.header.h5("Hungary"),
+        cards.Image.top("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/EU-Hungary.svg/500px-EU-Hungary.svg.png"),
+        cards.body(
             cards.text.p(
-                "Buda Castle is the historical castle and palace complex of the "
-                "Hungarian kings in Budapest. It was first completed in 1265, but "
-                "the massive Baroque palace today occupying most of the site was "
-                "built between 1749 and 1769."
+                "Hungary is a country in Central Europe, spanning 93,030 square kilometres "
+                "in the Carpathian Basin. With about 10 million inhabitants, Hungary is a "
+                "medium-sized member state of the European Union. The official language is "
+                "Hungarian, which is the most widely spoken Uralic language in the world..."
             )
         ),
-        class_=join(bg.light, text.dark),
-        style="width: 18rem;"
+        cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Hungary")),
+        class_=join(bg.light, text.dark, cards.TextAlign.LEFT)
+    )
+
+def get_card_center():
+    return cards.card(
+        cards.header.h5("Hungarian History"),
+        cards.body(
+            cards.text.p(
+                "The foundations of the Hungarian state were established in the late ninth "
+                "century CE by the Hungarian grand prince Árpád following the conquest of "
+                "the Carpathian Basin. His great-grandson Stephen I ascended the  throne "
+                "in 1000, converting his realm to a Christian kingdom. By the 12th century, "
+                "Hungary became a regional power, reaching its cultural and  political "
+                "height in the 15th century..."
+            )
+        ),
+        cards.Image.bottom("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Istvan-ChroniconPictum.jpg/340px-Istvan-ChroniconPictum.jpg"),
+        cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Budapest#/History")),
+        class_=join(bg.light, text.dark, cards.TextAlign.CENTER)
+    )
+
+def get_card_right():
+    return cards.card(
+        cards.header.h5("Budapest"),
+        cards.Image.top("https://images.pexels.com/photos/59701/pexels-photo-59701.jpeg"),
+        cards.body(
+            cards.text.p(
+                "The history of Budapest began when an early Celtic settlement transformed "
+                "into the Roman town of Aquincum, the capital of Lower Pannonia. The Hungarians "
+                "arrived in the territory in the late 9th century. The area was pillaged by "
+                "the Mongols in 1241. Buda, the settlements on the west bank of the river, "
+                "became one of the centres of Renaissance humanist culture by the 15th century..."
+            )
+        ),
+        cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Budapest")),
+        class_=join(bg.light, text.dark, cards.TextAlign.RIGHT)
     )
 
 page = webpage(
@@ -441,12 +475,11 @@ page = webpage(
         get_outline_toggle_buttons_block(),
         one(h2("Cards", md=12)),
         three(
-            div(), get_card(), div(),
+            get_card_left(), get_card_center(), get_card_right(),
             md=(4, 4, 4)
         )
-
     ),
-    page_title="markyp-html demo page",
+    page_title="markyp-bootstrap4 demo page",
     head_elements=[
         req.bootstrap_css,
         req.jquery,
@@ -457,8 +490,8 @@ page = webpage(
     metadata=[
         meta.author("Website Author"),
         meta.charset("UTF-8"),
-        meta.description("markyp-html demo"),
-        meta.keywords("markyp-html,markup,Python,HTML"),
+        meta.description("markyp-bootstrap4 demo"),
+        meta.keywords("markyp-html,markyp-bootstrap4,markup,Python,HTML,Bootstrap"),
         meta.viewport("width=device-width, initial-scale=1.0")
     ],
     javascript=[
