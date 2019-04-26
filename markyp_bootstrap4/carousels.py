@@ -80,7 +80,7 @@ def controls(carousel_id: str, *, class_: Optional[str] = None, **kwargs: Proper
             class_=join("carousel-control-prev", class_),
             href=f"#{carousel_id}",
             role="button",
-            **{"data-slide": "prev"}
+            **{**kwargs, "data-slide": "prev"}
         ),
         a(
             span(class_="carousel-control-next-icon", **{"aria-hdden": True}),
@@ -88,7 +88,7 @@ def controls(carousel_id: str, *, class_: Optional[str] = None, **kwargs: Proper
             class_=join("carousel-control-next", class_),
             href=f"#{carousel_id}",
             role="button",
-            **{"data-slide": "next"}
+            **{**kwargs, "data-slide": "next"}
         )
     )
 
