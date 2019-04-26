@@ -181,6 +181,9 @@ def test_three():
         '<div class="col-sm-auto col-md-2">\nleft\n</div>\n'\
         '</div>'
 
+def test_row_break():
+    assert row_break().markup == '<div class="w-100"></div>'
+
 def test_row_item():
     assert row_item("foo", "bar").markup == '<div class="col-sm">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", class_="").markup == '<div class="col-sm">\nfoo\nbar\n</div>'
@@ -289,6 +292,40 @@ def test_margin():
 
     assert margin(0, 1, 2, 3, 4, 5) == "mt-0 mb-1 ml-2 mr-3 mx-4 my-5"
     assert margin("auto", "auto", 2, 3, "auto", "auto") == "mt-auto mb-auto ml-2 mr-3 mx-auto my-auto"
+
+def test_offset():
+    assert offset() is None
+    assert offset(xs=None, sm=None, md=None, lg=None, xl=None) is None
+    assert offset(None, None, None, None, None) is None
+    assert offset(xs="", sm="", md="", lg="", xl="") is None
+    assert offset("", "", "", "", "") is None
+
+    assert offset(xs=6) == "offset-xs-6"
+    assert offset(6) == "offset-xs-6"
+    assert offset(sm=5) == "offset-sm-5"
+    assert offset(None, 5) == "offset-sm-5"
+    assert offset(md=4) == "offset-md-4"
+    assert offset(None, None, 4) == "offset-md-4"
+    assert offset(lg=3) == "offset-lg-3"
+    assert offset(None, None, None, 3) == "offset-lg-3"
+    assert offset(xl=2) == "offset-xl-2"
+    assert offset(None, None, None, None, 2) == "offset-xl-2"
+
+    assert offset(xs="auto") == "offset-xs-auto"
+    assert offset("auto") == "offset-xs-auto"
+    assert offset(sm="auto") == "offset-sm-auto"
+    assert offset(None, "auto") == "offset-sm-auto"
+    assert offset(md="auto") == "offset-md-auto"
+    assert offset(None, None, "auto") == "offset-md-auto"
+    assert offset(lg="auto") == "offset-lg-auto"
+    assert offset(None, None, None, "auto") == "offset-lg-auto"
+    assert offset(xl="auto") == "offset-xl-auto"
+    assert offset(None, None, None, None, "auto") == "offset-xl-auto"
+
+    assert offset(xs=9, sm=8, md=7, lg=6, xl=5) ==\
+        "offset-xs-9 offset-sm-8 offset-md-7 offset-lg-6 offset-xl-5"
+    assert offset(xs=9, sm="auto", md=7, lg=6, xl="auto") ==\
+        "offset-xs-9 offset-sm-auto offset-md-7 offset-lg-6 offset-xl-auto"
 
 def test_padding():
     assert padding() is None

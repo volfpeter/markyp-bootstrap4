@@ -25,8 +25,8 @@ from markyp_html.block import div
 __all__ = (
     "ColumnSize", "MarginSize", "PaddingSize",
     "container", "container_fluid",
-    "row", "one", "two", "three", "row_item",
-    "PercentSize", "autocol", "col", "margin", "padding"
+    "row", "one", "two", "three", "row_break", "row_item",
+    "PercentSize", "autocol", "col", "margin", "offset", "padding"
 )
 
 
@@ -124,6 +124,7 @@ def row(*args: ElementType, class_: Optional[str] = None) -> div:
 
 
 def one(item: ElementType,
+        *,
         class_: Optional[str] = None,
         xs: Optional[ColumnSize] = None,
         sm: Optional[ColumnSize] = None,
@@ -250,6 +251,14 @@ def three(left: ElementType,
 # -----------------------------------------------------------------------------
 
 
+def row_break() -> div:
+    """
+    Returns a `div` that always spans a full row and as a result adds a
+    line-break between row items.
+    """
+    return div(class_=PercentSize.width_100)
+
+
 def row_item(*args: ElementType,
              class_: Optional[str] = None,
              xs: Optional[ColumnSize] = None,
@@ -372,6 +381,25 @@ def margin(top: Optional[MarginSize] = None,
         The formatted class string or `None` if no sizes were specified.
     """
     return " ".join(f"m{s}-{m}" for s, m in zip(_side_names, (top, bottom, left, right, x, y)) if m or m == 0) or None
+
+
+def offset(xs: Optional[ColumnSize] = None,
+           sm: Optional[ColumnSize] = None,
+           md: Optional[ColumnSize] = None,
+           lg: Optional[ColumnSize] = None,
+           xl: Optional[ColumnSize] = None) -> Optional[str]:
+    """
+    Arguments:
+        xs: Offset (in column count) size for extra small screens.
+        sm: Offset (in column count) size for small screens.
+        md: Offset (in column count) size for mid-sized screens.
+        lg: Offset (in column count) size for large screens.
+        xl: Offset (in column count) size for extra large screens.
+
+    Returns:
+        The formatted class string or `None` if no sizes were specified.
+    """
+    return " ".join(f"offset-{c}-{w}" for c, w in zip(_size_names, (xs, sm, md, lg, xl)) if w) or None
 
 
 def padding(top: Optional[PaddingSize] = None,
