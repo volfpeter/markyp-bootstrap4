@@ -5,6 +5,3 @@ def test_close_icon():
         '<button type="button" aria-label="Close" class="close">'\
         '<span aria-hidden="true">&times;</span>'\
         '</button>'
-
-def test_row_break():
-    assert row_break().markup == '<div class="w-100"></div>'
