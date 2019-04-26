@@ -107,7 +107,7 @@ def indicators(carousel_id: str, n: int, *, active_index: int = 0, class_: Optio
         class_: CSS classes to add to the created indicator elements.
     """
     return ol(
-        *(li(class_=join("active" if active_index == i else None, class_), **{**kwargs, "data-target": f"#{carousel_id}", "data-slide-to": i}) for i in range(n)),
+        *(li(class_=join("active" if active_index == i else None, class_) or None, **{**kwargs, "data-target": f"#{carousel_id}", "data-slide-to": i}) for i in range(n)),
         class_="carousel-indicators"
     )
 
