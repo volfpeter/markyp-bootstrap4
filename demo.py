@@ -1,6 +1,7 @@
+from markyp_bootstrap4 import alerts
 from markyp_bootstrap4 import cards
+from markyp_bootstrap4 import carousels
 from markyp_bootstrap4 import req
-from markyp_bootstrap4.alerts import alert, dismissable
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
 from markyp_bootstrap4.buttons import a_button, a_toggle,\
@@ -9,17 +10,25 @@ from markyp_bootstrap4.buttons import a_button, a_toggle,\
                                       l_button, l_toggle,\
                                       ButtonStyle
 from markyp_bootstrap4.colors import bg, text
-from markyp_bootstrap4.layout import container, row, row_item, one, two, three, col
+from markyp_bootstrap4.layout import container, margin, offset, padding, row, row_break, row_item, one, two, three, col, PercentSize
 
 from markyp_highlightjs import highlight, js as hljs, themes as hlthemes
 
-from markyp_html import meta, style, join, webpage
+from markyp_html import meta, join, webpage
 from markyp_html.block import div, hr, pre
-from markyp_html.inline import a, code, em, strong
-from markyp_html.text import h1, h2, h3, p
+from markyp_html.inline import a, code, em, img, strong
+from markyp_html.text import h1, h2, h3, h4, p
+
+button_margin = margin(x=1, y=1)
+
+def section_header(*args):
+    return one(h2(*args, md=12, class_=padding(top=5)))
+
+def subsection_header(*args):
+    return one(h3(*args, md=12, class_=padding(top=3)))
 
 def get_alert():
-    return alert.primary(
+    return alerts.alert.primary(
         h3("Alert with", span_badge.primary("primary"), "context."),
         hr(),
         highlight(
@@ -32,7 +41,7 @@ def get_alert():
     )
 
 def get_dismissable_alert():
-    return dismissable.danger(
+    return alerts.dismissable.danger(
         h3("Dismissable alert with", span_badge.danger("danger"), "context."),
         hr(),
         highlight(
@@ -66,301 +75,321 @@ def get_breadcrumb_code():
 
 def get_buttons():
     return row(
-        "Active:",
-        l_button.primary("Primary", active=True),
-        l_button.secondary("Secondary", active=True),
-        l_button.success("Success", active=True),
-        l_button.danger("Danger", active=True),
-        l_button.warning("Warning", active=True),
-        l_button.info("Info", active=True),
-        l_button.light("Light", active=True),
-        l_button.dark("Dark", active=True),
-        l_button.link("Link", active=True),
+        h4("Active:"),
+        row_break(),
+        l_button.primary("Primary", active=True, class_=button_margin),
+        l_button.secondary("Secondary", active=True, class_=button_margin),
+        l_button.success("Success", active=True, class_=button_margin),
+        l_button.danger("Danger", active=True, class_=button_margin),
+        l_button.warning("Warning", active=True, class_=button_margin),
+        l_button.info("Info", active=True, class_=button_margin),
+        l_button.light("Light", active=True, class_=button_margin),
+        l_button.dark("Dark", active=True, class_=button_margin),
+        l_button.link("Link", active=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_buttons_large():
     return row(
-        "Large:",
-        b_button.primary("Primary", class_=ButtonStyle.LARGE),
-        b_button.secondary("Secondary", class_=ButtonStyle.LARGE),
-        b_button.success("Success", class_=ButtonStyle.LARGE),
-        b_button.danger("Danger", class_=ButtonStyle.LARGE),
-        b_button.warning("Warning", class_=ButtonStyle.LARGE),
-        b_button.info("Info", class_=ButtonStyle.LARGE),
-        b_button.light("Light", class_=ButtonStyle.LARGE),
-        b_button.dark("Dark", class_=ButtonStyle.LARGE),
-        b_button.link("Link", class_=ButtonStyle.LARGE),
+        h4("Large:"),
+        row_break(),
+        b_button.primary("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.secondary("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.success("Success", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.danger("Danger", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.warning("Warning", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.info("Info", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.light("Light", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.dark("Dark", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.link("Link", class_=join(ButtonStyle.LARGE, button_margin)),
         class_=col(md=12)
     )
 
 def get_buttons_small():
     return row(
-        "Small:",
-        i_button.primary("Primary", class_=ButtonStyle.SMALL),
-        i_button.secondary("Secondary", class_=ButtonStyle.SMALL),
-        i_button.success("Success", class_=ButtonStyle.SMALL),
-        i_button.danger("Danger", class_=ButtonStyle.SMALL),
-        i_button.warning("Warning", class_=ButtonStyle.SMALL),
-        i_button.info("Info", class_=ButtonStyle.SMALL),
-        i_button.light("Light", class_=ButtonStyle.SMALL),
-        i_button.dark("Dark", class_=ButtonStyle.SMALL),
-        i_button.link("Link", class_=ButtonStyle.SMALL),
+        h4("Small:"),
+        row_break(),
+        i_button.primary("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.secondary("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.success("Success", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.danger("Danger", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.warning("Warning", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.info("Info", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.light("Light", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.dark("Dark", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.link("Link", class_=join(ButtonStyle.SMALL, button_margin)),
         class_=col(md=12)
     )
 
 def get_buttons_disabled():
     return row(
-        "Disabled:",
-        b_button.primary("Primary", disabled=True),
-        b_button.secondary("Secondary", disabled=True),
-        b_button.success("Success", disabled=True),
-        b_button.danger("Danger", disabled=True),
-        b_button.warning("Warning", disabled=True),
-        b_button.info("Info", disabled=True),
-        b_button.light("Light", disabled=True),
-        b_button.dark("Dark", disabled=True),
-        b_button.link("Link", disabled=True),
+        h4("Disabled:"),
+        row_break(),
+        b_button.primary("Primary", disabled=True, class_=button_margin),
+        b_button.secondary("Secondary", disabled=True, class_=button_margin),
+        b_button.success("Success", disabled=True, class_=button_margin),
+        b_button.danger("Danger", disabled=True, class_=button_margin),
+        b_button.warning("Warning", disabled=True, class_=button_margin),
+        b_button.info("Info", disabled=True, class_=button_margin),
+        b_button.light("Light", disabled=True, class_=button_margin),
+        b_button.dark("Dark", disabled=True, class_=button_margin),
+        b_button.link("Link", disabled=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_buttons_block():
     return row(
-        "Block:",
-        a_button.primary("Primary", class_=ButtonStyle.BLOCK),
-        a_button.secondary("Secondary", class_=ButtonStyle.BLOCK),
-        a_button.success("Success", class_=ButtonStyle.BLOCK),
-        a_button.danger("Danger", class_=ButtonStyle.BLOCK),
-        a_button.warning("Warning", class_=ButtonStyle.BLOCK),
-        a_button.info("Info", class_=ButtonStyle.BLOCK),
-        a_button.light("Light", class_=ButtonStyle.BLOCK),
-        a_button.dark("Dark", class_=ButtonStyle.BLOCK),
-        a_button.link("Link", class_=ButtonStyle.BLOCK),
+        h4("Block:"),
+        row_break(),
+        a_button.primary("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.secondary("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.success("Success", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.danger("Danger", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.warning("Warning", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.info("Info", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.light("Light", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.dark("Dark", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.link("Link", class_=join(ButtonStyle.BLOCK, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_buttons():
     return row(
-        "Active:",
-        l_button.primary_outline("Primary", active=True),
-        l_button.secondary_outline("Secondary", active=True),
-        l_button.success_outline("Success", active=True),
-        l_button.danger_outline("Danger", active=True),
-        l_button.warning_outline("Warning", active=True),
-        l_button.info_outline("Info", active=True),
-        l_button.light_outline("Light", active=True),
-        l_button.dark_outline("Dark", active=True),
-        l_button.link_outline("Link", active=True),
+        h4("Active:"),
+        row_break(),
+        l_button.primary_outline("Primary", active=True, class_=button_margin),
+        l_button.secondary_outline("Secondary", active=True, class_=button_margin),
+        l_button.success_outline("Success", active=True, class_=button_margin),
+        l_button.danger_outline("Danger", active=True, class_=button_margin),
+        l_button.warning_outline("Warning", active=True, class_=button_margin),
+        l_button.info_outline("Info", active=True, class_=button_margin),
+        l_button.light_outline("Light", active=True, class_=button_margin),
+        l_button.dark_outline("Dark", active=True, class_=button_margin),
+        l_button.link_outline("Link", active=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_outline_buttons_large():
     return row(
-        "Large:",
-        b_button.primary_outline("Primary", class_=ButtonStyle.LARGE),
-        b_button.secondary_outline("Secondary", class_=ButtonStyle.LARGE),
-        b_button.success_outline("Success", class_=ButtonStyle.LARGE),
-        b_button.danger_outline("Danger", class_=ButtonStyle.LARGE),
-        b_button.warning_outline("Warning", class_=ButtonStyle.LARGE),
-        b_button.info_outline("Info", class_=ButtonStyle.LARGE),
-        b_button.light_outline("Light", class_=ButtonStyle.LARGE),
-        b_button.dark_outline("Dark", class_=ButtonStyle.LARGE),
-        b_button.link_outline("Link", class_=ButtonStyle.LARGE),
+        h4("Large:"),
+        row_break(),
+        b_button.primary_outline("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.secondary_outline("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.success_outline("Success", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.danger_outline("Danger", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.warning_outline("Warning", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.info_outline("Info", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.light_outline("Light", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.dark_outline("Dark", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_button.link_outline("Link", class_=join(ButtonStyle.LARGE, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_buttons_small():
     return row(
-        "Small:",
-        i_button.primary_outline("Primary", class_=ButtonStyle.SMALL),
-        i_button.secondary_outline("Secondary", class_=ButtonStyle.SMALL),
-        i_button.success_outline("Success", class_=ButtonStyle.SMALL),
-        i_button.danger_outline("Danger", class_=ButtonStyle.SMALL),
-        i_button.warning_outline("Warning", class_=ButtonStyle.SMALL),
-        i_button.info_outline("Info", class_=ButtonStyle.SMALL),
-        i_button.light_outline("Light", class_=ButtonStyle.SMALL),
-        i_button.dark_outline("Dark", class_=ButtonStyle.SMALL),
-        i_button.link_outline("Link", class_=ButtonStyle.SMALL),
+        h4("Small:"),
+        row_break(),
+        i_button.primary_outline("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.secondary_outline("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.success_outline("Success", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.danger_outline("Danger", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.warning_outline("Warning", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.info_outline("Info", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.light_outline("Light", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.dark_outline("Dark", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_button.link_outline("Link", class_=join(ButtonStyle.SMALL, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_buttons_disabled():
     return row(
-        "Disabled:",
-        b_button.primary_outline("Primary", disabled=True),
-        b_button.secondary_outline("Secondary", disabled=True),
-        b_button.success_outline("Success", disabled=True),
-        b_button.danger_outline("Danger", disabled=True),
-        b_button.warning_outline("Warning", disabled=True),
-        b_button.info_outline("Info", disabled=True),
-        b_button.light_outline("Light", disabled=True),
-        b_button.dark_outline("Dark", disabled=True),
-        b_button.link_outline("Link", disabled=True),
+        h4("Disabled:"),
+        row_break(),
+        b_button.primary_outline("Primary", disabled=True, class_=button_margin),
+        b_button.secondary_outline("Secondary", disabled=True, class_=button_margin),
+        b_button.success_outline("Success", disabled=True, class_=button_margin),
+        b_button.danger_outline("Danger", disabled=True, class_=button_margin),
+        b_button.warning_outline("Warning", disabled=True, class_=button_margin),
+        b_button.info_outline("Info", disabled=True, class_=button_margin),
+        b_button.light_outline("Light", disabled=True, class_=button_margin),
+        b_button.dark_outline("Dark", disabled=True, class_=button_margin),
+        b_button.link_outline("Link", disabled=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_outline_buttons_block():
     return row(
-        "Block:",
-        a_button.primary_outline("Primary", class_=ButtonStyle.BLOCK),
-        a_button.secondary_outline("Secondary", class_=ButtonStyle.BLOCK),
-        a_button.success_outline("Success", class_=ButtonStyle.BLOCK),
-        a_button.danger_outline("Danger", class_=ButtonStyle.BLOCK),
-        a_button.warning_outline("Warning", class_=ButtonStyle.BLOCK),
-        a_button.info_outline("Info", class_=ButtonStyle.BLOCK),
-        a_button.light_outline("Light", class_=ButtonStyle.BLOCK),
-        a_button.dark_outline("Dark", class_=ButtonStyle.BLOCK),
-        a_button.link_outline("Link", class_=ButtonStyle.BLOCK),
+        h4("Block:"),
+        row_break(),
+        a_button.primary_outline("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.secondary_outline("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.success_outline("Success", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.danger_outline("Danger", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.warning_outline("Warning", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.info_outline("Info", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.light_outline("Light", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.dark_outline("Dark", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_button.link_outline("Link", class_=join(ButtonStyle.BLOCK, button_margin)),
         class_=col(md=12)
     )
 
 def get_toggle_buttons():
     return row(
-        "Active:",
-        l_toggle.primary("Primary", active=True),
-        l_toggle.secondary("Secondary", active=True),
-        l_toggle.success("Success", active=True),
-        l_toggle.danger("Danger", active=True),
-        l_toggle.warning("Warning", active=True),
-        l_toggle.info("Info", active=True),
-        l_toggle.light("Light", active=True),
-        l_toggle.dark("Dark", active=True),
-        l_toggle.link("Link", active=True),
+        h4("Active:"),
+        row_break(),
+        l_toggle.primary("Primary", active=True, class_=button_margin),
+        l_toggle.secondary("Secondary", active=True, class_=button_margin),
+        l_toggle.success("Success", active=True, class_=button_margin),
+        l_toggle.danger("Danger", active=True, class_=button_margin),
+        l_toggle.warning("Warning", active=True, class_=button_margin),
+        l_toggle.info("Info", active=True, class_=button_margin),
+        l_toggle.light("Light", active=True, class_=button_margin),
+        l_toggle.dark("Dark", active=True, class_=button_margin),
+        l_toggle.link("Link", active=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_toggle_buttons_large():
     return row(
-        "Large:",
-        b_toggle.primary("Primary", class_=ButtonStyle.LARGE),
-        b_toggle.secondary("Secondary", class_=ButtonStyle.LARGE),
-        b_toggle.success("Success", class_=ButtonStyle.LARGE),
-        b_toggle.danger("Danger", class_=ButtonStyle.LARGE),
-        b_toggle.warning("Warning", class_=ButtonStyle.LARGE),
-        b_toggle.info("Info", class_=ButtonStyle.LARGE),
-        b_toggle.light("Light", class_=ButtonStyle.LARGE),
-        b_toggle.dark("Dark", class_=ButtonStyle.LARGE),
-        b_toggle.link("Link", class_=ButtonStyle.LARGE),
+        h4("Large:"),
+        row_break(),
+        b_toggle.primary("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.secondary("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.success("Success", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.danger("Danger", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.warning("Warning", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.info("Info", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.light("Light", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.dark("Dark", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.link("Link", class_=join(ButtonStyle.LARGE, button_margin)),
         class_=col(md=12)
     )
 
 def get_toggle_buttons_small():
     return row(
-        "Small:",
-        i_toggle.primary("Primary", class_=ButtonStyle.SMALL),
-        i_toggle.secondary("Secondary", class_=ButtonStyle.SMALL),
-        i_toggle.success("Success", class_=ButtonStyle.SMALL),
-        i_toggle.danger("Danger", class_=ButtonStyle.SMALL),
-        i_toggle.warning("Warning", class_=ButtonStyle.SMALL),
-        i_toggle.info("Info", class_=ButtonStyle.SMALL),
-        i_toggle.light("Light", class_=ButtonStyle.SMALL),
-        i_toggle.dark("Dark", class_=ButtonStyle.SMALL),
-        i_toggle.link("Link", class_=ButtonStyle.SMALL),
+        h4("Small:"),
+        row_break(),
+        i_toggle.primary("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.secondary("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.success("Success", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.danger("Danger", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.warning("Warning", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.info("Info", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.light("Light", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.dark("Dark", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.link("Link", class_=join(ButtonStyle.SMALL, button_margin)),
         class_=col(md=12)
     )
 
 def get_toggle_buttons_disabled():
     return row(
-        "Disabled:",
-        b_toggle.primary("Primary", disabled=True),
-        b_toggle.secondary("Secondary", disabled=True),
-        b_toggle.success("Success", disabled=True),
-        b_toggle.danger("Danger", disabled=True),
-        b_toggle.warning("Warning", disabled=True),
-        b_toggle.info("Info", disabled=True),
-        b_toggle.light("Light", disabled=True),
-        b_toggle.dark("Dark", disabled=True),
-        b_toggle.link("Link", disabled=True),
+        h4("Disabled:"),
+        row_break(),
+        b_toggle.primary("Primary", disabled=True, class_=button_margin),
+        b_toggle.secondary("Secondary", disabled=True, class_=button_margin),
+        b_toggle.success("Success", disabled=True, class_=button_margin),
+        b_toggle.danger("Danger", disabled=True, class_=button_margin),
+        b_toggle.warning("Warning", disabled=True, class_=button_margin),
+        b_toggle.info("Info", disabled=True, class_=button_margin),
+        b_toggle.light("Light", disabled=True, class_=button_margin),
+        b_toggle.dark("Dark", disabled=True, class_=button_margin),
+        b_toggle.link("Link", disabled=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_toggle_buttons_block():
     return row(
-        "Block:",
-        a_toggle.primary("Primary", class_=ButtonStyle.BLOCK),
-        a_toggle.secondary("Secondary", class_=ButtonStyle.BLOCK),
-        a_toggle.success("Success", class_=ButtonStyle.BLOCK),
-        a_toggle.danger("Danger", class_=ButtonStyle.BLOCK),
-        a_toggle.warning("Warning", class_=ButtonStyle.BLOCK),
-        a_toggle.info("Info", class_=ButtonStyle.BLOCK),
-        a_toggle.light("Light", class_=ButtonStyle.BLOCK),
-        a_toggle.dark("Dark", class_=ButtonStyle.BLOCK),
-        a_toggle.link("Link", class_=ButtonStyle.BLOCK),
+        h4("Block:"),
+        row_break(),
+        a_toggle.primary("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.secondary("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.success("Success", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.danger("Danger", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.warning("Warning", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.info("Info", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.light("Light", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.dark("Dark", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.link("Link", class_=join(ButtonStyle.BLOCK, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_toggle_buttons():
     return row(
-        "Active:",
-        l_toggle.primary_outline("Primary", active=True),
-        l_toggle.secondary_outline("Secondary", active=True),
-        l_toggle.success_outline("Success", active=True),
-        l_toggle.danger_outline("Danger", active=True),
-        l_toggle.warning_outline("Warning", active=True),
-        l_toggle.info_outline("Info", active=True),
-        l_toggle.light_outline("Light", active=True),
-        l_toggle.dark_outline("Dark", active=True),
-        l_toggle.link_outline("Link", active=True),
+        h4("Active:"),
+        row_break(),
+        l_toggle.primary_outline("Primary", active=True, class_=button_margin),
+        l_toggle.secondary_outline("Secondary", active=True, class_=button_margin),
+        l_toggle.success_outline("Success", active=True, class_=button_margin),
+        l_toggle.danger_outline("Danger", active=True, class_=button_margin),
+        l_toggle.warning_outline("Warning", active=True, class_=button_margin),
+        l_toggle.info_outline("Info", active=True, class_=button_margin),
+        l_toggle.light_outline("Light", active=True, class_=button_margin),
+        l_toggle.dark_outline("Dark", active=True, class_=button_margin),
+        l_toggle.link_outline("Link", active=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_large():
     return row(
-        "Large:",
-        b_toggle.primary_outline("Primary", class_=ButtonStyle.LARGE),
-        b_toggle.secondary_outline("Secondary", class_=ButtonStyle.LARGE),
-        b_toggle.success_outline("Success", class_=ButtonStyle.LARGE),
-        b_toggle.danger_outline("Danger", class_=ButtonStyle.LARGE),
-        b_toggle.warning_outline("Warning", class_=ButtonStyle.LARGE),
-        b_toggle.info_outline("Info", class_=ButtonStyle.LARGE),
-        b_toggle.light_outline("Light", class_=ButtonStyle.LARGE),
-        b_toggle.dark_outline("Dark", class_=ButtonStyle.LARGE),
-        b_toggle.link_outline("Link", class_=ButtonStyle.LARGE),
+        h4("Large:"),
+        row_break(),
+        b_toggle.primary_outline("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.success_outline("Success", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.danger_outline("Danger", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.warning_outline("Warning", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.info_outline("Info", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.light_outline("Light", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.dark_outline("Dark", class_=join(ButtonStyle.LARGE, button_margin)),
+        b_toggle.link_outline("Link", class_=join(ButtonStyle.LARGE, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_small():
     return row(
-        "Small:",
-        i_toggle.primary_outline("Primary", class_=ButtonStyle.SMALL),
-        i_toggle.secondary_outline("Secondary", class_=ButtonStyle.SMALL),
-        i_toggle.success_outline("Success", class_=ButtonStyle.SMALL),
-        i_toggle.danger_outline("Danger", class_=ButtonStyle.SMALL),
-        i_toggle.warning_outline("Warning", class_=ButtonStyle.SMALL),
-        i_toggle.info_outline("Info", class_=ButtonStyle.SMALL),
-        i_toggle.light_outline("Light", class_=ButtonStyle.SMALL),
-        i_toggle.dark_outline("Dark", class_=ButtonStyle.SMALL),
-        i_toggle.link_outline("Link", class_=ButtonStyle.SMALL),
+        h4("Small:"),
+        row_break(),
+        i_toggle.primary_outline("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.success_outline("Success", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.danger_outline("Danger", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.warning_outline("Warning", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.info_outline("Info", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.light_outline("Light", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.dark_outline("Dark", class_=join(ButtonStyle.SMALL, button_margin)),
+        i_toggle.link_outline("Link", class_=join(ButtonStyle.SMALL, button_margin)),
         class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_disabled():
     return row(
-        "Disabled:",
-        b_toggle.primary_outline("Primary", disabled=True),
-        b_toggle.secondary_outline("Secondary", disabled=True),
-        b_toggle.success_outline("Success", disabled=True),
-        b_toggle.danger_outline("Danger", disabled=True),
-        b_toggle.warning_outline("Warning", disabled=True),
-        b_toggle.info_outline("Info", disabled=True),
-        b_toggle.light_outline("Light", disabled=True),
-        b_toggle.dark_outline("Dark", disabled=True),
-        b_toggle.link_outline("Link", disabled=True),
+        h4("Disabled:"),
+        row_break(),
+        b_toggle.primary_outline("Primary", disabled=True, class_=button_margin),
+        b_toggle.secondary_outline("Secondary", disabled=True, class_=button_margin),
+        b_toggle.success_outline("Success", disabled=True, class_=button_margin),
+        b_toggle.danger_outline("Danger", disabled=True, class_=button_margin),
+        b_toggle.warning_outline("Warning", disabled=True, class_=button_margin),
+        b_toggle.info_outline("Info", disabled=True, class_=button_margin),
+        b_toggle.light_outline("Light", disabled=True, class_=button_margin),
+        b_toggle.dark_outline("Dark", disabled=True, class_=button_margin),
+        b_toggle.link_outline("Link", disabled=True, class_=button_margin),
         class_=col(md=12)
     )
 
 def get_outline_toggle_buttons_block():
     return row(
-        "Block:",
-        a_toggle.primary_outline("Primary", class_=ButtonStyle.BLOCK),
-        a_toggle.secondary_outline("Secondary", class_=ButtonStyle.BLOCK),
-        a_toggle.success_outline("Success", class_=ButtonStyle.BLOCK),
-        a_toggle.danger_outline("Danger", class_=ButtonStyle.BLOCK),
-        a_toggle.warning_outline("Warning", class_=ButtonStyle.BLOCK),
-        a_toggle.info_outline("Info", class_=ButtonStyle.BLOCK),
-        a_toggle.light_outline("Light", class_=ButtonStyle.BLOCK),
-        a_toggle.dark_outline("Dark", class_=ButtonStyle.BLOCK),
-        a_toggle.link_outline("Link", class_=ButtonStyle.BLOCK),
+        h4("Block:"),
+        row_break(),
+        a_toggle.primary_outline("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.success_outline("Success", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.danger_outline("Danger", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.warning_outline("Warning", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.info_outline("Info", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.light_outline("Light", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.dark_outline("Dark", class_=join(ButtonStyle.BLOCK, button_margin)),
+        a_toggle.link_outline("Link", class_=join(ButtonStyle.BLOCK, button_margin)),
         class_=col(md=12)
     )
 
@@ -377,7 +406,7 @@ def get_card_left():
             )
         ),
         cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Hungary")),
-        class_=join(bg.light, text.dark, cards.TextAlign.LEFT)
+        class_=join(bg.light, text.dark, cards.TextAlign.LEFT, PercentSize.height_100)
     )
 
 def get_card_center():
@@ -395,7 +424,7 @@ def get_card_center():
         ),
         cards.Image.bottom("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Istvan-ChroniconPictum.jpg/340px-Istvan-ChroniconPictum.jpg"),
         cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Budapest#/History")),
-        class_=join(bg.light, text.dark, cards.TextAlign.CENTER)
+        class_=join(bg.light, text.dark, cards.TextAlign.CENTER, PercentSize.height_100)
     )
 
 def get_card_right():
@@ -412,7 +441,92 @@ def get_card_right():
             )
         ),
         cards.footer_div(cards.link("Learn more", href="http://www.wikiwand.com/en/Budapest")),
-        class_=join(bg.light, text.dark, cards.TextAlign.RIGHT)
+        class_=join(bg.light, text.dark, cards.TextAlign.RIGHT, PercentSize.height_100)
+    )
+
+def get_carousel():
+    imports = "\n".join([
+        "from markyp_bootstrap4.carousels import carousel, item_caption",
+        "from markyp_html.block import div",
+        "from markyp_html.inline import img",
+        "from markyp_html.text import h4"
+    ])
+    slides = "\n".join([
+        '    div(',
+        '       img.placeholder(4*160, 4*90, text=f"Slide 1", class_="d-block w-100"),',
+        '       item_caption(h4("Slide 1"))',
+        '    ),',
+        '    div(',
+        '       img.placeholder(4*160, 4*90, text=f"Slide 2", class_="d-block w-100"),',
+        '       item_caption(h4("Slide 2"))',
+        '    ),',
+        '    div(',
+        '       img.placeholder(4*160, 4*90, text=f"Slide 3", class_="d-block w-100"),',
+        '       item_caption(h4("Slide 3"))',
+        '    ),'
+    ])
+    c_full = "\n".join([
+        'carousel(',
+        slides,
+        '    identifier="full-carousel"',
+        ')'
+    ])
+    c_controls_only = "\n".join([
+        'carousel(',
+        slides,
+        '    add_indicators=False,',
+        '    identifier="controls-only-carousel"',
+        ')'
+    ])
+    c_indicators_only = "\n".join([
+        'carousel(',
+        slides,
+        '    add_controls=False,',
+        '    identifier="indicators-only-carousel"',
+        ')'
+    ])
+    c_empty = "\n".join([
+        'carousel(',
+        slides,
+        '    add_controls=False,',
+        '    add_indicators=False,',
+        '    identifier="controlless-carousel"',
+        ')'
+    ])
+    return carousels.carousel(
+        one(div(
+            highlight(
+                f"{imports}\n\n{c_empty}",
+                language="python",
+                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+            ),
+            carousels.item_caption(h4("Carousel without controls and indicators"))
+        )),
+        one(div(
+            highlight(
+                f"{imports}\n\n{c_controls_only}",
+                language="python",
+                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+            ),
+            carousels.item_caption(h4("Carousel with controls"))
+        )),
+        one(div(
+            highlight(
+                f"{imports}\n\n{c_indicators_only}",
+                language="python",
+                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+            ),
+            carousels.item_caption(h4("Carousel with indicators"))
+        )),
+        one(div(
+            highlight(
+                f"{imports}\n\n{c_full}",
+                language="python",
+                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+            ),
+            carousels.item_caption(h4("Carousel with controls and indicators"))
+        )),
+        identifier="Carousel-1"
     )
 
 page = webpage(
@@ -426,14 +540,14 @@ page = webpage(
             ),
             md=12
         ),
-        one(h2("Alerts and badges", md=12)),
+        section_header("Alerts and badges"),
         one(get_alert(), md=12),
         one(get_dismissable_alert(), md=12),
-        one(h2("Breadcrumbs", md=12)),
+        section_header("Breadcrumbs"),
         one(get_breadcrumb(), md=12),
         one(get_breadcrumb_code(), md=12),
-        one(h2("Buttons", md=12)),
-        one(h3("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"), md=12),
+        section_header("Buttons"),
+        subsection_header("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
         get_buttons(),
         hr(),
         get_buttons_small(),
@@ -443,7 +557,7 @@ page = webpage(
         get_buttons_disabled(),
         hr(),
         get_buttons_block(),
-        one(h3("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"), md=12),
+        subsection_header("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
         get_outline_buttons(),
         hr(),
         get_outline_buttons_small(),
@@ -453,7 +567,7 @@ page = webpage(
         get_outline_buttons_disabled(),
         hr(),
         get_outline_buttons_block(),
-        one(h3("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"), md=12),
+        subsection_header("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
         get_toggle_buttons(),
         hr(),
         get_toggle_buttons_small(),
@@ -463,7 +577,7 @@ page = webpage(
         get_toggle_buttons_disabled(),
         hr(),
         get_toggle_buttons_block(),
-        one(h3("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"), md=12),
+        subsection_header("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
         get_outline_toggle_buttons(),
         hr(),
         get_outline_toggle_buttons_small(),
@@ -473,11 +587,14 @@ page = webpage(
         get_outline_toggle_buttons_disabled(),
         hr(),
         get_outline_toggle_buttons_block(),
-        one(h2("Cards", md=12)),
+        section_header("Cards"),
         three(
             get_card_left(), get_card_center(), get_card_right(),
             md=(4, 4, 4)
-        )
+        ),
+        section_header("Carousels"),
+        one(get_carousel()),
+        class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
     head_elements=[
