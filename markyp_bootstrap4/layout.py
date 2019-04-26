@@ -26,7 +26,7 @@ __all__ = (
     "ColumnSize", "MarginSize", "PaddingSize",
     "container", "container_fluid",
     "row", "one", "two", "three", "row_item",
-    "autocol", "col", "margin", "padding"
+    "PercentSize", "autocol", "col", "margin", "padding"
 )
 
 
@@ -282,8 +282,31 @@ def row_item(*args: ElementType,
     return div(*args, class_=class_)
 
 
-# -- Helper methods
+# -- Utilities
 # -----------------------------------------------------------------------------
+
+
+class PercentSize(object):
+    """
+    CSS class names for defining an element's width and height in percentage
+    relative to its parent element.
+    """
+
+    height_25: str = "h-25"
+
+    height_50: str = "h-50"
+
+    height_75: str = "h-75"
+
+    height_100: str = "h-100"
+
+    width_25: str = "w-25"
+
+    width_50: str = "w-50"
+
+    width_75: str = "w-75"
+
+    width_100: str = "w-100"
 
 
 def autocol(xs: Optional[ColumnSize] = None,

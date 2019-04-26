@@ -1,15 +1,5 @@
-from markyp_bootstrap4.layout import _size_names,\
-                                     container,\
-                                     container_fluid,\
-                                     row,\
-                                     one,\
-                                     two,\
-                                     three,\
-                                     row_item,\
-                                     autocol,\
-                                     col,\
-                                     margin,\
-                                     padding
+from markyp_bootstrap4.layout import _size_names
+from markyp_bootstrap4.layout import *
 
 def test_size_names():
     assert _size_names == ("xs", "sm", "md", "lg", "xl")
@@ -211,6 +201,17 @@ def test_row_item():
         '<div class="col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", class_="fancy-div", xs=12, sm=11, md=10, lg=9, xl=8).markup ==\
         '<div class="col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 fancy-div">\nfoo\nbar\n</div>'
+
+def test_PercentSize():
+    assert PercentSize.height_25 == "h-25"
+    assert PercentSize.height_50 == "h-50"
+    assert PercentSize.height_75 == "h-75"
+    assert PercentSize.height_100 == "h-100"
+
+    assert PercentSize.width_25 == "w-25"
+    assert PercentSize.width_50 == "w-50"
+    assert PercentSize.width_75 == "w-75"
+    assert PercentSize.width_100 == "w-100"
 
 def test_autocol():
     assert autocol() == "col-sm"
