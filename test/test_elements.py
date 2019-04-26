@@ -1,7 +1,10 @@
-from markyp_bootstrap4.elements import close_icon
+from markyp_bootstrap4.elements import *
 
 def test_close_icon():
     assert close_icon().markup ==\
         '<button type="button" aria-label="Close" class="close">'\
         '<span aria-hidden="true">&times;</span>'\
         '</button>'
+
+def test_row_break():
+    assert row_break().markup == '<div class="w-100"></div>'
