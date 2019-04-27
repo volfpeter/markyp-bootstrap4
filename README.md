@@ -8,6 +8,8 @@ The project is listed on the Python Package Index, it can be installed simply by
 
 ## Getting started
 
+If you are not familiar with the basic concepts of `markyp`, please start by having a look at its documentation [here](https://github.com/volfpeter/markyp).
+
 TODO
 
 ## Community guidelines
