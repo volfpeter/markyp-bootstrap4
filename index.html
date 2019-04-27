@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html >
+<head >
+<title >markyp-bootstrap4 demo page</title>
+<meta name="author" content="Website Author">
+<meta charset="UTF-8">
+<meta name="description" content="markyp-bootstrap4 demo">
+<meta name="keywords" content="markyp-html,markyp-bootstrap4,markup,Python,HTML,Bootstrap">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+</head>
+<body class="bg-dark text-light">
+<div class="container py-5">
+<div class="row">
+<div class="col-md-12">
+<h1 >Building web pages with <em >Python</em> , <a href="https://github.com/volfpeter/markyp"><code >markyp</code></a> , <a href="https://github.com/volfpeter/markyp-html"><code >markyp-html</code></a> , and <a href="https://github.com/volfpeter/markyp-bootstrap4"><code >markyp-bootstrap4</code></a></h1>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Alerts and badges</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div role="alert" class="alert alert-primary">
+<h3 >Alert with <span class="badge badge-primary">primary</span> context.</h3>
+<hr >
+<pre >
+<code class="python">from markyp_html.text import h3
+from markyp_bootstrap4.alerts import alert
+from markyp_bootstrap4.badges import span_badge
+
+alert.primary(h3("Alert with", span_badge.primary("primary"), "context."))</code>
+</pre>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div role="alert" class="alert alert-danger alert-dismissible fade show">
+<h3 >Dismissable alert with <span class="badge badge-danger">danger</span> context.</h3>
+<hr >
+<pre >
+<code class="python">from markyp_html.text import h3
+from markyp_bootstrap4.alerts import dismissable
+from markyp_bootstrap4.badges import span_badge
+
+dismissable.danger(h3("Dismissable alert with", span_badge.danger("danger"), "context."))</code>
+</pre>
+<button data-dismiss="alert" type="button" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Breadcrumbs</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="#"><strong >Home</strong></a></li>
+<li class="breadcrumb-item"><a href="#">Topic</a></li>
+<li class="breadcrumb-item"><a href="#">Subtopic</a></li>
+<li class="breadcrumb-item active"><em >Current page</em></li>
+</ol>
+</nav>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<pre >
+<code class="python">from markyp_bootstrap4.breadcrumbs import breadcrumb
+from markyp_html.inline import a, em, strong
+
+breadcrumb(
+    a(strong("Home"), href="#"),
+    a("Topic", href="#"),
+    a("Subtopic", href="#"),
+    em("Current page")
+)</code>
+</pre>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Buttons</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+</div>
+</div>
+<div class="row col-md-12">
+<h4 >Active:</h4>
+<div class="w-100"></div>
+<label type="button" aria-pressed="true" class="btn btn-primary active mx-1 my-1">Primary</label>
+<label type="button" aria-pressed="true" class="btn btn-secondary active mx-1 my-1">Secondary</label>
+<label type="button" aria-pressed="true" class="btn btn-success active mx-1 my-1">Success</label>
+<label type="button" aria-pressed="true" class="btn btn-danger active mx-1 my-1">Danger</label>
+<label type="button" aria-pressed="true" class="btn btn-warning active mx-1 my-1">Warning</label>
+<label type="button" aria-pressed="true" class="btn btn-info active mx-1 my-1">Info</label>
+<label type="button" aria-pressed="true" class="btn btn-light active mx-1 my-1">Light</label>
+<label type="button" aria-pressed="true" class="btn btn-dark active mx-1 my-1">Dark</label>
+<label type="button" aria-pressed="true" class="btn btn-link active mx-1 my-1">Link</label>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Small:</h4>
+<div class="w-100"></div>
+<input type="button" value="Primary" class="btn btn-primary btn-sm mx-1 my-1">
+<input type="button" value="Secondary" class="btn btn-secondary btn-sm mx-1 my-1">
+<input type="button" value="Success" class="btn btn-success btn-sm mx-1 my-1">
+<input type="button" value="Danger" class="btn btn-danger btn-sm mx-1 my-1">
+<input type="button" value="Warning" class="btn btn-warning btn-sm mx-1 my-1">
+<input type="button" value="Info" class="btn btn-info btn-sm mx-1 my-1">
+<input type="button" value="Light" class="btn btn-light btn-sm mx-1 my-1">
+<input type="button" value="Dark" class="btn btn-dark btn-sm mx-1 my-1">
+<input type="button" value="Link" class="btn btn-link btn-sm mx-1 my-1">
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Large:</h4>
+<div class="w-100"></div>
+<button type="button" class="btn btn-primary btn-lg mx-1 my-1">Primary</button>
+<button type="button" class="btn btn-secondary btn-lg mx-1 my-1">Secondary</button>
+<button type="button" class="btn btn-success btn-lg mx-1 my-1">Success</button>
+<button type="button" class="btn btn-danger btn-lg mx-1 my-1">Danger</button>
+<button type="button" class="btn btn-warning btn-lg mx-1 my-1">Warning</button>
+<button type="button" class="btn btn-info btn-lg mx-1 my-1">Info</button>
+<button type="button" class="btn btn-light btn-lg mx-1 my-1">Light</button>
+<button type="button" class="btn btn-dark btn-lg mx-1 my-1">Dark</button>
+<button type="button" class="btn btn-link btn-lg mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Disabled:</h4>
+<div class="w-100"></div>
+<button type="button" disabled class="btn btn-primary mx-1 my-1">Primary</button>
+<button type="button" disabled class="btn btn-secondary mx-1 my-1">Secondary</button>
+<button type="button" disabled class="btn btn-success mx-1 my-1">Success</button>
+<button type="button" disabled class="btn btn-danger mx-1 my-1">Danger</button>
+<button type="button" disabled class="btn btn-warning mx-1 my-1">Warning</button>
+<button type="button" disabled class="btn btn-info mx-1 my-1">Info</button>
+<button type="button" disabled class="btn btn-light mx-1 my-1">Light</button>
+<button type="button" disabled class="btn btn-dark mx-1 my-1">Dark</button>
+<button type="button" disabled class="btn btn-link mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Block:</h4>
+<div class="w-100"></div>
+<a type="button" class="btn btn-primary btn-block mx-1 my-1">Primary</a>
+<a type="button" class="btn btn-secondary btn-block mx-1 my-1">Secondary</a>
+<a type="button" class="btn btn-success btn-block mx-1 my-1">Success</a>
+<a type="button" class="btn btn-danger btn-block mx-1 my-1">Danger</a>
+<a type="button" class="btn btn-warning btn-block mx-1 my-1">Warning</a>
+<a type="button" class="btn btn-info btn-block mx-1 my-1">Info</a>
+<a type="button" class="btn btn-light btn-block mx-1 my-1">Light</a>
+<a type="button" class="btn btn-dark btn-block mx-1 my-1">Dark</a>
+<a type="button" class="btn btn-link btn-block mx-1 my-1">Link</a>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Outline buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+</div>
+</div>
+<div class="row col-md-12">
+<h4 >Active:</h4>
+<div class="w-100"></div>
+<label type="button" aria-pressed="true" class="btn btn-outline-primary active mx-1 my-1">Primary</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-secondary active mx-1 my-1">Secondary</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-success active mx-1 my-1">Success</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-danger active mx-1 my-1">Danger</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-warning active mx-1 my-1">Warning</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-info active mx-1 my-1">Info</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-light active mx-1 my-1">Light</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-dark active mx-1 my-1">Dark</label>
+<label type="button" aria-pressed="true" class="btn btn-outline-link active mx-1 my-1">Link</label>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Small:</h4>
+<div class="w-100"></div>
+<input type="button" value="Primary" class="btn btn-outline-primary btn-sm mx-1 my-1">
+<input type="button" value="Secondary" class="btn btn-outline-secondary btn-sm mx-1 my-1">
+<input type="button" value="Success" class="btn btn-outline-success btn-sm mx-1 my-1">
+<input type="button" value="Danger" class="btn btn-outline-danger btn-sm mx-1 my-1">
+<input type="button" value="Warning" class="btn btn-outline-warning btn-sm mx-1 my-1">
+<input type="button" value="Info" class="btn btn-outline-info btn-sm mx-1 my-1">
+<input type="button" value="Light" class="btn btn-outline-light btn-sm mx-1 my-1">
+<input type="button" value="Dark" class="btn btn-outline-dark btn-sm mx-1 my-1">
+<input type="button" value="Link" class="btn btn-outline-link btn-sm mx-1 my-1">
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Large:</h4>
+<div class="w-100"></div>
+<button type="button" class="btn btn-outline-primary btn-lg mx-1 my-1">Primary</button>
+<button type="button" class="btn btn-outline-secondary btn-lg mx-1 my-1">Secondary</button>
+<button type="button" class="btn btn-outline-success btn-lg mx-1 my-1">Success</button>
+<button type="button" class="btn btn-outline-danger btn-lg mx-1 my-1">Danger</button>
+<button type="button" class="btn btn-outline-warning btn-lg mx-1 my-1">Warning</button>
+<button type="button" class="btn btn-outline-info btn-lg mx-1 my-1">Info</button>
+<button type="button" class="btn btn-outline-light btn-lg mx-1 my-1">Light</button>
+<button type="button" class="btn btn-outline-dark btn-lg mx-1 my-1">Dark</button>
+<button type="button" class="btn btn-outline-link btn-lg mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Disabled:</h4>
+<div class="w-100"></div>
+<button type="button" disabled class="btn btn-outline-primary mx-1 my-1">Primary</button>
+<button type="button" disabled class="btn btn-outline-secondary mx-1 my-1">Secondary</button>
+<button type="button" disabled class="btn btn-outline-success mx-1 my-1">Success</button>
+<button type="button" disabled class="btn btn-outline-danger mx-1 my-1">Danger</button>
+<button type="button" disabled class="btn btn-outline-warning mx-1 my-1">Warning</button>
+<button type="button" disabled class="btn btn-outline-info mx-1 my-1">Info</button>
+<button type="button" disabled class="btn btn-outline-light mx-1 my-1">Light</button>
+<button type="button" disabled class="btn btn-outline-dark mx-1 my-1">Dark</button>
+<button type="button" disabled class="btn btn-outline-link mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Block:</h4>
+<div class="w-100"></div>
+<a type="button" class="btn btn-outline-primary btn-block mx-1 my-1">Primary</a>
+<a type="button" class="btn btn-outline-secondary btn-block mx-1 my-1">Secondary</a>
+<a type="button" class="btn btn-outline-success btn-block mx-1 my-1">Success</a>
+<a type="button" class="btn btn-outline-danger btn-block mx-1 my-1">Danger</a>
+<a type="button" class="btn btn-outline-warning btn-block mx-1 my-1">Warning</a>
+<a type="button" class="btn btn-outline-info btn-block mx-1 my-1">Info</a>
+<a type="button" class="btn btn-outline-light btn-block mx-1 my-1">Light</a>
+<a type="button" class="btn btn-outline-dark btn-block mx-1 my-1">Dark</a>
+<a type="button" class="btn btn-outline-link btn-block mx-1 my-1">Link</a>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+</div>
+</div>
+<div class="row col-md-12">
+<h4 >Active:</h4>
+<div class="w-100"></div>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-primary active mx-1 my-1">Primary</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-secondary active mx-1 my-1">Secondary</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-success active mx-1 my-1">Success</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-danger active mx-1 my-1">Danger</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-warning active mx-1 my-1">Warning</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-info active mx-1 my-1">Info</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-light active mx-1 my-1">Light</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-dark active mx-1 my-1">Dark</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-link active mx-1 my-1">Link</label>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Small:</h4>
+<div class="w-100"></div>
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Primary" class="btn btn-primary btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Secondary" class="btn btn-secondary btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Success" class="btn btn-success btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Danger" class="btn btn-danger btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Warning" class="btn btn-warning btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Info" class="btn btn-info btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Light" class="btn btn-light btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Dark" class="btn btn-dark btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Link" class="btn btn-link btn-sm mx-1 my-1">
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Large:</h4>
+<div class="w-100"></div>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary btn-lg mx-1 my-1">Primary</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary btn-lg mx-1 my-1">Secondary</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-success btn-lg mx-1 my-1">Success</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-danger btn-lg mx-1 my-1">Danger</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-warning btn-lg mx-1 my-1">Warning</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-info btn-lg mx-1 my-1">Info</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-light btn-lg mx-1 my-1">Light</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-dark btn-lg mx-1 my-1">Dark</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-link btn-lg mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Disabled:</h4>
+<div class="w-100"></div>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary mx-1 my-1">Primary</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary mx-1 my-1">Secondary</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-success mx-1 my-1">Success</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-danger mx-1 my-1">Danger</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-warning mx-1 my-1">Warning</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-info mx-1 my-1">Info</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-light mx-1 my-1">Light</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-dark mx-1 my-1">Dark</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-link mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Block:</h4>
+<div class="w-100"></div>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary btn-block mx-1 my-1">Primary</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary btn-block mx-1 my-1">Secondary</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-success btn-block mx-1 my-1">Success</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-danger btn-block mx-1 my-1">Danger</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-warning btn-block mx-1 my-1">Warning</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-info btn-block mx-1 my-1">Info</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-light btn-block mx-1 my-1">Light</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-dark btn-block mx-1 my-1">Dark</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-link btn-block mx-1 my-1">Link</a>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Outline toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+</div>
+</div>
+<div class="row col-md-12">
+<h4 >Active:</h4>
+<div class="w-100"></div>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-primary active mx-1 my-1">Primary</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary active mx-1 my-1">Secondary</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-success active mx-1 my-1">Success</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-danger active mx-1 my-1">Danger</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-warning active mx-1 my-1">Warning</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-info active mx-1 my-1">Info</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-light active mx-1 my-1">Light</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-dark active mx-1 my-1">Dark</label>
+<label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-link active mx-1 my-1">Link</label>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Small:</h4>
+<div class="w-100"></div>
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Primary" class="btn btn-outline-primary btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Secondary" class="btn btn-outline-secondary btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Success" class="btn btn-outline-success btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Danger" class="btn btn-outline-danger btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Warning" class="btn btn-outline-warning btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Info" class="btn btn-outline-info btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Light" class="btn btn-outline-light btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Dark" class="btn btn-outline-dark btn-sm mx-1 my-1">
+<input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Link" class="btn btn-outline-link btn-sm mx-1 my-1">
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Large:</h4>
+<div class="w-100"></div>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary btn-lg mx-1 my-1">Primary</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary btn-lg mx-1 my-1">Secondary</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-success btn-lg mx-1 my-1">Success</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-danger btn-lg mx-1 my-1">Danger</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-warning btn-lg mx-1 my-1">Warning</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-info btn-lg mx-1 my-1">Info</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-light btn-lg mx-1 my-1">Light</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-dark btn-lg mx-1 my-1">Dark</button>
+<button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-link btn-lg mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Disabled:</h4>
+<div class="w-100"></div>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary mx-1 my-1">Primary</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary mx-1 my-1">Secondary</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-success mx-1 my-1">Success</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-danger mx-1 my-1">Danger</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-warning mx-1 my-1">Warning</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-info mx-1 my-1">Info</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-light mx-1 my-1">Light</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-dark mx-1 my-1">Dark</button>
+<button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-link mx-1 my-1">Link</button>
+</div>
+<hr >
+<div class="row col-md-12">
+<h4 >Block:</h4>
+<div class="w-100"></div>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary btn-block mx-1 my-1">Primary</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary btn-block mx-1 my-1">Secondary</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-success btn-block mx-1 my-1">Success</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-danger btn-block mx-1 my-1">Danger</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-warning btn-block mx-1 my-1">Warning</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-info btn-block mx-1 my-1">Info</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-light btn-block mx-1 my-1">Light</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-dark btn-block mx-1 my-1">Dark</a>
+<a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-link btn-block mx-1 my-1">Link</a>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Cards</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="card bg-light text-dark text-left h-100">
+<h5 class="card-header">Hungary</h5>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/EU-Hungary.svg/500px-EU-Hungary.svg.png" class="card-img-top">
+<div class="card-body">
+<p class="card-text">Hungary is a country in Central Europe, spanning 93,030 square kilometres in the Carpathian Basin. With about 10 million inhabitants, Hungary is a medium-sized member state of the European Union. The official language is Hungarian, which is the most widely spoken Uralic language in the world...</p>
+</div>
+<div class="card-footer">
+<a href="http://www.wikiwand.com/en/Hungary" class="card-link">Learn more</a>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card bg-light text-dark text-center h-100">
+<h5 class="card-header">Hungarian History</h5>
+<div class="card-body">
+<p class="card-text">The foundations of the Hungarian state were established in the late ninth century CE by the Hungarian grand prince Árpád following the conquest of the Carpathian Basin. His great-grandson Stephen I ascended the  throne in 1000, converting his realm to a Christian kingdom. By the 12th century, Hungary became a regional power, reaching its cultural and  political height in the 15th century...</p>
+</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Istvan-ChroniconPictum.jpg/340px-Istvan-ChroniconPictum.jpg" class="card-img-bottom">
+<div class="card-footer">
+<a href="http://www.wikiwand.com/en/Budapest#/History" class="card-link">Learn more</a>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card bg-light text-dark text-right h-100">
+<h5 class="card-header">Budapest</h5>
+<img src="https://images.pexels.com/photos/59701/pexels-photo-59701.jpeg" class="card-img-top">
+<div class="card-body">
+<p class="card-text">The history of Budapest began when an early Celtic settlement transformed into the Roman town of Aquincum, the capital of Lower Pannonia. The Hungarians arrived in the territory in the late 9th century. The area was pillaged by the Mongols in 1241. Buda, the settlements on the west bank of the river, became one of the centres of Renaissance humanist culture by the 15th century...</p>
+</div>
+<div class="card-footer">
+<a href="http://www.wikiwand.com/en/Budapest" class="card-link">Learn more</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Carousels</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<div data-ride="carousel" id="Carousel-1" class="carousel slide">
+<ol class="carousel-indicators">
+<li data-target="#Carousel-1" data-slide-to="0" class="active"></li>
+<li data-target="#Carousel-1" data-slide-to="1"></li>
+<li data-target="#Carousel-1" data-slide-to="2"></li>
+<li data-target="#Carousel-1" data-slide-to="3"></li>
+</ol>
+<div class="carousel-inner">
+<div class="carousel-item active">
+<div class="row">
+<div class="col-sm">
+<div >
+<pre class="col-md-8 offset-md-2 pb-5">
+<code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
+from markyp_html.block import div
+from markyp_html.inline import img
+from markyp_html.text import h4
+
+carousel(
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 1", class_="d-block w-100"),
+       item_caption(h4("Slide 1"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 2", class_="d-block w-100"),
+       item_caption(h4("Slide 2"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 3", class_="d-block w-100"),
+       item_caption(h4("Slide 3"))
+    ),
+    add_controls=False,
+    add_indicators=False,
+    identifier="controlless-carousel"
+)</code>
+</pre>
+<div class="carousel-caption d-none d-md-block">
+<h4 >Carousel without controls and indicators</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="carousel-item">
+<div class="row">
+<div class="col-sm">
+<div >
+<pre class="col-md-8 offset-md-2 pb-5">
+<code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
+from markyp_html.block import div
+from markyp_html.inline import img
+from markyp_html.text import h4
+
+carousel(
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 1", class_="d-block w-100"),
+       item_caption(h4("Slide 1"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 2", class_="d-block w-100"),
+       item_caption(h4("Slide 2"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 3", class_="d-block w-100"),
+       item_caption(h4("Slide 3"))
+    ),
+    add_indicators=False,
+    identifier="controls-only-carousel"
+)</code>
+</pre>
+<div class="carousel-caption d-none d-md-block">
+<h4 >Carousel with controls</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="carousel-item">
+<div class="row">
+<div class="col-sm">
+<div >
+<pre class="col-md-8 offset-md-2 pb-5">
+<code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
+from markyp_html.block import div
+from markyp_html.inline import img
+from markyp_html.text import h4
+
+carousel(
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 1", class_="d-block w-100"),
+       item_caption(h4("Slide 1"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 2", class_="d-block w-100"),
+       item_caption(h4("Slide 2"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 3", class_="d-block w-100"),
+       item_caption(h4("Slide 3"))
+    ),
+    add_controls=False,
+    identifier="indicators-only-carousel"
+)</code>
+</pre>
+<div class="carousel-caption d-none d-md-block">
+<h4 >Carousel with indicators</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="carousel-item">
+<div class="row">
+<div class="col-sm">
+<div >
+<pre class="col-md-8 offset-md-2 pb-5">
+<code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
+from markyp_html.block import div
+from markyp_html.inline import img
+from markyp_html.text import h4
+
+carousel(
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 1", class_="d-block w-100"),
+       item_caption(h4("Slide 1"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 2", class_="d-block w-100"),
+       item_caption(h4("Slide 2"))
+    ),
+    div(
+       img.placeholder(4*160, 4*90, text=f"Slide 3", class_="d-block w-100"),
+       item_caption(h4("Slide 3"))
+    ),
+    identifier="full-carousel"
+)</code>
+</pre>
+<div class="carousel-caption d-none d-md-block">
+<h4 >Carousel with controls and indicators</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a href="#Carousel-1" role="button" data-slide="prev" class="carousel-control-prev"><span aria-hdden="true" class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a>
+<a href="#Carousel-1" role="button" data-slide="next" class="carousel-control-next"><span aria-hdden="true" class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script >
+hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>
