@@ -615,40 +615,11 @@ class BaseToggleButtonFactory(BaseButtonFactory):
 
     __slots__ = ()
 
-    def get_css_class(self,
-                      context: str,
-                      *,
-                      class_: Optional[str] = None,
-                      outline: bool = False,
-                      active: bool = False) -> str:
-        """
-        Returns the CSS class string to set on the created element.
-
-        Arguments:
-            context: One of the constants from `ButtonContext`.
-            class_: Additional CSS class names to include.
-            outline: Whether an outline button is being created a basic one.
-            active: Whether the button is active (i.e. selected).
-        """
-        return super().get_css_class(context, class_=class_, outline=outline, active=active)
-
     def update_attributes(self,
                           attributes: PropertyDict,
                           *,
                           disabled: bool = False,
                           active: bool = False) -> PropertyDict:
-        """
-        Updates the given dictionary of element attribute name-value pairs with the
-        attributes that are required by the button that is being created.
-
-        _Never_ set the `class_` or `class` attributes in this method. Those attributes
-        are dealt with in `get_css_class()`.
-
-        Arguments:
-            attributes: The element attribute dictionary to update.
-            disabled: Whether the element should be disabled.
-            active: Whether the button is active (i.e. selected).
-        """
         attributes = super().update_attributes(attributes, disabled=disabled, active=active)
         attributes["aria-pressed"] = active
         attributes["autocomplete"] = "off"
