@@ -167,6 +167,6 @@ def slide(*args: ElementType, identifier: str, class_: Optional[str] = None, **k
 
     Arguments:
         identifier: The identifier of the carousel. It must be unique in the entire webpage.
-        class_: Additional CSS class names to set on the created anchor.
+        class_: Additional CSS class names to set on the created `div`.
     """
     return div(*args, class_=join("carousel slide", class_), **{**kwargs, "data-ride": "carousel", "id": identifier})
