@@ -438,7 +438,7 @@ breadcrumb(
 </div>
 </div>
 <div class="row">
-<div class="col-sm">
+<div class="col-md-12">
 <div data-ride="carousel" id="Carousel-1" class="carousel slide">
 <ol class="carousel-indicators">
 <li data-target="#Carousel-1" data-slide-to="0" class="active"></li>
@@ -586,6 +586,103 @@ carousel(
 </div>
 <a href="#Carousel-1" role="button" data-slide="prev" class="carousel-control-prev"><span aria-hdden="true" class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a>
 <a href="#Carousel-1" role="button" data-slide="next" class="carousel-control-next"><span aria-hdden="true" class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h2 md="12" class="pt-5">Collapses</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Collapse with multiple toggle buttons</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div >
+<div class="mb-2">
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-primary">Primary</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-secondary">Secondary</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-success">Success</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-danger">Danger</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-warning">Warning</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-info">Info</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-light">Light</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-dark">Dark</button>
+<button data-target="#collapse-1" data-toggle="collapse" aria-controls="collapse-1" aria-expanded="true" _class="mx-1 my-1" type="button" class="btn btn-link">Link</button>
+</div>
+<div class="w-100"></div>
+<div id="collapse-1" class="collapse show">
+<pre >
+<code class="python">from markyp_bootstrap4 import collapses
+from markyp_bootstrap4.buttons import b_button
+from markyp_bootstrap4.layout import row_break
+from markyp_html.block import div
+
+collapse_id = "collapse-1"
+div(
+    b_button.primary("Toggle collapse", class_="mb-2", **collapses.button_args_for(collapse_id)),
+    row_break(),
+    collapses.collapse(
+        "Collapse content, closed by default.",
+        identifier=collapse_id
+    )
+)</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+<h3 md="12" class="pt-3">Accordion</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div id="acc-1">
+<div class="card bg-dark text-light">
+<h4 data-target="#acc-1-First" data-toggle="collapse" aria-controls="acc-1-First" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">First</button></h4>
+<div id="acc-1-First" data-parent="#acc-1" class="collapse">
+<div class="card-body bg-light text-dark">
+Content of first collapse within the accordion ...
+</div>
+</div>
+</div>
+<div class="card bg-dark text-light">
+<h4 data-target="#acc-1-Second" data-toggle="collapse" aria-controls="acc-1-Second" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Second</button></h4>
+<div id="acc-1-Second" data-parent="#acc-1" class="collapse">
+<div class="card-body bg-light text-dark">
+Content of second collapse within the accordion ...
+</div>
+</div>
+</div>
+<div class="card bg-dark text-light">
+<h4 data-target="#acc-1-Third" data-toggle="collapse" aria-controls="acc-1-Third" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Third</button></h4>
+<div id="acc-1-Third" data-parent="#acc-1" class="collapse">
+<div class="card-body bg-light text-dark">
+Content of third collapse within the accordion ...
+</div>
+</div>
+</div>
+<div class="card bg-dark text-light">
+<h4 data-target="#acc-1-Fourth" data-toggle="collapse" aria-controls="acc-1-Fourth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fourth</button></h4>
+<div id="acc-1-Fourth" data-parent="#acc-1" class="collapse">
+<div class="card-body bg-light text-dark">
+Content of fourth collapse within the accordion ...
+</div>
+</div>
+</div>
+<div class="card bg-dark text-light">
+<h4 data-target="#acc-1-Fifth" data-toggle="collapse" aria-controls="acc-1-Fifth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fifth</button></h4>
+<div id="acc-1-Fifth" data-parent="#acc-1" class="collapse">
+<div class="card-body bg-light text-dark">
+Content of fifth collapse within the accordion ...
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

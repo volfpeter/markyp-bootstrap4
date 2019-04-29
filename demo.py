@@ -1,6 +1,7 @@
 from markyp_bootstrap4 import alerts
 from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
+from markyp_bootstrap4 import collapses
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
@@ -529,6 +530,64 @@ def get_carousel():
         identifier="Carousel-1"
     )
 
+def get_collapse():
+    collapse_id = "collapse-1"
+    collapse_shown = True
+    button_args = collapses.button_args_for(collapse_id, expanded=collapse_shown)
+    button_args["_class"] = button_margin
+    return div(
+        div(
+            b_button.primary("Primary", **button_args),
+            b_button.secondary("Secondary", **button_args),
+            b_button.success("Success", **button_args),
+            b_button.danger("Danger", **button_args),
+            b_button.warning("Warning", **button_args),
+            b_button.info("Info", **button_args),
+            b_button.light("Light", **button_args),
+            b_button.dark("Dark", **button_args),
+            b_button.link("Link", **button_args),
+            class_=margin(bottom=2)
+        ),
+        row_break(),
+        collapses.collapse(
+            highlight(
+                'from markyp_bootstrap4 import collapses\n'
+                'from markyp_bootstrap4.buttons import b_button\n'
+                'from markyp_bootstrap4.layout import row_break\n'
+                'from markyp_html.block import div\n\n'
+                'collapse_id = "collapse-1"\n'
+                'div(\n'
+                '    b_button.primary("Toggle collapse", class_="mb-2", **collapses.button_args_for(collapse_id)),\n'
+                '    row_break(),\n'
+                '    collapses.collapse(\n'
+                '        "Collapse content, closed by default.",\n'
+                '        identifier=collapse_id\n'
+                '    )\n'
+                ')',
+                language="python"
+            ),
+            identifier=collapse_id,
+            show=collapse_shown
+        )
+    )
+
+def get_accordion():
+    acc_id = "acc-1"
+    titles = ["First", "Second", "Third", "Fourth", "Fifth"]
+    contents = [f"Content of {title.lower()} collapse within the accordion ..." for title in titles]
+    items = [
+        cards.card(
+            cards.title.h4(b_button.link(ttl), **collapses.button_args_for(f"{acc_id}-{ttl}")),
+            collapses.collapse(
+                cards.body(cnt, class_=join(bg.light, text.dark)),
+                identifier=f"{acc_id}-{ttl}",
+                accordion_id=acc_id
+            ),
+            class_=join(bg.dark, text.light)
+        ) for ttl, cnt in zip(titles, contents)
+    ]
+    return div(*items, id=acc_id)
+
 page = webpage(
     container(
         one(
@@ -593,7 +652,12 @@ page = webpage(
             md=(4, 4, 4)
         ),
         section_header("Carousels"),
-        one(get_carousel()),
+        one(get_carousel(), md=12),
+        section_header("Collapses"),
+        subsection_header("Collapse with multiple toggle buttons"),
+        one(get_collapse(), md=12),
+        subsection_header("Accordion"),
+        one(get_accordion(), md=12),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
