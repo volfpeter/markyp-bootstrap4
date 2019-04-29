@@ -259,39 +259,31 @@ def test_col():
 
 def test_margin():
     assert margin() is None
+    assert margin(None) is None
     assert margin(top=None, bottom=None, left=None, right=None, x=None, y=None) is None
-    assert margin(None, None, None, None, None, None) is None
-    assert margin(top="", bottom="", left="", right="", x="", y="") is None
-    assert margin("", "", "", "", "", "") is None
+    assert margin(None, top=None, bottom=None, left=None, right=None, x=None, y=None) is None
+    assert margin("", top="", bottom="", left="", right="", x="", y="") is None
 
-    assert margin(3) == "mt-3"
+    assert margin(3) == "m-3"
     assert margin(top=3) == "mt-3"
-    assert margin(None, 3) == "mb-3"
     assert margin(bottom=3) == "mb-3"
-    assert margin(None, None, 3) == "ml-3"
     assert margin(left=3) == "ml-3"
-    assert margin(None, None, None, 3) == "mr-3"
     assert margin(right=3) == "mr-3"
-    assert margin(None, None, None, None, 3) == "mx-3"
     assert margin(x=3) == "mx-3"
-    assert margin(None, None, None, None, None, 3) == "my-3"
     assert margin(y=3) == "my-3"
 
-    assert margin("auto") == "mt-auto"
+    assert margin("auto") == "m-auto"
     assert margin(top="auto") == "mt-auto"
-    assert margin(None, "auto") == "mb-auto"
     assert margin(bottom="auto") == "mb-auto"
-    assert margin(None, None, "auto") == "ml-auto"
     assert margin(left="auto") == "ml-auto"
-    assert margin(None, None, None, "auto") == "mr-auto"
     assert margin(right="auto") == "mr-auto"
-    assert margin(None, None, None, None, "auto") == "mx-auto"
     assert margin(x="auto") == "mx-auto"
-    assert margin(None, None, None, None, None, "auto") == "my-auto"
     assert margin(y="auto") == "my-auto"
 
-    assert margin(0, 1, 2, 3, 4, 5) == "mt-0 mb-1 ml-2 mr-3 mx-4 my-5"
-    assert margin("auto", "auto", 2, 3, "auto", "auto") == "mt-auto mb-auto ml-2 mr-3 mx-auto my-auto"
+    assert margin(top=0, bottom=1, left=2, right=3, x=4, y=5) == "mt-0 mb-1 ml-2 mr-3 mx-4 my-5"
+    assert margin(2, top=0, bottom=1, left=2, right=3, x=4, y=5) == "m-2 mt-0 mb-1 ml-2 mr-3 mx-4 my-5"
+    assert margin(top="auto", bottom="auto", left=2, right=3, x="auto", y="auto") == "mt-auto mb-auto ml-2 mr-3 mx-auto my-auto"
+    assert margin("auto", top="auto", bottom="auto", left=2, right=3, x="auto", y="auto") == "m-auto mt-auto mb-auto ml-2 mr-3 mx-auto my-auto"
 
 def test_offset():
     assert offset() is None
@@ -329,36 +321,28 @@ def test_offset():
 
 def test_padding():
     assert padding() is None
+    assert padding(None) is None
     assert padding(top=None, bottom=None, left=None, right=None, x=None, y=None) is None
-    assert padding(None, None, None, None, None, None) is None
-    assert padding(top="", bottom="", left="", right="", x="", y="") is None
-    assert padding("", "", "", "", "", "") is None
+    assert padding(None, top=None, bottom=None, left=None, right=None, x=None, y=None) is None
+    assert padding("", top="", bottom="", left="", right="", x="", y="") is None
 
-    assert padding(3) == "pt-3"
+    assert padding(3) == "p-3"
     assert padding(top=3) == "pt-3"
-    assert padding(None, 3) == "pb-3"
     assert padding(bottom=3) == "pb-3"
-    assert padding(None, None, 3) == "pl-3"
     assert padding(left=3) == "pl-3"
-    assert padding(None, None, None, 3) == "pr-3"
     assert padding(right=3) == "pr-3"
-    assert padding(None, None, None, None, 3) == "px-3"
     assert padding(x=3) == "px-3"
-    assert padding(None, None, None, None, None, 3) == "py-3"
     assert padding(y=3) == "py-3"
 
-    assert padding("auto") == "pt-auto"
+    assert padding("auto") == "p-auto"
     assert padding(top="auto") == "pt-auto"
-    assert padding(None, "auto") == "pb-auto"
     assert padding(bottom="auto") == "pb-auto"
-    assert padding(None, None, "auto") == "pl-auto"
     assert padding(left="auto") == "pl-auto"
-    assert padding(None, None, None, "auto") == "pr-auto"
     assert padding(right="auto") == "pr-auto"
-    assert padding(None, None, None, None, "auto") == "px-auto"
     assert padding(x="auto") == "px-auto"
-    assert padding(None, None, None, None, None, "auto") == "py-auto"
     assert padding(y="auto") == "py-auto"
 
-    assert padding(0, 1, 2, 3, 4, 5) == "pt-0 pb-1 pl-2 pr-3 px-4 py-5"
-    assert padding("auto", "auto", 2, 3, "auto", "auto") == "pt-auto pb-auto pl-2 pr-3 px-auto py-auto"
+    assert padding(top=0, bottom=1, left=2, right=3, x=4, y=5) == "pt-0 pb-1 pl-2 pr-3 px-4 py-5"
+    assert padding(2, top=0, bottom=1, left=2, right=3, x=4, y=5) == "p-2 pt-0 pb-1 pl-2 pr-3 px-4 py-5"
+    assert padding(top="auto", bottom="auto", left=2, right=3, x="auto", y="auto") == "pt-auto pb-auto pl-2 pr-3 px-auto py-auto"
+    assert padding("auto", top="auto", bottom="auto", left=2, right=3, x="auto", y="auto") == "p-auto pt-auto pb-auto pl-2 pr-3 px-auto py-auto"

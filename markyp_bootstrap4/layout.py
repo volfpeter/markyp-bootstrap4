@@ -55,7 +55,7 @@ Padding size type. Values values for arguments of this type integers in the
 """
 
 
-_side_names: Tuple[str, str, str, str, str, str] = ("t", "b", "l", "r", "x", "y")
+_side_names: Tuple[str, str, str, str, str, str, str] = ("", "t", "b", "l", "r", "x", "y")
 """
 The ordered list of side names for spacing and margin definitions.
 """
@@ -360,7 +360,9 @@ def col(xs: Optional[ColumnSize] = None,
     return " ".join(f"col-{c}-{w}" for c, w in zip(_size_names, (xs, sm, md, lg, xl)) if w) or None
 
 
-def margin(top: Optional[MarginSize] = None,
+def margin(around: Optional[MarginSize] = None,
+           *,
+           top: Optional[MarginSize] = None,
            bottom: Optional[MarginSize] = None,
            left: Optional[MarginSize] = None,
            right: Optional[MarginSize] = None,
@@ -370,6 +372,7 @@ def margin(top: Optional[MarginSize] = None,
     Formats the specified margin sizes into a class string of `m{side}-{size}` items.
 
     Arguments:
+        around: Margin size on all sides.
         top: Margin size on the top.
         bottom: Margin size at the bottom.
         left: Margin size on the left side.
@@ -380,7 +383,7 @@ def margin(top: Optional[MarginSize] = None,
     Returns:
         The formatted class string or `None` if no sizes were specified.
     """
-    return " ".join(f"m{s}-{m}" for s, m in zip(_side_names, (top, bottom, left, right, x, y)) if m or m == 0) or None
+    return " ".join(f"m{s}-{m}" for s, m in zip(_side_names, (around, top, bottom, left, right, x, y)) if m or m == 0) or None
 
 
 def offset(xs: Optional[ColumnSize] = None,
@@ -402,7 +405,9 @@ def offset(xs: Optional[ColumnSize] = None,
     return " ".join(f"offset-{c}-{w}" for c, w in zip(_size_names, (xs, sm, md, lg, xl)) if w) or None
 
 
-def padding(top: Optional[PaddingSize] = None,
+def padding(around: Optional[PaddingSize] = None,
+            *,
+            top: Optional[PaddingSize] = None,
             bottom: Optional[PaddingSize] = None,
             left: Optional[PaddingSize] = None,
             right: Optional[PaddingSize] = None,
@@ -412,6 +417,7 @@ def padding(top: Optional[PaddingSize] = None,
     Formats the specified padding sizes into a class string of `p{side}-{size}` items.
 
     Arguments:
+        around: Padding size on all sides.
         top: Padding size on the top.
         bottom: Padding size at the bottom.
         left: Padding size on the left side.
@@ -422,4 +428,4 @@ def padding(top: Optional[PaddingSize] = None,
     Returns:
         The formatted class string or `None` if no sizes were specified.
     """
-    return " ".join(f"p{s}-{p}" for s, p in zip(_side_names, (top, bottom, left, right, x, y)) if p or p == 0) or None
+    return " ".join(f"p{s}-{p}" for s, p in zip(_side_names, (around, top, bottom, left, right, x, y)) if p or p == 0) or None
