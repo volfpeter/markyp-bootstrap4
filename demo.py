@@ -2,6 +2,7 @@ from markyp_bootstrap4 import alerts
 from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
 from markyp_bootstrap4 import collapses
+from markyp_bootstrap4 import dropdowns
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
@@ -588,6 +589,43 @@ def get_accordion():
     ]
     return div(*items, id=acc_id)
 
+def get_dropdown():
+    menu_items = (
+        dropdowns.menu_header.h4("Group 1"),
+            dropdowns.menu_item("Action 1"),
+            dropdowns.menu_item("Action 2"),
+            dropdowns.menu_divider(),
+            dropdowns.menu_header.h4("Group 2"),
+            dropdowns.menu_item("Action 3", disabled=True),
+            dropdowns.menu_item("Action 4")
+    )
+    return (
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.primary_outline("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        ),
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.secondary("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        ),
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.success_outline("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        ),
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.danger("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        ),
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.warning_outline("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        ),
+        dropdowns.dropdown(
+            dropdowns.dropdown_button.info("Dropdown button", id="dropdown-button-1", class_=button_margin),
+            dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        )
+    )
+
 page = webpage(
     container(
         one(
@@ -658,14 +696,14 @@ page = webpage(
         one(get_collapse(), md=12),
         subsection_header("Accordion"),
         one(get_accordion(), md=12),
+        section_header("Dropdowns"),
+        row(*get_dropdown(), class_=col(md=12)),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
     head_elements=[
         req.bootstrap_css,
-        req.jquery,
-        req.bootstrap_js,
-        req.popper_js,
+        *req.all_js,
         hlthemes.github,
     ],
     metadata=[
