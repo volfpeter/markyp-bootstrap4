@@ -641,6 +641,7 @@ class ElementButtonFactory(BaseButtonFactory):
         Arguments:
             generator: The type of the elements the factory will produce.
         """
+        super().__init__()
         self._generator: Type[Element] = generator
         """
         The type of the elements the object will produce.
@@ -667,6 +668,7 @@ class ElementToggleButtonFactory(BaseToggleButtonFactory):
         Arguments:
             generator: The type of the elements the factory will produce.
         """
+        super().__init__()
         self._generator: Type[Element] = generator
         """
         The type of the elements the object will produce.
@@ -698,6 +700,7 @@ class StandaloneElementButtonFactory(BaseButtonFactory):
             pos_arg_attr: The name of the element attribute factory methods should store
                           the stringified version of positional arguments in.
         """
+        super().__init__()
         self._generator: Type[StandaloneElement] = generator
         """
         The type of the elements the object will produce.
@@ -735,6 +738,7 @@ class StandaloneElementToggleButtonFactory(BaseToggleButtonFactory):
             pos_arg_attr: The name of the element attribute factory methods should store
                           the stringified version of positional arguments in.
         """
+        super().__init__()
         self._generator: Type[StandaloneElement] = generator
         """
         The type of the elements the object will produce.
