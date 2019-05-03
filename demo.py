@@ -3,6 +3,7 @@ from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
 from markyp_bootstrap4 import collapses
 from markyp_bootstrap4 import dropdowns
+from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
@@ -17,6 +18,7 @@ from markyp_bootstrap4.layout import container, margin, offset, padding, row, ro
 from markyp_highlightjs import highlight, js as hljs, themes as hlthemes
 
 from markyp_html import meta, join, webpage
+from markyp_html import forms
 from markyp_html.block import div, hr, pre
 from markyp_html.inline import a, code, em, img, strong
 from markyp_html.text import h1, h2, h3, h4, p
@@ -592,12 +594,12 @@ def get_accordion():
 def get_dropdown():
     menu_items = (
         dropdowns.menu_header.h4("Group 1"),
-            dropdowns.menu_item("Action 1"),
-            dropdowns.menu_item("Action 2"),
-            dropdowns.menu_divider(),
-            dropdowns.menu_header.h4("Group 2"),
-            dropdowns.menu_item("Action 3", disabled=True),
-            dropdowns.menu_item("Action 4")
+        dropdowns.menu_item("Action 1"),
+        dropdowns.menu_item("Action 2"),
+        dropdowns.menu_divider(),
+        dropdowns.menu_header.h4("Group 2"),
+        dropdowns.menu_item("Action 3", disabled=True),
+        dropdowns.menu_item("Action 4")
     )
     return (
         dropdowns.dropdown(
@@ -623,6 +625,29 @@ def get_dropdown():
         dropdowns.dropdown(
             dropdowns.dropdown_button.info("Dropdown button", id="dropdown-button-1", class_=button_margin),
             dropdowns.menu(*menu_items, button_id="dropdown-button-1")
+        )
+    )
+
+def get_input_groups():
+    return (
+        input_groups.input_group(
+            input_groups.pre_group(input_groups.text.p("First and last name:")),
+            forms.input_.text(class_="form-control", placeholder="First name"),
+            forms.input_.text(class_="form-control", placeholder="Last name"),
+            class_=margin(bottom=2)
+        ),
+        row_break(),
+        input_groups.input_group(
+            input_groups.pre_group(input_groups.text.p("Email address:")),
+            forms.input_.text(class_="form-control", placeholder="username"),
+            input_groups.post_group(input_groups.text.p("@markyp-bootstrap4.org")),
+            class_=margin(bottom=2)
+        ),
+        row_break(),
+        input_groups.input_group(
+            input_groups.pre_group(b_button.light_outline("Submit your application")),
+            forms.textarea(placeholder="Write your comments here.", class_="form-control"),
+            class_=margin(bottom=2)
         )
     )
 
@@ -698,6 +723,8 @@ page = webpage(
         one(get_accordion(), md=12),
         section_header("Dropdowns"),
         row(*get_dropdown(), class_=col(md=12)),
+        section_header("Inputs"),
+        row(*get_input_groups(), class_=col(md=12)),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
