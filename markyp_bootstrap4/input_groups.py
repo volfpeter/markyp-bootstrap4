@@ -6,7 +6,7 @@ See https://getbootstrap.com/docs/4.0/components/input-group/.
 
 from typing import Optional
 
-from markyp import ElementType, PropertyDict, PropertyValue
+from markyp import ElementType, PropertyValue
 from markyp_html import join
 from markyp_html.block import div
 from markyp_html.text import StyledTextFactory
@@ -35,9 +35,7 @@ class InputGroupStyle(object):
     LARGE: str = "input-group-lg"
 
 
-def input_group(*args: ElementType,
-                 class_: Optional[str] = None,
-                 **kwargs: PropertyValue) -> div:
+def input_group(*args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> div:
     """
     Creates an `input-group` `div`.
 
