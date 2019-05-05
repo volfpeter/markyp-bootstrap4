@@ -175,9 +175,6 @@ def form_row(*args: ElementType, class_: Optional[str] = None) -> div:
 
     Positional arguments will become the children elements of the created `div`.
 
-    Keyword arguments not listed in the arguments section are turned into element
-    attributes on the created `div`.
-
     See https://getbootstrap.com/docs/4.0/components/forms/#form-grid.
 
     Arguments:
