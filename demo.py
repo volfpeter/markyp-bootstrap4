@@ -3,6 +3,7 @@ from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
 from markyp_bootstrap4 import collapses
 from markyp_bootstrap4 import dropdowns
+from markyp_bootstrap4 import forms
 from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
@@ -18,8 +19,8 @@ from markyp_bootstrap4.layout import container, margin, offset, padding, row, ro
 from markyp_highlightjs import highlight, js as hljs, themes as hlthemes
 
 from markyp_html import meta, join, webpage
-from markyp_html import forms
-from markyp_html.block import div, hr, pre
+from markyp_html.block import div, hr
+from markyp_html.forms import form
 from markyp_html.inline import a, code, em, img, strong
 from markyp_html.text import h1, h2, h3, h4, p
 
@@ -628,18 +629,70 @@ def get_dropdown():
         )
     )
 
+def get_multiline_login_form():
+    return form(
+        forms.form_group(
+            forms.text.h5("Email"),
+            forms.input_.email(placeholder="Enter your email address")
+        ),
+        forms.form_group(
+            forms.text.h5("Password"),
+            forms.input_.password(placeholder="Enter your password")
+        ),
+        forms.form_check(
+            forms.input_.checkbox(),
+            forms.form_check_label("Remember Me")
+        ),
+        b_button.primary("Sign In", type="submit")
+    )
+
+def get_grid_login_form():
+    return form(
+        forms.form_group(
+            forms.text.h5("Email", class_=col(md=2)),
+            forms.input_.email(placeholder="Enter your email address", class_=col(md=10)),
+            row=True
+        ),
+        forms.form_group(
+            forms.text.h5("Password", class_=col(md=2)),
+            forms.input_.password(placeholder="Enter your password", class_=col(md=10)),
+            row=True
+        ),
+        forms.form_check(
+            forms.input_.checkbox(),
+            forms.form_check_label("Remember Me")
+        ),
+        b_button.primary("Sign In", type="submit")
+    )
+
+def get_inline_login_form():
+    return forms.inline_form(
+        input_groups.input_group(
+            input_groups.pre_group(input_groups.text.p("@")),
+            forms.input_.text(placeholder="Username"),
+            class_=margin(right=2)
+        ),
+        forms.input_.password(placeholder="Password", class_=margin(right=2)),
+        forms.form_check(
+            forms.input_.checkbox(),
+            forms.form_check_label("Remember Me"),
+            class_=margin(right=2)
+        ),
+        b_button.primary("Sign In", type="submit")
+    )
+
 def get_input_groups():
     return (
         input_groups.input_group(
             input_groups.pre_group(input_groups.text.p("First and last name:")),
-            forms.input_.text(class_="form-control", placeholder="First name"),
-            forms.input_.text(class_="form-control", placeholder="Last name"),
+            forms.input_.text(placeholder="First name"),
+            forms.input_.text(placeholder="Last name"),
             class_=margin(bottom=2)
         ),
         row_break(),
         input_groups.input_group(
             input_groups.pre_group(input_groups.text.p("Email address:")),
-            forms.input_.text(class_="form-control", placeholder="username"),
+            forms.input_.text(placeholder="username"),
             input_groups.post_group(input_groups.text.p("@markyp-bootstrap4.org")),
             class_=margin(bottom=2)
         ),
@@ -723,7 +776,14 @@ page = webpage(
         one(get_accordion(), md=12),
         section_header("Dropdowns"),
         row(*get_dropdown(), class_=col(md=12)),
-        section_header("Inputs"),
+        section_header("Forms"),
+        subsection_header("Multiline login form"),
+        one(get_multiline_login_form(), md=10, class_=offset(md=1)),
+        subsection_header("Grid login form"),
+        one(get_grid_login_form(), md=10, class_=offset(md=1)),
+        subsection_header("Inline login form"),
+        one(get_inline_login_form(), md=10, class_=offset(md=1)),
+        section_header("Input groups"),
         row(*get_input_groups(), class_=col(md=12)),
         class_=padding(y=5)
     ),
