@@ -5,6 +5,7 @@ from markyp_bootstrap4 import collapses
 from markyp_bootstrap4 import dropdowns
 from markyp_bootstrap4 import forms
 from markyp_bootstrap4 import input_groups
+from markyp_bootstrap4 import jumbotrons
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
@@ -681,6 +682,20 @@ def get_inline_login_form():
         b_button.primary("Sign In", type="submit")
     )
 
+def get_jumbotron():
+    return jumbotrons.jumbotron(
+        h1("Example jumbotron",class_=text.dark),
+        highlight(
+            'from markyp_html.text import h1, p\n\n'
+            'from markyp_bootstrap4.jumbotrons import jumbotron\n\n'
+            'jumbotron(\n'
+            '    h1("Jumbotron"),\n'
+            '    p("With a lengthy description...")\n'
+            ')',
+            language="python"
+        )
+    )
+
 def get_input_groups():
     return (
         input_groups.input_group(
@@ -785,6 +800,8 @@ page = webpage(
         one(get_inline_login_form(), md=10, class_=offset(md=1)),
         section_header("Input groups"),
         row(*get_input_groups(), class_=col(md=12)),
+        section_header("Jumbotrons"),
+        one(get_jumbotron(), md=12),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
