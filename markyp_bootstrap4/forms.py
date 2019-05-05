@@ -21,9 +21,9 @@ from markyp_html.text import StyledTextFactory
 __all__ = (
     "muted_text", "text",
     "FormStyle",
-    "input_", "select", "textarea",
+    "input_", "select", "textarea", "inline_form",
     "form_check", "form_check_label",
-    "form_label", "form_group", "form_inline", "form_row"
+    "form_label", "form_group", "form_row"
 )
 
 
