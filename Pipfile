@@ -5,12 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
-mypy = "*"
 pytest-cov = "*"
 sphinx = "*"
 recommonmark = "*"
+mypy = "*"
+pylint = "*"
 
 [packages]
+markyp = "*"
+markyp-html = "*"
+markyp-highlightjs = "*"
 
 [requires]
 python_version = "3.7"
