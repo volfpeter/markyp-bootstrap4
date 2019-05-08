@@ -1,4 +1,5 @@
 from markyp_html.forms import option
+from markyp_bootstrap4.buttons import ButtonContext
 from markyp_bootstrap4.forms import *
 
 def test_muted_text():
@@ -44,6 +45,103 @@ def test_text():
 
     assert text.p("Value").markup == '<p class="form-text">Value</p>'
     assert text.p("Value", class_="my-header", attr=42).markup == '<p attr="42" class="form-text my-header">Value</p>'
+
+def test_SubmitButtonFactory():
+    contexts = (
+        ButtonContext.PRIMARY, ButtonContext.SECONDARY, ButtonContext.SUCCESS,
+        ButtonContext.DANGER, ButtonContext.WARNING, ButtonContext.INFO,
+        ButtonContext.LIGHT, ButtonContext.DARK, ButtonContext.LINK
+    )
+    factory = SubmitButtonFactory()
+
+    assert factory.create_element().markup == '<button ></button>'
+    for context in contexts:
+        assert factory.create_element(class_=factory.get_css_class(context), **factory.update_attributes({})).markup ==\
+            f'<button type="submit" class="btn btn-{context}"></button>'
+        assert factory.create_element("Value", class_=factory.get_css_class(context), **factory.update_attributes({})).markup ==\
+            f'<button type="submit" class="btn btn-{context}">Value</button>'
+
+def test_submit_button():
+    assert submit_button.primary("Value").markup ==\
+        '<button type="submit" class="btn btn-primary">Value</button>'
+    assert submit_button.primary("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-primary my-btn">Value</button>'
+    assert submit_button.primary_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-primary">Value</button>'
+    assert submit_button.primary_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-primary my-btn">Value</button>'
+
+    assert submit_button.secondary("Value").markup ==\
+        '<button type="submit" class="btn btn-secondary">Value</button>'
+    assert submit_button.secondary("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-secondary my-btn">Value</button>'
+    assert submit_button.secondary_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-secondary">Value</button>'
+    assert submit_button.secondary_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-secondary my-btn">Value</button>'
+
+    assert submit_button.success("Value").markup ==\
+        '<button type="submit" class="btn btn-success">Value</button>'
+    assert submit_button.success("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-success my-btn">Value</button>'
+    assert submit_button.success_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-success">Value</button>'
+    assert submit_button.success_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-success my-btn">Value</button>'
+
+    assert submit_button.danger("Value").markup ==\
+        '<button type="submit" class="btn btn-danger">Value</button>'
+    assert submit_button.danger("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-danger my-btn">Value</button>'
+    assert submit_button.danger_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-danger">Value</button>'
+    assert submit_button.danger_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-danger my-btn">Value</button>'
+
+    assert submit_button.warning("Value").markup ==\
+        '<button type="submit" class="btn btn-warning">Value</button>'
+    assert submit_button.warning("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-warning my-btn">Value</button>'
+    assert submit_button.warning_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-warning">Value</button>'
+    assert submit_button.warning_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-warning my-btn">Value</button>'
+
+    assert submit_button.info("Value").markup ==\
+        '<button type="submit" class="btn btn-info">Value</button>'
+    assert submit_button.info("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-info my-btn">Value</button>'
+    assert submit_button.info_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-info">Value</button>'
+    assert submit_button.info_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-info my-btn">Value</button>'
+
+    assert submit_button.light("Value").markup ==\
+        '<button type="submit" class="btn btn-light">Value</button>'
+    assert submit_button.light("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-light my-btn">Value</button>'
+    assert submit_button.light_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-light">Value</button>'
+    assert submit_button.light_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-light my-btn">Value</button>'
+
+    assert submit_button.dark("Value").markup ==\
+        '<button type="submit" class="btn btn-dark">Value</button>'
+    assert submit_button.dark("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-dark my-btn">Value</button>'
+    assert submit_button.dark_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-dark">Value</button>'
+    assert submit_button.dark_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-dark my-btn">Value</button>'
+
+    assert submit_button.link("Value").markup ==\
+        '<button type="submit" class="btn btn-link">Value</button>'
+    assert submit_button.link("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-link my-btn">Value</button>'
+    assert submit_button.link_outline("Value").markup ==\
+        '<button type="submit" class="btn btn-outline-link">Value</button>'
+    assert submit_button.link_outline("Value", class_="my-btn", attr=42).markup ==\
+        '<button attr="42" type="submit" class="btn btn-outline-link my-btn">Value</button>'
 
 def test_FormStyle():
     assert FormStyle.SMALL == "form-control-sm"

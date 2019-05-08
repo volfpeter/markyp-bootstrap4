@@ -11,15 +11,19 @@ See https://getbootstrap.com/docs/4.0/components/forms/.
 
 from typing import Optional
 
-from markyp import ElementType, PropertyValue
+from markyp import ElementType, PropertyDict, PropertyValue
 from markyp_html import join
 from markyp_html import forms
 from markyp_html.block import div
+from markyp_html.forms import button
 from markyp_html.text import StyledTextFactory
+
+from markyp_bootstrap4.buttons import ElementButtonFactory
 
 
 __all__ = (
     "muted_text", "text",
+    "SubmitButtonFactory", "submit_button",
     "FormStyle",
     "input_", "select", "textarea", "inline_form",
     "form_check", "form_check_label",
@@ -36,6 +40,36 @@ Factory that creates text element with `form-text text-muted` style.
 text: StyledTextFactory = StyledTextFactory("form-text")
 """
 Factory that creates text element with `form-text` style.
+"""
+
+
+class SubmitButtonFactory(ElementButtonFactory):
+    """
+    Button element factory that creates `submit` buttons for forms.
+    """
+
+    __slots__ = ()
+
+    def __init__(self) -> None:
+        """
+        Initialization.
+        """
+        super().__init__(button)
+
+    def update_attributes(self,
+                          attributes: PropertyDict,
+                          *,
+                          disabled: bool = False,
+                          active: bool = False) -> PropertyDict:
+        attributes = super().update_attributes(attributes, disabled=disabled, active=active)
+        # Override type to submit.
+        attributes["type"] = "submit"
+        return attributes
+
+
+submit_button: SubmitButtonFactory = SubmitButtonFactory()
+"""
+Button factory that creates `submit` buttons for forms.
 """
 
 
