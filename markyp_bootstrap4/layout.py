@@ -334,9 +334,9 @@ def autocol(xs: Optional[ColumnSize] = None,
         xl: Column size for extra large screens.
 
     Returns:
-        The formatted class string or `col-sm` if no sizes were specified.
+        The formatted class string or `col` if no sizes were specified.
     """
-    return col(xs, sm, md, lg, xl) or "col-sm"
+    return col(xs, sm, md, lg, xl) or "col"
 
 
 def col(xs: Optional[ColumnSize] = None,

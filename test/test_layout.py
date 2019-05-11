@@ -34,15 +34,15 @@ def test_row():
 def test_one():
     assert one("item").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nitem\n</div>\n'\
+        '<div class="col">\nitem\n</div>\n'\
         '</div>'
     assert one("item", class_="").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nitem\n</div>\n'\
+        '<div class="col">\nitem\n</div>\n'\
         '</div>'
     assert one("item", class_="fancy-row").markup ==\
         '<div class="row fancy-row">\n'\
-        '<div class="col-sm">\nitem\n</div>\n'\
+        '<div class="col">\nitem\n</div>\n'\
         '</div>'
 
     assert one("item", md=8).markup ==\
@@ -66,23 +66,23 @@ def test_one():
 def test_two():
     assert two("left", "right").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert two("left", "right", class_="").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert two("left", "right", class_="fancy-row").markup ==\
         '<div class="row fancy-row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert two("left", "right", reverse=True, class_="fancy-row").markup ==\
         '<div class="row fancy-row">\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
         '</div>'
 
     assert two("left", "right", md=(8, 4)).markup ==\
@@ -120,27 +120,27 @@ def test_two():
 def test_three():
     assert three("left", "middle", "right").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nmiddle\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nmiddle\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert three("left", "middle", "right", class_="").markup ==\
         '<div class="row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nmiddle\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nmiddle\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert three("left", "middle", "right", class_="fancy-row").markup ==\
         '<div class="row fancy-row">\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
-        '<div class="col-sm">\nmiddle\n</div>\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
+        '<div class="col">\nmiddle\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
         '</div>'
     assert three("left", "middle", "right", class_="fancy-row", reverse=True).markup ==\
         '<div class="row fancy-row">\n'\
-        '<div class="col-sm">\nright\n</div>\n'\
-        '<div class="col-sm">\nmiddle\n</div>\n'\
-        '<div class="col-sm">\nleft\n</div>\n'\
+        '<div class="col">\nright\n</div>\n'\
+        '<div class="col">\nmiddle\n</div>\n'\
+        '<div class="col">\nleft\n</div>\n'\
         '</div>'
 
     assert three("left", "middle", "right", md=(2, 6, 4)).markup ==\
@@ -185,9 +185,9 @@ def test_row_break():
     assert row_break().markup == '<div class="w-100"></div>'
 
 def test_row_item():
-    assert row_item("foo", "bar").markup == '<div class="col-sm">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", class_="").markup == '<div class="col-sm">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", class_="fancy-div").markup == '<div class="col-sm fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar").markup == '<div class="col">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", class_="").markup == '<div class="col">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", class_="fancy-div").markup == '<div class="col fancy-div">\nfoo\nbar\n</div>'
 
     assert row_item("foo", "bar", xs=6).markup == '<div class="col-xs-6">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", xs=6, class_="fancy-div").markup == '<div class="col-xs-6 fancy-div">\nfoo\nbar\n</div>'
@@ -217,11 +217,11 @@ def test_PercentSize():
     assert PercentSize.width_100 == "w-100"
 
 def test_autocol():
-    assert autocol() == "col-sm"
-    assert autocol(xs=None, sm=None, md=None, lg=None, xl=None) == "col-sm"
-    assert autocol(None, None, None, None, None) == "col-sm"
-    assert autocol(xs="", sm="", md="", lg="", xl="") == "col-sm"
-    assert autocol("", "", "", "", "") == "col-sm"
+    assert autocol() == "col"
+    assert autocol(xs=None, sm=None, md=None, lg=None, xl=None) == "col"
+    assert autocol(None, None, None, None, None) == "col"
+    assert autocol(xs="", sm="", md="", lg="", xl="") == "col"
+    assert autocol("", "", "", "", "") == "col"
 
 def test_col():
     assert col() is None
