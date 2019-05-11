@@ -4,9 +4,9 @@ Bootstrap dropdown and dropdown button elements.
 See https://getbootstrap.com/docs/4.0/components/dropdowns/.
 """
 
-from typing import Optional
+from typing import Optional, Type
 
-from markyp import ElementType, PropertyDict, PropertyValue
+from markyp import ElementType, IElement, PropertyDict, PropertyValue
 from markyp_html import join
 from markyp_html.block import div
 from markyp_html.forms import button
@@ -128,7 +128,8 @@ def menu_item(*args: ElementType,
               active: bool = False,
               class_: Optional[str] = None,
               disabled: bool = False,
-              **kwargs: PropertyValue) -> button:
+              factory: Type[IElement] = button,
+              **kwargs: PropertyValue) -> IElement:
     """
     Creates a dropdown menu item (from a `button` element).
 
@@ -141,6 +142,9 @@ def menu_item(*args: ElementType,
         active: Whether to apply the `active` style on the menu item.
         class_: Additional CSS class names to set on the created menu item.
         disabled: Whether the menu item should be disabled.
+        factory: An `IElement` type to create the menu item from, `button` by default.
+                 The factory must support keyword arguments, and positional arguments
+                 if they were passed in to this method.
     """
     class_ = join(
         "dropdown-item",
@@ -148,4 +152,4 @@ def menu_item(*args: ElementType,
         "disabled" if disabled else None,
         class_
     )
-    return button(*args, class_=class_, type="button", **kwargs)
+    return factory(*args, class_=class_, type="button", **kwargs)

@@ -1,3 +1,4 @@
+from markyp_html.inline import a
 from markyp_bootstrap4.buttons import ButtonContext
 from markyp_bootstrap4.dropdowns import *
 
@@ -153,3 +154,5 @@ def test_menu_item():
         '<button type="button" class="dropdown-item active disabled my-item">Label</button>'
     assert menu_item("Label", active=True, class_="my-item", attr=42).markup ==\
         '<button type="button" attr="42" class="dropdown-item active my-item">Label</button>'
+    assert menu_item("Label", active=True, class_="my-item", attr=42, factory=a).markup ==\
+        '<a type="button" attr="42" class="dropdown-item active my-item">Label</a>'
