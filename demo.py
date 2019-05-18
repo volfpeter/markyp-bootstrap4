@@ -6,6 +6,8 @@ from markyp_bootstrap4 import dropdowns
 from markyp_bootstrap4 import forms
 from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import jumbotrons
+from markyp_bootstrap4 import list_groups
+from markyp_bootstrap4 import tabs
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
 from markyp_bootstrap4.breadcrumbs import breadcrumb
@@ -719,6 +721,51 @@ def get_input_groups():
         )
     )
 
+def get_list_group():
+    list_id = "tab-list-1"
+    tab_id = "tab-content-1"
+    return (
+        list_groups.list_group(
+            list_groups.list_group_item(
+                "First",
+                id=f"{list_id}-1", href=f"#{tab_id}-1",
+                role="tab", **{"data-toggle": "list"},
+                factory=a, action=True, active=True
+            ),
+            list_groups.list_group_item(
+                "Second",
+                id=f"{list_id}-2", href=f"#{tab_id}-2",
+                role="tab", **{"data-toggle": "list"},
+                factory=a, action=True
+            ),
+            list_groups.list_group_item(
+                "Third",
+                id=f"{list_id}-3", href=f"#{tab_id}-3",
+                role="tab", **{"data-toggle": "list"},
+                factory=a, action=True
+            ),
+            factory=div,
+            id=list_id,
+            role="tablist"
+        ),
+        tabs.tab_content(
+            tabs.tab_pane(
+                img.placeholder(600, 150, text="First tab content"),
+                id=f"{tab_id}-1",
+                active=True
+            ),
+            tabs.tab_pane(
+                img.placeholder(600, 150, text="Second tab content"),
+                id=f"{tab_id}-2"
+            ),
+            tabs.tab_pane(
+                img.placeholder(600, 150, text="Third tab content"),
+                id=f"{tab_id}-3"
+            ),
+            id=tab_id
+        )
+    )
+
 page = webpage(
     container(
         one(
@@ -802,6 +849,8 @@ page = webpage(
         row(*get_input_groups(), class_=col(md=12)),
         section_header("Jumbotrons"),
         one(get_jumbotron(), md=12),
+        section_header("List groups with tabs"),
+        two(*get_list_group(), md=(4, 8)),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
