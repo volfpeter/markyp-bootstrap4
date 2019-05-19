@@ -33,13 +33,13 @@ __all__ = (
 
 muted_text: StyledTextFactory = StyledTextFactory("form-text text-muted")
 """
-Factory that creates text element with `form-text text-muted` style.
+Factory that creates text elements with `form-text text-muted` style.
 """
 
 
 text: StyledTextFactory = StyledTextFactory("form-text")
 """
-Factory that creates text element with `form-text` style.
+Factory that creates text elements with `form-text` style.
 """
 
 
