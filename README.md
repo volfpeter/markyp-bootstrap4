@@ -1,3 +1,7 @@
+[![Downloads](https://pepy.tech/badge/markyp-bootstrap4)](https://pepy.tech/project/markyp-bootstrap4)
+[![Downloads](https://pepy.tech/badge/markyp-bootstrap4/month)](https://pepy.tech/project/markyp-bootstrap4/month)
+[![Downloads](https://pepy.tech/badge/markyp-bootstrap4/week)](https://pepy.tech/project/markyp-bootstrap4/week)
+
 # markyp-bootstrap4
 
 Bootstrap 4 higher order components built on [markyp](https://github.com/volfpeter/markyp) and [markyp-html](https://github.com/volfpeter/markyp-html).
