@@ -7,6 +7,7 @@ from markyp_bootstrap4 import forms
 from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import jumbotrons
 from markyp_bootstrap4 import list_groups
+from markyp_bootstrap4 import modals
 from markyp_bootstrap4 import tabs
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
@@ -19,7 +20,7 @@ from markyp_bootstrap4.buttons import a_button, a_toggle,\
 from markyp_bootstrap4.colors import bg, text
 from markyp_bootstrap4.layout import container, margin, offset, padding, row, row_break, row_item, one, two, three, col, PercentSize
 
-from markyp_highlightjs import highlight, js as hljs, themes as hlthemes
+from markyp_highlightjs import python, js as hljs, themes as hlthemes
 
 from markyp_html import meta, join, webpage
 from markyp_html.block import div, hr
@@ -39,12 +40,11 @@ def get_alert():
     return alerts.alert.primary(
         h3("Alert with", span_badge.primary("primary"), "context."),
         hr(),
-        highlight(
+        python(
             'from markyp_html.text import h3\n'
             'from markyp_bootstrap4.alerts import alert\n'
             'from markyp_bootstrap4.badges import span_badge\n\n'
-            'alert.primary(h3("Alert with", span_badge.primary("primary"), "context."))',
-            language="python"
+            'alert.primary(h3("Alert with", span_badge.primary("primary"), "context."))'
         )
     )
 
@@ -52,12 +52,11 @@ def get_dismissable_alert():
     return alerts.dismissable.danger(
         h3("Dismissable alert with", span_badge.danger("danger"), "context."),
         hr(),
-        highlight(
+        python(
             'from markyp_html.text import h3\n'
             'from markyp_bootstrap4.alerts import dismissable\n'
             'from markyp_bootstrap4.badges import span_badge\n\n'
-            'dismissable.danger(h3("Dismissable alert with", span_badge.danger("danger"), "context."))',
-            language="python"
+            'dismissable.danger(h3("Dismissable alert with", span_badge.danger("danger"), "context."))'
         )
     )
 
@@ -70,15 +69,14 @@ def get_breadcrumb():
     )
 
 def get_breadcrumb_code():
-    return highlight(
+    return python(
         'from markyp_bootstrap4.breadcrumbs import breadcrumb\n'
         'from markyp_html.inline import a, em, strong\n\n'
         'breadcrumb(\n'
         '    a(strong("Home"), href="#"),\n'
         '    a("Topic", href="#"),\n'
         '    a("Subtopic", href="#"),\n'
-        '    em("Current page")\n)',
-        language="python"
+        '    em("Current page")\n)'
     )
 
 def get_buttons():
@@ -503,33 +501,29 @@ def get_carousel():
     ])
     return carousels.carousel(
         one(div(
-            highlight(
+            python(
                 f"{imports}\n\n{c_empty}",
-                language="python",
                 class_=join(col(md=8), offset(md=2), padding(bottom=5))
             ),
             carousels.item_caption(h4("Carousel without controls and indicators"))
         )),
         one(div(
-            highlight(
+            python(
                 f"{imports}\n\n{c_controls_only}",
-                language="python",
                 class_=join(col(md=8), offset(md=2), padding(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with controls"))
         )),
         one(div(
-            highlight(
+            python(
                 f"{imports}\n\n{c_indicators_only}",
-                language="python",
                 class_=join(col(md=8), offset(md=2), padding(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with indicators"))
         )),
         one(div(
-            highlight(
+            python(
                 f"{imports}\n\n{c_full}",
-                language="python",
                 class_=join(col(md=8), offset(md=2), padding(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with controls and indicators"))
@@ -557,7 +551,7 @@ def get_collapse():
         ),
         row_break(),
         collapses.collapse(
-            highlight(
+            python(
                 'from markyp_bootstrap4 import collapses\n'
                 'from markyp_bootstrap4.buttons import b_button\n'
                 'from markyp_bootstrap4.layout import row_break\n'
@@ -570,8 +564,7 @@ def get_collapse():
                 '        "Collapse content, closed by default.",\n'
                 '        identifier=collapse_id\n'
                 '    )\n'
-                ')',
-                language="python"
+                ')'
             ),
             identifier=collapse_id,
             show=collapse_shown
@@ -687,14 +680,13 @@ def get_inline_login_form():
 def get_jumbotron():
     return jumbotrons.jumbotron(
         h1("Example jumbotron",class_=text.dark),
-        highlight(
+        python(
             'from markyp_html.text import h1, p\n\n'
             'from markyp_bootstrap4.jumbotrons import jumbotron\n\n'
             'jumbotron(\n'
             '    h1("Jumbotron"),\n'
             '    p("With a lengthy description...")\n'
-            ')',
-            language="python"
+            ')'
         )
     )
 
@@ -763,6 +755,33 @@ def get_list_group():
                 id=f"{tab_id}-3"
             ),
             id=tab_id
+        )
+    )
+
+def get_modal():
+    modal_id = "modal-1"
+    return div(
+        modals.toggle_button.primary("Show modal with example code", modal_id=modal_id),
+        modals.modal(
+            python("\n".join((
+                'from markyp_html.block import hr',
+                'from markyp_html.inline import img',
+                'from markyp_bootstrap4 import modals\n',
+                'modal_id = "example-modal-1"',
+                '\n# Toggle button for the modal.',
+                'modals.toggle_button.primary("Show modal", modal_id=modal_id),  # Toggle button for the modal',
+                '\n# The modal itself.',
+                'modals.modal(',
+                '    "Modal content...", hr(), img.placeholder(300, 200), hr(), "More modal content...",',
+                '    title=modals.title.h4("Example modal"),',
+                '    footer=modals.close_button.primary("Close"),',
+                '    id=modal_id',
+                ')'
+            ))),
+            title=modals.title.h4("Modal example"),
+            footer=modals.close_button.primary("Close"),
+            id=modal_id,
+            content_class=join(bg.light, text.dark)
         )
     )
 
@@ -851,6 +870,8 @@ page = webpage(
         one(get_jumbotron(), md=12),
         section_header("List groups with tabs"),
         two(*get_list_group(), md=(4, 8)),
+        section_header("Modals"),
+        one(get_modal(), md=12),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",

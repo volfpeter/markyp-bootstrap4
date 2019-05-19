@@ -921,6 +921,51 @@ jumbotron(
 </div>
 </div>
 </div>
+<div class="row">
+<div class="col">
+<h2 md="12" class="pt-5">Modals</h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div >
+<button type="button" data-toggle="modal" data-target="#modal-1" class="btn btn-primary">Show modal with example code</button>
+<div role="dialog" tabindex="-1" id="modal-1" class="modal fade">
+<div role="document" class="modal-dialog">
+<div class="modal-content bg-light text-dark">
+<div class="modal-header">
+<h4 class="modal-title">Modal example</h4>
+<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+<pre >
+<code class="python">from markyp_html.block import hr
+from markyp_html.inline import img
+from markyp_bootstrap4 import modals
+
+modal_id = "example-modal-1"
+
+# Toggle button for the modal.
+modals.toggle_button.primary("Show modal", modal_id=modal_id),  # Toggle button for the modal
+
+# The modal itself.
+modals.modal(
+    "Modal content...", hr(), img.placeholder(300, 200), hr(), "More modal content...",
+    title=modals.title.h4("Example modal"),
+    footer=modals.close_button.primary("Close"),
+    id=modal_id
+)</code>
+</pre>
+</div>
+<div class="modal-footer">
+<button type="button" data-dismiss="modal" class="btn btn-primary">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 <script >
