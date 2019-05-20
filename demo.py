@@ -769,7 +769,7 @@ def get_modal():
                 'from markyp_bootstrap4 import modals\n',
                 'modal_id = "example-modal-1"',
                 '\n# Toggle button for the modal.',
-                'modals.toggle_button.primary("Show modal", modal_id=modal_id),  # Toggle button for the modal',
+                'modals.toggle_button.primary("Show modal", modal_id=modal_id),',
                 '\n# The modal itself.',
                 'modals.modal(',
                 '    "Modal content...", hr(), img.placeholder(300, 200), hr(), "More modal content...",',
