@@ -8,6 +8,7 @@ from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import jumbotrons
 from markyp_bootstrap4 import list_groups
 from markyp_bootstrap4 import modals
+from markyp_bootstrap4 import navs
 from markyp_bootstrap4 import tabs
 from markyp_bootstrap4 import req
 from markyp_bootstrap4.badges import span_badge
@@ -29,6 +30,42 @@ from markyp_html.inline import a, code, em, img, strong
 from markyp_html.text import h1, h2, h3, h4, p
 
 button_margin = margin(x=1, y=1)
+
+lipsum = (
+    ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean volutpat orci turpis, "
+    "eget euismod elit suscipit quis. Integer rutrum finibus diam et sodales. Integer dignissim "
+    "erat urna, a sollicitudin augue egestas quis. Quisque a iaculis urna. Donec ac tortor quis "
+    "est fermentum tincidunt at sed enim. Suspendisse sagittis neque nec laoreet imperdiet. "
+    "Suspendisse interdum posuere sem auctor commodo. Pellentesque habitant morbi tristique "
+    "senectus et netus et malesuada fames ac turpis egestas. Phasellus pulvinar risus dictum "
+    "sapien lacinia, a vehicula felis fringilla. Quisque rhoncus erat eros, sit amet luctus mi "
+    "vestibulum ac. Vivamus lobortis laoreet lacus nec ullamcorper. Phasellus pulvinar turpis "
+    "molestie, accumsan justo vitae, vulputate lectus. Class aptent taciti sociosqu ad litora "
+    "torquent per conubia nostra, per inceptos himenaeos. "),
+    ("Curabitur massa ligula, auctor tempor libero in, pretium venenatis dolor. Donec feugiat "
+    "facilisis libero, eu condimentum justo sagittis quis. Nullam arcu ante, porta a lacus sed, "
+    "elementum venenatis leo. Nulla efficitur ornare semper. Aliquam mattis mollis ultricies. "
+    "Integer imperdiet mauris tortor, ac congue nulla molestie id. Sed quis varius lorem. Orci "
+    "varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam "
+    "magna diam, varius eget ligula ac, vestibulum venenatis lectus. Aliquam egestas pretium gravida. "
+    "Vivamus bibendum ipsum magna, a vestibulum orci imperdiet a. Nam luctus ac odio vitae fringilla."),
+    ("Proin ornare sapien tellus. Duis accumsan consectetur consequat. Morbi vel enim pretium, "
+    "rhoncus augue a, rutrum nisl. Nam tempus tellus interdum velit vestibulum, quis feugiat orci "
+    "mollis. Pellentesque libero enim, sodales iaculis consectetur in, volutpat sit amet magna. "
+    "Praesent bibendum mollis nibh, ut feugiat velit consectetur vel. Curabitur pellentesque "
+    "suscipit tincidunt. Praesent mattis purus arcu, id interdum dui commodo non. Nulla imperdiet "
+    "massa a nulla pharetra pretium. Mauris fermentum euismod scelerisque. Quisque ante justo, "
+    "iaculis at consequat eu, fringilla non sem. Vivamus feugiat nibh quis ante porta imperdiet. "
+    "Vivamus ultricies augue vel enim finibus, ut viverra sapien tempus. Aliquam eleifend tellus "
+    "sed tincidunt lobortis."),
+    ("Ut id tempor enim, a fermentum orci. Aliquam lacinia, nulla at lacinia feugiat, tellus metus "
+    "efficitur erat, eu porttitor tellus risus ac nisl. Nullam volutpat diam nec facilisis viverra. "
+    "Ut fringilla metus at nisi pretium, in mattis lacus hendrerit. Nunc varius gravida quam nec "
+    "vestibulum. Morbi vehicula eleifend diam, sit amet fermentum massa. Quisque sit amet pulvinar "
+    "justo. Aliquam risus sem, commodo at erat cursus, interdum tempor leo. Praesent id orci eget "
+    "orci eleifend sollicitudin. Sed quam arcu, faucibus vitae facilisis vel, volutpat quis eros. "
+    "Nullam ullamcorper venenatis ligula at blandit. ")
+)
 
 def section_header(*args):
     return one(h2(*args, md=12, class_=padding(top=5)))
@@ -741,19 +778,9 @@ def get_list_group():
             role="tablist"
         ),
         tabs.tab_content(
-            tabs.tab_pane(
-                img.placeholder(600, 150, text="First tab content"),
-                id=f"{tab_id}-1",
-                active=True
-            ),
-            tabs.tab_pane(
-                img.placeholder(600, 150, text="Second tab content"),
-                id=f"{tab_id}-2"
-            ),
-            tabs.tab_pane(
-                img.placeholder(600, 150, text="Third tab content"),
-                id=f"{tab_id}-3"
-            ),
+            tabs.tab_pane(lipsum[1], id=f"{tab_id}-1", active=True),
+            tabs.tab_pane(lipsum[2], id=f"{tab_id}-2"),
+            tabs.tab_pane(lipsum[3], id=f"{tab_id}-3"),
             id=tab_id
         )
     )
@@ -783,6 +810,16 @@ def get_modal():
             id=modal_id,
             content_class=join(bg.light, text.dark)
         )
+    )
+
+def get_nav():
+    return navs.navigated_tabs(
+        ("First", lipsum[0]),
+        ("Second", lipsum[1]),
+        ("Third", lipsum[2]),
+        id="navigated-tabs-example",
+        nav_fill=True,
+        nav_justified=True
     )
 
 page = webpage(
@@ -872,6 +909,8 @@ page = webpage(
         two(*get_list_group(), md=(4, 8)),
         section_header("Modals"),
         one(get_modal(), md=12),
+        section_header("Navs with navigated tabs"),
+        two(*get_nav(), md=(12, 12)),
         class_=padding(y=5)
     ),
     page_title="markyp-bootstrap4 demo page",
