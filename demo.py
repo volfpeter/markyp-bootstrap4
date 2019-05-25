@@ -813,10 +813,21 @@ def get_modal():
     )
 
 def get_nav():
+    example_code = python("\n".join((
+        "from markyp_bootstrap4 import navs",
+        "navs.navigated_tabs(",
+        "    (\"First\", \"First tab content\"),",
+        "    (\"Second\", \"Second tab content\"),",
+        "    (\"Third\", \"Third tab content\"),",
+        "    id=\"navigated-tabs-example\",",
+        "    nav_fill=True,",
+        "    nav_justified=True",
+        ")"
+    )))
     return navs.navigated_tabs(
-        ("First", lipsum[0]),
-        ("Second", lipsum[1]),
-        ("Third", lipsum[2]),
+        ("First", div(lipsum[0], example_code)),
+        ("Second", div(lipsum[1], example_code)),
+        ("Third", div(lipsum[2], example_code)),
         id="navigated-tabs-example",
         nav_fill=True,
         nav_justified=True
