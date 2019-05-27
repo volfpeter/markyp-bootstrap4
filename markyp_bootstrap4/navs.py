@@ -266,27 +266,31 @@ def navigated_tabs(*args: Tuple[ElementType, ElementType],
     from markyp_bootstrap4.tabs import tab_content, tab_pane
 
     empty: PropertyDict = {}
-    nav_items, tab_items = zip(*(
-        (
-            tab_link(
-                item,
-                active=index==active_index,
-                id=f"{id}-nav-{index}",
-                pane_id=f"{id}-pane-{index}",
-                class_=item_class,
-                **item_attributes if item_attributes else empty
-            ),
-            tab_pane(
-                data,
-                active=index==active_index,
-                id=f"{id}-pane-{index}",
-                class_=pane_class,
-                **pane_attributes if pane_attributes else empty,
-                **{"aria-labelled-by": f"{id}-nav-{index}"}
+    if len(args) > 0:
+        nav_items, tab_items = zip(*(
+            (
+                tab_link(
+                    item,
+                    active=index==active_index,
+                    id=f"{id}-nav-{index}",
+                    pane_id=f"{id}-pane-{index}",
+                    class_=item_class,
+                    **item_attributes if item_attributes else empty
+                ),
+                tab_pane(
+                    data,
+                    active=index==active_index,
+                    id=f"{id}-pane-{index}",
+                    class_=pane_class,
+                    **pane_attributes if pane_attributes else empty,
+                    **{"aria-labelled-by": f"{id}-nav-{index}"}
+                )
             )
-        )
-        for index, (item, data) in enumerate(args)
-    ))
+            for index, (item, data) in enumerate(args)
+        ))
+    else:
+        nav_items, tab_items = [], []
+
     return (
         nav(
             *nav_items,
