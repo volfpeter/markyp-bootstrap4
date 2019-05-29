@@ -1,3 +1,7 @@
+from typing import Dict
+
+from markyp import IElement
+
 from markyp_bootstrap4 import alerts
 from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
@@ -8,6 +12,7 @@ from markyp_bootstrap4 import input_groups
 from markyp_bootstrap4 import jumbotrons
 from markyp_bootstrap4 import list_groups
 from markyp_bootstrap4 import modals
+from markyp_bootstrap4 import navbars
 from markyp_bootstrap4 import navs
 from markyp_bootstrap4 import tabs
 from markyp_bootstrap4 import req
@@ -19,15 +24,15 @@ from markyp_bootstrap4.buttons import a_button, a_toggle,\
                                       l_button, l_toggle,\
                                       ButtonStyle
 from markyp_bootstrap4.colors import bg, text
-from markyp_bootstrap4.layout import container, margin, offset, padding, row, row_break, row_item, one, two, three, col, PercentSize
+from markyp_bootstrap4.layout import container, margin, offset, row, row_break, row_item, one, two, three, col, PercentSize
 
 from markyp_highlightjs import python, js as hljs, themes as hlthemes
 
-from markyp_html import meta, join, webpage
+from markyp_html import meta, join, style, webpage
 from markyp_html.block import div, hr
 from markyp_html.forms import form
 from markyp_html.inline import a, code, em, img, strong
-from markyp_html.text import h1, h2, h3, h4, p
+from markyp_html.text import h1, h2, h3, h4, h5, p
 
 button_margin = margin(x=1, y=1)
 
@@ -41,7 +46,7 @@ lipsum = (
     "sapien lacinia, a vehicula felis fringilla. Quisque rhoncus erat eros, sit amet luctus mi "
     "vestibulum ac. Vivamus lobortis laoreet lacus nec ullamcorper. Phasellus pulvinar turpis "
     "molestie, accumsan justo vitae, vulputate lectus. Class aptent taciti sociosqu ad litora "
-    "torquent per conubia nostra, per inceptos himenaeos. "),
+    "torquent per conubia nostra, per inceptos himenaeos."),
     ("Curabitur massa ligula, auctor tempor libero in, pretium venenatis dolor. Donec feugiat "
     "facilisis libero, eu condimentum justo sagittis quis. Nullam arcu ante, porta a lacus sed, "
     "elementum venenatis leo. Nulla efficitur ornare semper. Aliquam mattis mollis ultricies. "
@@ -64,18 +69,68 @@ lipsum = (
     "vestibulum. Morbi vehicula eleifend diam, sit amet fermentum massa. Quisque sit amet pulvinar "
     "justo. Aliquam risus sem, commodo at erat cursus, interdum tempor leo. Praesent id orci eget "
     "orci eleifend sollicitudin. Sed quam arcu, faucibus vitae facilisis vel, volutpat quis eros. "
-    "Nullam ullamcorper venenatis ligula at blandit. ")
+    "Nullam ullamcorper venenatis ligula at blandit.")
 )
 
-def section_header(*args):
-    return one(h2(*args, md=12, class_=padding(top=5)))
+class SectionRegistry(object):
 
-def subsection_header(*args):
-    return one(h3(*args, md=12, class_=padding(top=3)))
+    class Dropdown(IElement):
+
+        __slots__ = ("_registry")
+
+        def __init__(self, registry):
+            self._registry = registry
+
+        def __str__(self) -> str:
+            button_id = "section-list-dropdown-button"
+            return dropdowns.dropdown(
+                dropdowns.dropdown_button.light("Sections", id=button_id, class_=text.dark),
+                dropdowns.menu(
+                    *[dropdowns.menu_item(name, factory=a, href=f"#{section_id}")
+                        for name, section_id in self._registry.items()],
+                    button_id=button_id
+                )
+            ).markup
+
+    def __init__(self):
+        self._registry: Dict = {}
+
+    @property
+    def dropdown(self):
+        return SectionRegistry.Dropdown(self)
+
+    def items(self):
+        return self._registry.items()
+
+    def section(self, title):
+        element_id = self._get_id(title)
+        self._registry[title] = element_id
+        return two(
+            div(class_="section-anchor", id=element_id),
+            h3(title, id=element_id, class_=margin(top=4, bottom=3)),
+            md=(12, 12)
+        )
+
+    def subsection(self, *args):
+        # Don't register subsections for now, the section list is long enough in itself.
+        return one(h4(*args), class_=margin(top=3, bottom=2), md=12)
+
+    def _get_id(self, key: str) -> str:
+        base = key.lower().replace(" ", "-")
+        if base not in self._registry:
+            return base
+
+        index = 0
+        while f"{base}-{index}" in self._registry:
+            index += 1
+
+        return f"{base}-{index}"
+
+section_registry = SectionRegistry()
 
 def get_alert():
     return alerts.alert.primary(
-        h3("Alert with", span_badge.primary("primary"), "context."),
+        h4("Alert with", span_badge.primary("primary"), "context."),
         hr(),
         python(
             'from markyp_html.text import h3\n'
@@ -87,7 +142,7 @@ def get_alert():
 
 def get_dismissable_alert():
     return alerts.dismissable.danger(
-        h3("Dismissable alert with", span_badge.danger("danger"), "context."),
+        h4("Dismissable alert with", span_badge.danger("danger"), "context."),
         hr(),
         python(
             'from markyp_html.text import h3\n'
@@ -118,7 +173,7 @@ def get_breadcrumb_code():
 
 def get_buttons():
     return row(
-        h4("Active:"),
+        h5("Active:"),
         row_break(),
         l_button.primary("Primary", active=True, class_=button_margin),
         l_button.secondary("Secondary", active=True, class_=button_margin),
@@ -134,7 +189,7 @@ def get_buttons():
 
 def get_buttons_large():
     return row(
-        h4("Large:"),
+        h5("Large:"),
         row_break(),
         b_button.primary("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
         b_button.secondary("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
@@ -150,7 +205,7 @@ def get_buttons_large():
 
 def get_buttons_small():
     return row(
-        h4("Small:"),
+        h5("Small:"),
         row_break(),
         i_button.primary("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
         i_button.secondary("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
@@ -166,7 +221,7 @@ def get_buttons_small():
 
 def get_buttons_disabled():
     return row(
-        h4("Disabled:"),
+        h5("Disabled:"),
         row_break(),
         b_button.primary("Primary", disabled=True, class_=button_margin),
         b_button.secondary("Secondary", disabled=True, class_=button_margin),
@@ -182,7 +237,7 @@ def get_buttons_disabled():
 
 def get_buttons_block():
     return row(
-        h4("Block:"),
+        h5("Block:"),
         row_break(),
         a_button.primary("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
         a_button.secondary("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
@@ -198,7 +253,7 @@ def get_buttons_block():
 
 def get_outline_buttons():
     return row(
-        h4("Active:"),
+        h5("Active:"),
         row_break(),
         l_button.primary_outline("Primary", active=True, class_=button_margin),
         l_button.secondary_outline("Secondary", active=True, class_=button_margin),
@@ -214,7 +269,7 @@ def get_outline_buttons():
 
 def get_outline_buttons_large():
     return row(
-        h4("Large:"),
+        h5("Large:"),
         row_break(),
         b_button.primary_outline("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
         b_button.secondary_outline("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
@@ -230,7 +285,7 @@ def get_outline_buttons_large():
 
 def get_outline_buttons_small():
     return row(
-        h4("Small:"),
+        h5("Small:"),
         row_break(),
         i_button.primary_outline("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
         i_button.secondary_outline("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
@@ -246,7 +301,7 @@ def get_outline_buttons_small():
 
 def get_outline_buttons_disabled():
     return row(
-        h4("Disabled:"),
+        h5("Disabled:"),
         row_break(),
         b_button.primary_outline("Primary", disabled=True, class_=button_margin),
         b_button.secondary_outline("Secondary", disabled=True, class_=button_margin),
@@ -262,7 +317,7 @@ def get_outline_buttons_disabled():
 
 def get_outline_buttons_block():
     return row(
-        h4("Block:"),
+        h5("Block:"),
         row_break(),
         a_button.primary_outline("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
         a_button.secondary_outline("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
@@ -278,7 +333,7 @@ def get_outline_buttons_block():
 
 def get_toggle_buttons():
     return row(
-        h4("Active:"),
+        h5("Active:"),
         row_break(),
         l_toggle.primary("Primary", active=True, class_=button_margin),
         l_toggle.secondary("Secondary", active=True, class_=button_margin),
@@ -294,7 +349,7 @@ def get_toggle_buttons():
 
 def get_toggle_buttons_large():
     return row(
-        h4("Large:"),
+        h5("Large:"),
         row_break(),
         b_toggle.primary("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
         b_toggle.secondary("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
@@ -310,7 +365,7 @@ def get_toggle_buttons_large():
 
 def get_toggle_buttons_small():
     return row(
-        h4("Small:"),
+        h5("Small:"),
         row_break(),
         i_toggle.primary("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
         i_toggle.secondary("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
@@ -326,7 +381,7 @@ def get_toggle_buttons_small():
 
 def get_toggle_buttons_disabled():
     return row(
-        h4("Disabled:"),
+        h5("Disabled:"),
         row_break(),
         b_toggle.primary("Primary", disabled=True, class_=button_margin),
         b_toggle.secondary("Secondary", disabled=True, class_=button_margin),
@@ -342,7 +397,7 @@ def get_toggle_buttons_disabled():
 
 def get_toggle_buttons_block():
     return row(
-        h4("Block:"),
+        h5("Block:"),
         row_break(),
         a_toggle.primary("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
         a_toggle.secondary("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
@@ -358,7 +413,7 @@ def get_toggle_buttons_block():
 
 def get_outline_toggle_buttons():
     return row(
-        h4("Active:"),
+        h5("Active:"),
         row_break(),
         l_toggle.primary_outline("Primary", active=True, class_=button_margin),
         l_toggle.secondary_outline("Secondary", active=True, class_=button_margin),
@@ -374,7 +429,7 @@ def get_outline_toggle_buttons():
 
 def get_outline_toggle_buttons_large():
     return row(
-        h4("Large:"),
+        h5("Large:"),
         row_break(),
         b_toggle.primary_outline("Primary", class_=join(ButtonStyle.LARGE, button_margin)),
         b_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.LARGE, button_margin)),
@@ -390,7 +445,7 @@ def get_outline_toggle_buttons_large():
 
 def get_outline_toggle_buttons_small():
     return row(
-        h4("Small:"),
+        h5("Small:"),
         row_break(),
         i_toggle.primary_outline("Primary", class_=join(ButtonStyle.SMALL, button_margin)),
         i_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.SMALL, button_margin)),
@@ -406,7 +461,7 @@ def get_outline_toggle_buttons_small():
 
 def get_outline_toggle_buttons_disabled():
     return row(
-        h4("Disabled:"),
+        h5("Disabled:"),
         row_break(),
         b_toggle.primary_outline("Primary", disabled=True, class_=button_margin),
         b_toggle.secondary_outline("Secondary", disabled=True, class_=button_margin),
@@ -422,7 +477,7 @@ def get_outline_toggle_buttons_disabled():
 
 def get_outline_toggle_buttons_block():
     return row(
-        h4("Block:"),
+        h5("Block:"),
         row_break(),
         a_toggle.primary_outline("Primary", class_=join(ButtonStyle.BLOCK, button_margin)),
         a_toggle.secondary_outline("Secondary", class_=join(ButtonStyle.BLOCK, button_margin)),
@@ -540,28 +595,28 @@ def get_carousel():
         one(div(
             python(
                 f"{imports}\n\n{c_empty}",
-                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+                class_=join(col(md=8), offset(md=2), margin(bottom=5))
             ),
             carousels.item_caption(h4("Carousel without controls and indicators"))
         )),
         one(div(
             python(
                 f"{imports}\n\n{c_controls_only}",
-                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+                class_=join(col(md=8), offset(md=2), margin(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with controls"))
         )),
         one(div(
             python(
                 f"{imports}\n\n{c_indicators_only}",
-                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+                class_=join(col(md=8), offset(md=2), margin(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with indicators"))
         )),
         one(div(
             python(
                 f"{imports}\n\n{c_full}",
-                class_=join(col(md=8), offset(md=2), padding(bottom=5))
+                class_=join(col(md=8), offset(md=2), margin(bottom=5))
             ),
             carousels.item_caption(h4("Carousel with controls and indicators"))
         )),
@@ -614,7 +669,7 @@ def get_accordion():
     contents = [f"Content of {title.lower()} collapse within the accordion ..." for title in titles]
     items = [
         cards.card(
-            cards.title.h4(b_button.link(ttl), **collapses.button_args_for(f"{acc_id}-{ttl}")),
+            cards.title.h5(b_button.link(ttl), **collapses.button_args_for(f"{acc_id}-{ttl}")),
             collapses.collapse(
                 cards.body(cnt, class_=join(bg.light, text.dark)),
                 identifier=f"{acc_id}-{ttl}",
@@ -627,11 +682,11 @@ def get_accordion():
 
 def get_dropdown():
     menu_items = (
-        dropdowns.menu_header.h4("Group 1"),
+        dropdowns.menu_header.h5("Group 1"),
         dropdowns.menu_item("Action 1"),
         dropdowns.menu_item("Action 2"),
         dropdowns.menu_divider(),
-        dropdowns.menu_header.h4("Group 2"),
+        dropdowns.menu_header.h5("Group 2"),
         dropdowns.menu_item("Action 3", disabled=True),
         dropdowns.menu_item("Action 4")
     )
@@ -812,6 +867,47 @@ def get_modal():
         )
     )
 
+def get_navbar(*, fixed = True):
+    collapse_id = "main-navbar-collapse"
+    return navbars.navbar(
+        container(
+            navbars.brand("markyp-bootstrap4"),
+            navbars.navbar_toggler(collapse_id=collapse_id),
+            navbars.collapse(
+                navs.nav_link("GitHub", href="https://github.com/volfpeter/markyp-bootstrap4", target="_blank", is_nav_item=True),
+                navs.nav_link("PyPI", href="https://pypi.org/project/markyp-bootstrap4", target="_blank", is_nav_item=True),
+                navs.nav_link("Bootstrap 4", href="https://getbootstrap.com/", target="_blank", is_nav_item=True),
+                section_registry.dropdown,
+                id=collapse_id,
+                nav_factory=div
+            )
+        ),
+        expand_point=navbars.ExpandPoint.LG,
+        theme=navbars.Theme.LIGHT,
+        class_=join("fixed-top" if fixed else None, bg.light)
+    )
+
+def get_navbar_example_code():
+    return python("\n".join((
+        'from markyp_bootstrap4 import navbars',
+        'from markyp_bootstrap4 import navs',
+        'from markyp_html.block import div\n',
+        'collapse_id = "main-navbar-collapse"\n',
+        'navbars.navbar(',
+        '    navbars.brand("markyp-bootstrap4"),',
+        '    navbars.navbar_toggler(collapse_id=collapse_id),',
+        '    navbars.collapse(',
+        '        navs.nav_link("GitHub", href="https://github.com/volfpeter/markyp-bootstrap4", target="_blank", is_nav_item=True),',
+        '        navs.nav_link("PyPI", href="https://pypi.org/project/markyp-bootstrap4", target="_blank", is_nav_item=True),',
+        '        navs.nav_link("Bootstrap 4", href="https://getbootstrap.com/", target="_blank", is_nav_item=True),',
+        '        id=collapse_id,',
+        '        nav_factory=div,',
+        '    ),',
+        '    expand_point=navbars.ExpandPoint.LG,',
+        '    theme=navbars.Theme.DARK',
+        ')'
+    )), class_=margin(top=3))
+
 def get_nav():
     example_code = python("\n".join((
         "from markyp_bootstrap4 import navs",
@@ -835,23 +931,25 @@ def get_nav():
 
 page = webpage(
     container(
+        get_navbar(),
         one(
-            h1(
-                "Building web pages with", em("Python"), ",",
+            h3(
+                "Building web pages with Python,",
                 a(code("markyp"), href="https://github.com/volfpeter/markyp"), ",",
-                a(code("markyp-html"), href="https://github.com/volfpeter/markyp-html"), ", and",
+                a(code("markyp-html"), href="https://github.com/volfpeter/markyp-html"), "and",
                 a(code("markyp-bootstrap4"), href="https://github.com/volfpeter/markyp-bootstrap4")
             ),
-            md=12
+            md=12,
+            style="margin-top: 100px;"
         ),
-        section_header("Alerts and badges"),
+        section_registry.section("Alerts and badges"),
         one(get_alert(), md=12),
         one(get_dismissable_alert(), md=12),
-        section_header("Breadcrumbs"),
+        section_registry.section("Breadcrumbs"),
         one(get_breadcrumb(), md=12),
         one(get_breadcrumb_code(), md=12),
-        section_header("Buttons"),
-        subsection_header("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
+        section_registry.section("Buttons"),
+        section_registry.subsection("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
         get_buttons(),
         hr(),
         get_buttons_small(),
@@ -861,7 +959,7 @@ page = webpage(
         get_buttons_disabled(),
         hr(),
         get_buttons_block(),
-        subsection_header("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
+        section_registry.subsection("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
         get_outline_buttons(),
         hr(),
         get_outline_buttons_small(),
@@ -871,7 +969,7 @@ page = webpage(
         get_outline_buttons_disabled(),
         hr(),
         get_outline_buttons_block(),
-        subsection_header("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
+        section_registry.subsection("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
         get_toggle_buttons(),
         hr(),
         get_toggle_buttons_small(),
@@ -881,7 +979,7 @@ page = webpage(
         get_toggle_buttons_disabled(),
         hr(),
         get_toggle_buttons_block(),
-        subsection_header("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
+        section_registry.subsection("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
         get_outline_toggle_buttons(),
         hr(),
         get_outline_toggle_buttons_small(),
@@ -891,41 +989,44 @@ page = webpage(
         get_outline_toggle_buttons_disabled(),
         hr(),
         get_outline_toggle_buttons_block(),
-        section_header("Cards"),
+        section_registry.section("Cards"),
         three(
             get_card_left(), get_card_center(), get_card_right(),
             md=(4, 4, 4)
         ),
-        section_header("Carousels"),
+        section_registry.section("Carousels"),
         one(get_carousel(), md=12),
-        section_header("Collapses"),
-        subsection_header("Collapse with multiple toggle buttons"),
+        section_registry.section("Collapses"),
+        section_registry.subsection("Collapse with multiple toggle buttons"),
         one(get_collapse(), md=12),
-        subsection_header("Accordion"),
+        section_registry.subsection("Accordion"),
         one(get_accordion(), md=12),
-        section_header("Dropdowns"),
+        section_registry.section("Dropdowns"),
         row(*get_dropdown(), class_=col(md=12)),
-        section_header("Forms"),
-        subsection_header("Multiline login form"),
+        section_registry.section("Forms"),
+        section_registry.subsection("Multiline login form"),
         one(get_multiline_login_form(), md=10, class_=offset(md=1)),
-        subsection_header("Grid login form"),
+        section_registry.subsection("Grid login form"),
         one(get_grid_login_form(), md=10, class_=offset(md=1)),
-        subsection_header("Inline login form"),
+        section_registry.subsection("Inline login form"),
         one(get_inline_login_form(), md=10, class_=offset(md=1)),
-        section_header("Input groups"),
+        section_registry.section("Input groups"),
         row(*get_input_groups(), class_=col(md=12)),
-        section_header("Jumbotrons"),
+        section_registry.section("Jumbotrons"),
         one(get_jumbotron(), md=12),
-        section_header("List groups with tabs"),
+        section_registry.section("List groups with tabs"),
         two(*get_list_group(), md=(4, 8)),
-        section_header("Modals"),
+        section_registry.section("Modals"),
         one(get_modal(), md=12),
-        section_header("Navs with navigated tabs"),
+        section_registry.section("Navs with navigated tabs"),
         two(*get_nav(), md=(12, 12)),
-        class_=padding(y=5)
+        section_registry.section("Navbars"),
+        one(get_navbar(fixed=False), md=12),
+        one(get_navbar_example_code(), md=12)
     ),
     page_title="markyp-bootstrap4 demo page",
     head_elements=[
+        style('.section-anchor { margin-top: -54px; display: block; height: 54px; visibility: hidden; position: relative; }'),
         req.bootstrap_css,
         *req.all_js,
         hlthemes.github,
@@ -940,7 +1041,7 @@ page = webpage(
     javascript=[
         *hljs.js
     ],
-    class_=join(bg.dark, text.light)
+    class_=join(bg.dark, text.light, margin(bottom=3))
 )
 
 
