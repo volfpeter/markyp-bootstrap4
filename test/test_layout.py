@@ -22,8 +22,12 @@ def test_container_fluid():
 
 def test_row():
     assert row("foo", "bar").markup == '<div class="row">\nfoo\nbar\n</div>'
-    assert row("foo", "bar", class_="").markup == '<div class="row">\nfoo\nbar\n</div>'
-    assert row("foo", "bar", class_="fancy-row").markup == '<div class="row fancy-row">\nfoo\nbar\n</div>'
+    assert row("foo", "bar", class_="").markup ==\
+        '<div class="row">\nfoo\nbar\n</div>'
+    assert row("foo", "bar", class_="fancy-row").markup ==\
+        '<div class="row fancy-row">\nfoo\nbar\n</div>'
+    assert row("foo", "bar", class_="fancy-row", attr=42).markup ==\
+        '<div attr="42" class="row fancy-row">\nfoo\nbar\n</div>'
 
     assert row(row_item("first", md=8), row_item("second", md=4)).markup ==\
         '<div class="row">\n'\
@@ -42,6 +46,10 @@ def test_one():
         '</div>'
     assert one("item", class_="fancy-row").markup ==\
         '<div class="row fancy-row">\n'\
+        '<div class="col">\nitem\n</div>\n'\
+        '</div>'
+    assert one("item", class_="fancy-row", attr=42).markup ==\
+        '<div attr="42" class="row fancy-row">\n'\
         '<div class="col">\nitem\n</div>\n'\
         '</div>'
 

@@ -2,28 +2,14 @@ from markyp_html import block
 from markyp_bootstrap4.navs import *
 
 def test_NavPosition():
-    assert NavPosition.CENTER == "center"
+    assert NavPosition.CENTER == "justify-content-center"
     assert NavPosition.DEFAULT is None
-    assert NavPosition.END == "end"
-
-    assert NavPosition.get_class() is None
-    assert NavPosition.get_class(None) is None
-    assert NavPosition.get_class("") is None
-    assert NavPosition.get_class(NavPosition.DEFAULT) is None
-    assert NavPosition.get_class(NavPosition.CENTER) == "justify-content-center"
-    assert NavPosition.get_class(NavPosition.END) == "justify-content-end"
+    assert NavPosition.END == "justify-content-end"
 
 def test_NavStyle():
     assert NavStyle.DEFAULT is None
-    assert NavStyle.PILLS == "pills"
-    assert NavStyle.TABS == "tabs"
-
-    assert NavStyle.get_class() is None
-    assert NavStyle.get_class(None) is None
-    assert NavStyle.get_class("") is None
-    assert NavStyle.get_class(NavStyle.DEFAULT) is None
-    assert NavStyle.get_class(NavStyle.PILLS) == "nav-pills"
-    assert NavStyle.get_class(NavStyle.TABS) == "nav-tabs"
+    assert NavStyle.PILLS == "nav-pills"
+    assert NavStyle.TABS == "nav-tabs"
 
 def test_nav():
     assert nav().markup == '<ul class="nav"></ul>'
