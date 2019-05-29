@@ -7,28 +7,66 @@
 <meta name="description" content="markyp-bootstrap4 demo">
 <meta name="keywords" content="markyp-html,markyp-bootstrap4,markup,Python,HTML,Bootstrap">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style >
+.section-anchor { margin-top: -54px; display: block; height: 54px; visibility: hidden; position: relative; }
+</style>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
 </head>
-<body class="bg-dark text-light">
-<div class="container py-5">
+<body class="bg-dark text-light mb-3">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+<div class="container">
+<a href="#" class="navbar-brand">markyp-bootstrap4</a>
+<button type="button" data-toggle="collapse" data-target="#main-navbar-collapse" aria-controls="main-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+<div id="main-navbar-collapse" class="collapse navbar-collapse">
+<div class="navbar-nav">
+<a href="https://github.com/volfpeter/markyp-bootstrap4" target="_blank" class="nav-link nav-item">GitHub</a>
+<a href="https://pypi.org/project/markyp-bootstrap4" target="_blank" class="nav-link nav-item">PyPI</a>
+<a href="https://getbootstrap.com/" target="_blank" class="nav-link nav-item">Bootstrap 4</a>
+<div class="dropdown">
+<button id="section-list-dropdown-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-light dropdown-toggle text-dark">Sections</button>
+<div aria-labelledby="section-list-dropdown-button" class="dropdown-menu">
+<a type="button" href="#alerts-and-badges" class="dropdown-item">Alerts and badges</a>
+<a type="button" href="#breadcrumbs" class="dropdown-item">Breadcrumbs</a>
+<a type="button" href="#buttons" class="dropdown-item">Buttons</a>
+<a type="button" href="#cards" class="dropdown-item">Cards</a>
+<a type="button" href="#carousels" class="dropdown-item">Carousels</a>
+<a type="button" href="#collapses" class="dropdown-item">Collapses</a>
+<a type="button" href="#dropdowns" class="dropdown-item">Dropdowns</a>
+<a type="button" href="#forms" class="dropdown-item">Forms</a>
+<a type="button" href="#input-groups" class="dropdown-item">Input groups</a>
+<a type="button" href="#jumbotrons" class="dropdown-item">Jumbotrons</a>
+<a type="button" href="#list-groups-with-tabs" class="dropdown-item">List groups with tabs</a>
+<a type="button" href="#modals" class="dropdown-item">Modals</a>
+<a type="button" href="#navs-with-navigated-tabs" class="dropdown-item">Navs with navigated tabs</a>
+<a type="button" href="#navbars" class="dropdown-item">Navbars</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div style="margin-top: 100px;" class="row">
+<div class="col-md-12">
+<h3 >Building web pages with Python, <a href="https://github.com/volfpeter/markyp"><code >markyp</code></a> , <a href="https://github.com/volfpeter/markyp-html"><code >markyp-html</code></a> and <a href="https://github.com/volfpeter/markyp-bootstrap4"><code >markyp-bootstrap4</code></a></h3>
+</div>
+</div>
 <div class="row">
 <div class="col-md-12">
-<h1 >Building web pages with <em >Python</em> , <a href="https://github.com/volfpeter/markyp"><code >markyp</code></a> , <a href="https://github.com/volfpeter/markyp-html"><code >markyp-html</code></a> , and <a href="https://github.com/volfpeter/markyp-bootstrap4"><code >markyp-bootstrap4</code></a></h1>
+<div id="alerts-and-badges" class="section-anchor"></div>
 </div>
-</div>
-<div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Alerts and badges</h2>
+<div class="col-md-12">
+<h3 id="alerts-and-badges" class="mt-4 mb-3">Alerts and badges</h3>
 </div>
 </div>
 <div class="row">
 <div class="col-md-12">
 <div role="alert" class="alert alert-primary">
-<h3 >Alert with <span class="badge badge-primary">primary</span> context.</h3>
+<h4 >Alert with <span class="badge badge-primary">primary</span> context.</h4>
 <hr >
 <pre >
 <code class="python">from markyp_html.text import h3
@@ -43,7 +81,7 @@ alert.primary(h3("Alert with", span_badge.primary("primary"), "context."))</code
 <div class="row">
 <div class="col-md-12">
 <div role="alert" class="alert alert-danger alert-dismissible fade show">
-<h3 >Dismissable alert with <span class="badge badge-danger">danger</span> context.</h3>
+<h4 >Dismissable alert with <span class="badge badge-danger">danger</span> context.</h4>
 <hr >
 <pre >
 <code class="python">from markyp_html.text import h3
@@ -57,8 +95,11 @@ dismissable.danger(h3("Dismissable alert with", span_badge.danger("danger"), "co
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Breadcrumbs</h2>
+<div class="col-md-12">
+<div id="breadcrumbs" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="breadcrumbs" class="mt-4 mb-3">Breadcrumbs</h3>
 </div>
 </div>
 <div class="row">
@@ -89,17 +130,20 @@ breadcrumb(
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Buttons</h2>
+<div class="col-md-12">
+<div id="buttons" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="buttons" class="mt-4 mb-3">Buttons</h3>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h4>
 </div>
 </div>
 <div class="row col-md-12">
-<h4 >Active:</h4>
+<h5 >Active:</h5>
 <div class="w-100"></div>
 <label type="button" aria-pressed="true" class="btn btn-primary active mx-1 my-1">Primary</label>
 <label type="button" aria-pressed="true" class="btn btn-secondary active mx-1 my-1">Secondary</label>
@@ -113,7 +157,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Small:</h4>
+<h5 >Small:</h5>
 <div class="w-100"></div>
 <input type="button" value="Primary" class="btn btn-primary btn-sm mx-1 my-1">
 <input type="button" value="Secondary" class="btn btn-secondary btn-sm mx-1 my-1">
@@ -127,7 +171,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Large:</h4>
+<h5 >Large:</h5>
 <div class="w-100"></div>
 <button type="button" class="btn btn-primary btn-lg mx-1 my-1">Primary</button>
 <button type="button" class="btn btn-secondary btn-lg mx-1 my-1">Secondary</button>
@@ -141,7 +185,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Disabled:</h4>
+<h5 >Disabled:</h5>
 <div class="w-100"></div>
 <button type="button" disabled class="btn btn-primary mx-1 my-1">Primary</button>
 <button type="button" disabled class="btn btn-secondary mx-1 my-1">Secondary</button>
@@ -155,7 +199,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Block:</h4>
+<h5 >Block:</h5>
 <div class="w-100"></div>
 <a type="button" class="btn btn-primary btn-block mx-1 my-1">Primary</a>
 <a type="button" class="btn btn-secondary btn-block mx-1 my-1">Secondary</a>
@@ -167,13 +211,13 @@ breadcrumb(
 <a type="button" class="btn btn-dark btn-block mx-1 my-1">Dark</a>
 <a type="button" class="btn btn-link btn-block mx-1 my-1">Link</a>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Outline buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Outline buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h4>
 </div>
 </div>
 <div class="row col-md-12">
-<h4 >Active:</h4>
+<h5 >Active:</h5>
 <div class="w-100"></div>
 <label type="button" aria-pressed="true" class="btn btn-outline-primary active mx-1 my-1">Primary</label>
 <label type="button" aria-pressed="true" class="btn btn-outline-secondary active mx-1 my-1">Secondary</label>
@@ -187,7 +231,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Small:</h4>
+<h5 >Small:</h5>
 <div class="w-100"></div>
 <input type="button" value="Primary" class="btn btn-outline-primary btn-sm mx-1 my-1">
 <input type="button" value="Secondary" class="btn btn-outline-secondary btn-sm mx-1 my-1">
@@ -201,7 +245,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Large:</h4>
+<h5 >Large:</h5>
 <div class="w-100"></div>
 <button type="button" class="btn btn-outline-primary btn-lg mx-1 my-1">Primary</button>
 <button type="button" class="btn btn-outline-secondary btn-lg mx-1 my-1">Secondary</button>
@@ -215,7 +259,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Disabled:</h4>
+<h5 >Disabled:</h5>
 <div class="w-100"></div>
 <button type="button" disabled class="btn btn-outline-primary mx-1 my-1">Primary</button>
 <button type="button" disabled class="btn btn-outline-secondary mx-1 my-1">Secondary</button>
@@ -229,7 +273,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Block:</h4>
+<h5 >Block:</h5>
 <div class="w-100"></div>
 <a type="button" class="btn btn-outline-primary btn-block mx-1 my-1">Primary</a>
 <a type="button" class="btn btn-outline-secondary btn-block mx-1 my-1">Secondary</a>
@@ -241,13 +285,13 @@ breadcrumb(
 <a type="button" class="btn btn-outline-dark btn-block mx-1 my-1">Dark</a>
 <a type="button" class="btn btn-outline-link btn-block mx-1 my-1">Link</a>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h4>
 </div>
 </div>
 <div class="row col-md-12">
-<h4 >Active:</h4>
+<h5 >Active:</h5>
 <div class="w-100"></div>
 <label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-primary active mx-1 my-1">Primary</label>
 <label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-secondary active mx-1 my-1">Secondary</label>
@@ -261,7 +305,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Small:</h4>
+<h5 >Small:</h5>
 <div class="w-100"></div>
 <input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Primary" class="btn btn-primary btn-sm mx-1 my-1">
 <input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Secondary" class="btn btn-secondary btn-sm mx-1 my-1">
@@ -275,7 +319,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Large:</h4>
+<h5 >Large:</h5>
 <div class="w-100"></div>
 <button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary btn-lg mx-1 my-1">Primary</button>
 <button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary btn-lg mx-1 my-1">Secondary</button>
@@ -289,7 +333,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Disabled:</h4>
+<h5 >Disabled:</h5>
 <div class="w-100"></div>
 <button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary mx-1 my-1">Primary</button>
 <button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary mx-1 my-1">Secondary</button>
@@ -303,7 +347,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Block:</h4>
+<h5 >Block:</h5>
 <div class="w-100"></div>
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-primary btn-block mx-1 my-1">Primary</a>
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-secondary btn-block mx-1 my-1">Secondary</a>
@@ -315,13 +359,13 @@ breadcrumb(
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-dark btn-block mx-1 my-1">Dark</a>
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-link btn-block mx-1 my-1">Link</a>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Outline toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Outline toggle buttons from <code >&lt;a&gt;&lt;/a&gt;</code> , <code >&lt;button&gt;&lt;/button&gt;</code> , <code >&lt;label&gt;&lt;/label&gt;</code> , and <code >&lt;input&gt;</code> elements</h4>
 </div>
 </div>
 <div class="row col-md-12">
-<h4 >Active:</h4>
+<h5 >Active:</h5>
 <div class="w-100"></div>
 <label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-primary active mx-1 my-1">Primary</label>
 <label type="button" aria-pressed="true" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary active mx-1 my-1">Secondary</label>
@@ -335,7 +379,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Small:</h4>
+<h5 >Small:</h5>
 <div class="w-100"></div>
 <input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Primary" class="btn btn-outline-primary btn-sm mx-1 my-1">
 <input type="button" aria-pressed="false" autocomplete="off" data-toggle="button" value="Secondary" class="btn btn-outline-secondary btn-sm mx-1 my-1">
@@ -349,7 +393,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Large:</h4>
+<h5 >Large:</h5>
 <div class="w-100"></div>
 <button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary btn-lg mx-1 my-1">Primary</button>
 <button type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary btn-lg mx-1 my-1">Secondary</button>
@@ -363,7 +407,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Disabled:</h4>
+<h5 >Disabled:</h5>
 <div class="w-100"></div>
 <button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary mx-1 my-1">Primary</button>
 <button type="button" disabled aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary mx-1 my-1">Secondary</button>
@@ -377,7 +421,7 @@ breadcrumb(
 </div>
 <hr >
 <div class="row col-md-12">
-<h4 >Block:</h4>
+<h5 >Block:</h5>
 <div class="w-100"></div>
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-primary btn-block mx-1 my-1">Primary</a>
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-secondary btn-block mx-1 my-1">Secondary</a>
@@ -390,8 +434,11 @@ breadcrumb(
 <a type="button" aria-pressed="false" autocomplete="off" data-toggle="button" class="btn btn-outline-link btn-block mx-1 my-1">Link</a>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Cards</h2>
+<div class="col-md-12">
+<div id="cards" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="cards" class="mt-4 mb-3">Cards</h3>
 </div>
 </div>
 <div class="row">
@@ -433,8 +480,11 @@ breadcrumb(
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Carousels</h2>
+<div class="col-md-12">
+<div id="carousels" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="carousels" class="mt-4 mb-3">Carousels</h3>
 </div>
 </div>
 <div class="row">
@@ -451,7 +501,7 @@ breadcrumb(
 <div class="row">
 <div class="col">
 <div >
-<pre class="col-md-8 offset-md-2 pb-5">
+<pre class="col-md-8 offset-md-2 mb-5">
 <code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
 from markyp_html.block import div
 from markyp_html.inline import img
@@ -486,7 +536,7 @@ carousel(
 <div class="row">
 <div class="col">
 <div >
-<pre class="col-md-8 offset-md-2 pb-5">
+<pre class="col-md-8 offset-md-2 mb-5">
 <code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
 from markyp_html.block import div
 from markyp_html.inline import img
@@ -520,7 +570,7 @@ carousel(
 <div class="row">
 <div class="col">
 <div >
-<pre class="col-md-8 offset-md-2 pb-5">
+<pre class="col-md-8 offset-md-2 mb-5">
 <code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
 from markyp_html.block import div
 from markyp_html.inline import img
@@ -554,7 +604,7 @@ carousel(
 <div class="row">
 <div class="col">
 <div >
-<pre class="col-md-8 offset-md-2 pb-5">
+<pre class="col-md-8 offset-md-2 mb-5">
 <code class="python">from markyp_bootstrap4.carousels import carousel, item_caption
 from markyp_html.block import div
 from markyp_html.inline import img
@@ -590,13 +640,16 @@ carousel(
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Collapses</h2>
+<div class="col-md-12">
+<div id="collapses" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="collapses" class="mt-4 mb-3">Collapses</h3>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Collapse with multiple toggle buttons</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Collapse with multiple toggle buttons</h4>
 </div>
 </div>
 <div class="row">
@@ -635,16 +688,16 @@ div(
 </div>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Accordion</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Accordion</h4>
 </div>
 </div>
 <div class="row">
 <div class="col-md-12">
 <div id="acc-1">
 <div class="card bg-dark text-light">
-<h4 data-target="#acc-1-First" data-toggle="collapse" aria-controls="acc-1-First" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">First</button></h4>
+<h5 data-target="#acc-1-First" data-toggle="collapse" aria-controls="acc-1-First" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">First</button></h5>
 <div id="acc-1-First" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of first collapse within the accordion ...
@@ -652,7 +705,7 @@ Content of first collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h4 data-target="#acc-1-Second" data-toggle="collapse" aria-controls="acc-1-Second" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Second</button></h4>
+<h5 data-target="#acc-1-Second" data-toggle="collapse" aria-controls="acc-1-Second" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Second</button></h5>
 <div id="acc-1-Second" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of second collapse within the accordion ...
@@ -660,7 +713,7 @@ Content of second collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h4 data-target="#acc-1-Third" data-toggle="collapse" aria-controls="acc-1-Third" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Third</button></h4>
+<h5 data-target="#acc-1-Third" data-toggle="collapse" aria-controls="acc-1-Third" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Third</button></h5>
 <div id="acc-1-Third" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of third collapse within the accordion ...
@@ -668,7 +721,7 @@ Content of third collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h4 data-target="#acc-1-Fourth" data-toggle="collapse" aria-controls="acc-1-Fourth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fourth</button></h4>
+<h5 data-target="#acc-1-Fourth" data-toggle="collapse" aria-controls="acc-1-Fourth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fourth</button></h5>
 <div id="acc-1-Fourth" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of fourth collapse within the accordion ...
@@ -676,7 +729,7 @@ Content of fourth collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h4 data-target="#acc-1-Fifth" data-toggle="collapse" aria-controls="acc-1-Fifth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fifth</button></h4>
+<h5 data-target="#acc-1-Fifth" data-toggle="collapse" aria-controls="acc-1-Fifth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fifth</button></h5>
 <div id="acc-1-Fifth" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of fifth collapse within the accordion ...
@@ -687,19 +740,22 @@ Content of fifth collapse within the accordion ...
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Dropdowns</h2>
+<div class="col-md-12">
+<div id="dropdowns" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="dropdowns" class="mt-4 mb-3">Dropdowns</h3>
 </div>
 </div>
 <div class="row col-md-12">
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-primary dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
@@ -707,11 +763,11 @@ Content of fifth collapse within the accordion ...
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-secondary dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
@@ -719,11 +775,11 @@ Content of fifth collapse within the accordion ...
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-success dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
@@ -731,11 +787,11 @@ Content of fifth collapse within the accordion ...
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-danger dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
@@ -743,11 +799,11 @@ Content of fifth collapse within the accordion ...
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-warning dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
@@ -755,24 +811,27 @@ Content of fifth collapse within the accordion ...
 <div class="dropdown">
 <button id="dropdown-button-1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-info dropdown-toggle mx-1 my-1">Dropdown button</button>
 <div aria-labelledby="dropdown-button-1" class="dropdown-menu">
-<h4 class="dropdown-header">Group 1</h4>
+<h5 class="dropdown-header">Group 1</h5>
 <button type="button" class="dropdown-item">Action 1</button>
 <button type="button" class="dropdown-item">Action 2</button>
 <div class="dropdown-divider"></div>
-<h4 class="dropdown-header">Group 2</h4>
+<h5 class="dropdown-header">Group 2</h5>
 <button type="button" class="dropdown-item disabled">Action 3</button>
 <button type="button" class="dropdown-item">Action 4</button>
 </div>
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Forms</h2>
+<div class="col-md-12">
+<div id="forms" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="forms" class="mt-4 mb-3">Forms</h3>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Multiline login form</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Multiline login form</h4>
 </div>
 </div>
 <div class="row offset-md-1">
@@ -794,9 +853,9 @@ Content of fifth collapse within the accordion ...
 </form>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Grid login form</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Grid login form</h4>
 </div>
 </div>
 <div class="row offset-md-1">
@@ -818,9 +877,9 @@ Content of fifth collapse within the accordion ...
 </form>
 </div>
 </div>
-<div class="row">
-<div class="col">
-<h3 md="12" class="pt-3">Inline login form</h3>
+<div class="row mt-3 mb-2">
+<div class="col-md-12">
+<h4 >Inline login form</h4>
 </div>
 </div>
 <div class="row offset-md-1">
@@ -842,8 +901,11 @@ Content of fifth collapse within the accordion ...
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Input groups</h2>
+<div class="col-md-12">
+<div id="input-groups" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="input-groups" class="mt-4 mb-3">Input groups</h3>
 </div>
 </div>
 <div class="row col-md-12">
@@ -873,8 +935,11 @@ Content of fifth collapse within the accordion ...
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Jumbotrons</h2>
+<div class="col-md-12">
+<div id="jumbotrons" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="jumbotrons" class="mt-4 mb-3">Jumbotrons</h3>
 </div>
 </div>
 <div class="row">
@@ -895,8 +960,11 @@ jumbotron(
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">List groups with tabs</h2>
+<div class="col-md-12">
+<div id="list-groups-with-tabs" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="list-groups-with-tabs" class="mt-4 mb-3">List groups with tabs</h3>
 </div>
 </div>
 <div class="row">
@@ -916,14 +984,17 @@ Curabitur massa ligula, auctor tempor libero in, pretium venenatis dolor. Donec 
 Proin ornare sapien tellus. Duis accumsan consectetur consequat. Morbi vel enim pretium, rhoncus augue a, rutrum nisl. Nam tempus tellus interdum velit vestibulum, quis feugiat orci mollis. Pellentesque libero enim, sodales iaculis consectetur in, volutpat sit amet magna. Praesent bibendum mollis nibh, ut feugiat velit consectetur vel. Curabitur pellentesque suscipit tincidunt. Praesent mattis purus arcu, id interdum dui commodo non. Nulla imperdiet massa a nulla pharetra pretium. Mauris fermentum euismod scelerisque. Quisque ante justo, iaculis at consequat eu, fringilla non sem. Vivamus feugiat nibh quis ante porta imperdiet. Vivamus ultricies augue vel enim finibus, ut viverra sapien tempus. Aliquam eleifend tellus sed tincidunt lobortis.
 </div>
 <div role="tabpanel" id="tab-content-1-3" class="tab-pane fade">
-Ut id tempor enim, a fermentum orci. Aliquam lacinia, nulla at lacinia feugiat, tellus metus efficitur erat, eu porttitor tellus risus ac nisl. Nullam volutpat diam nec facilisis viverra. Ut fringilla metus at nisi pretium, in mattis lacus hendrerit. Nunc varius gravida quam nec vestibulum. Morbi vehicula eleifend diam, sit amet fermentum massa. Quisque sit amet pulvinar justo. Aliquam risus sem, commodo at erat cursus, interdum tempor leo. Praesent id orci eget orci eleifend sollicitudin. Sed quam arcu, faucibus vitae facilisis vel, volutpat quis eros. Nullam ullamcorper venenatis ligula at blandit. 
+Ut id tempor enim, a fermentum orci. Aliquam lacinia, nulla at lacinia feugiat, tellus metus efficitur erat, eu porttitor tellus risus ac nisl. Nullam volutpat diam nec facilisis viverra. Ut fringilla metus at nisi pretium, in mattis lacus hendrerit. Nunc varius gravida quam nec vestibulum. Morbi vehicula eleifend diam, sit amet fermentum massa. Quisque sit amet pulvinar justo. Aliquam risus sem, commodo at erat cursus, interdum tempor leo. Praesent id orci eget orci eleifend sollicitudin. Sed quam arcu, faucibus vitae facilisis vel, volutpat quis eros. Nullam ullamcorper venenatis ligula at blandit.
 </div>
 </div>
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Modals</h2>
+<div class="col-md-12">
+<div id="modals" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="modals" class="mt-4 mb-3">Modals</h3>
 </div>
 </div>
 <div class="row">
@@ -967,8 +1038,11 @@ modals.modal(
 </div>
 </div>
 <div class="row">
-<div class="col">
-<h2 md="12" class="pt-5">Navs with navigated tabs</h2>
+<div class="col-md-12">
+<div id="navs-with-navigated-tabs" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="navs-with-navigated-tabs" class="mt-4 mb-3">Navs with navigated tabs</h3>
 </div>
 </div>
 <div class="row">
@@ -983,7 +1057,7 @@ modals.modal(
 <div id="navigated-tabs-example-tab-content" class="tab-content">
 <div role="tabpanel" id="navigated-tabs-example-pane-0" aria-labelled-by="navigated-tabs-example-nav-0" class="tab-pane fade show active">
 <div >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean volutpat orci turpis, eget euismod elit suscipit quis. Integer rutrum finibus diam et sodales. Integer dignissim erat urna, a sollicitudin augue egestas quis. Quisque a iaculis urna. Donec ac tortor quis est fermentum tincidunt at sed enim. Suspendisse sagittis neque nec laoreet imperdiet. Suspendisse interdum posuere sem auctor commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus pulvinar risus dictum sapien lacinia, a vehicula felis fringilla. Quisque rhoncus erat eros, sit amet luctus mi vestibulum ac. Vivamus lobortis laoreet lacus nec ullamcorper. Phasellus pulvinar turpis molestie, accumsan justo vitae, vulputate lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean volutpat orci turpis, eget euismod elit suscipit quis. Integer rutrum finibus diam et sodales. Integer dignissim erat urna, a sollicitudin augue egestas quis. Quisque a iaculis urna. Donec ac tortor quis est fermentum tincidunt at sed enim. Suspendisse sagittis neque nec laoreet imperdiet. Suspendisse interdum posuere sem auctor commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus pulvinar risus dictum sapien lacinia, a vehicula felis fringilla. Quisque rhoncus erat eros, sit amet luctus mi vestibulum ac. Vivamus lobortis laoreet lacus nec ullamcorper. Phasellus pulvinar turpis molestie, accumsan justo vitae, vulputate lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 <pre >
 <code class="python">from markyp_bootstrap4 import navs
 navs.navigated_tabs(
@@ -1030,6 +1104,75 @@ navs.navigated_tabs(
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div id="navbars" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="navbars" class="mt-4 mb-3">Navbars</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+<a href="#" class="navbar-brand">markyp-bootstrap4</a>
+<button type="button" data-toggle="collapse" data-target="#main-navbar-collapse" aria-controls="main-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+<div id="main-navbar-collapse" class="collapse navbar-collapse">
+<div class="navbar-nav">
+<a href="https://github.com/volfpeter/markyp-bootstrap4" target="_blank" class="nav-link nav-item">GitHub</a>
+<a href="https://pypi.org/project/markyp-bootstrap4" target="_blank" class="nav-link nav-item">PyPI</a>
+<a href="https://getbootstrap.com/" target="_blank" class="nav-link nav-item">Bootstrap 4</a>
+<div class="dropdown">
+<button id="section-list-dropdown-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-light dropdown-toggle text-dark">Sections</button>
+<div aria-labelledby="section-list-dropdown-button" class="dropdown-menu">
+<a type="button" href="#alerts-and-badges" class="dropdown-item">Alerts and badges</a>
+<a type="button" href="#breadcrumbs" class="dropdown-item">Breadcrumbs</a>
+<a type="button" href="#buttons" class="dropdown-item">Buttons</a>
+<a type="button" href="#cards" class="dropdown-item">Cards</a>
+<a type="button" href="#carousels" class="dropdown-item">Carousels</a>
+<a type="button" href="#collapses" class="dropdown-item">Collapses</a>
+<a type="button" href="#dropdowns" class="dropdown-item">Dropdowns</a>
+<a type="button" href="#forms" class="dropdown-item">Forms</a>
+<a type="button" href="#input-groups" class="dropdown-item">Input groups</a>
+<a type="button" href="#jumbotrons" class="dropdown-item">Jumbotrons</a>
+<a type="button" href="#list-groups-with-tabs" class="dropdown-item">List groups with tabs</a>
+<a type="button" href="#modals" class="dropdown-item">Modals</a>
+<a type="button" href="#navs-with-navigated-tabs" class="dropdown-item">Navs with navigated tabs</a>
+<a type="button" href="#navbars" class="dropdown-item">Navbars</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<pre class="mt-3">
+<code class="python">from markyp_bootstrap4 import navbars
+from markyp_bootstrap4 import navs
+from markyp_html.block import div
+
+collapse_id = "main-navbar-collapse"
+
+navbars.navbar(
+    navbars.brand("markyp-bootstrap4"),
+    navbars.navbar_toggler(collapse_id=collapse_id),
+    navbars.collapse(
+        navs.nav_link("GitHub", href="https://github.com/volfpeter/markyp-bootstrap4", target="_blank", is_nav_item=True),
+        navs.nav_link("PyPI", href="https://pypi.org/project/markyp-bootstrap4", target="_blank", is_nav_item=True),
+        navs.nav_link("Bootstrap 4", href="https://getbootstrap.com/", target="_blank", is_nav_item=True),
+        id=collapse_id,
+        nav_factory=div,
+    ),
+    expand_point=navbars.ExpandPoint.LG,
+    theme=navbars.Theme.DARK
+)</code>
+</pre>
 </div>
 </div>
 </div>
