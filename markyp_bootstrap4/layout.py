@@ -18,7 +18,7 @@ on Bootstrap's spacing and margin definition system.
 
 from typing import Optional, Tuple, Union
 
-from markyp import ElementType
+from markyp import ElementType, PropertyValue
 from markyp_html.block import div
 
 
@@ -107,7 +107,7 @@ def container_fluid(*args: ElementType, class_: Optional[str] = None) -> div:
 # -----------------------------------------------------------------------------
 
 
-def row(*args: ElementType, class_: Optional[str] = None) -> div:
+def row(*args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> div:
     """
     Bootstrap container row element.
 
@@ -117,10 +117,13 @@ def row(*args: ElementType, class_: Optional[str] = None) -> div:
     </div>
     ```
 
+    Keyword arguments not listed in the arguments section are turned into
+    element attributes on the created row.
+
     Arguments:
         class_: Additional classes to add to the `row` `div` that wraps the given elements.
     """
-    return div(*args, class_=f"row {class_}" if class_ else "row")
+    return div(*args, class_=f"row {class_}" if class_ else "row", **kwargs)
 
 
 def one(item: ElementType,
@@ -130,15 +133,19 @@ def one(item: ElementType,
         sm: Optional[ColumnSize] = None,
         md: Optional[ColumnSize] = None,
         lg: Optional[ColumnSize] = None,
-        xl: Optional[ColumnSize] = None) -> div:
+        xl: Optional[ColumnSize] = None,
+        **kwargs: PropertyValue) -> div:
     """
-    Creates a row with a single item in it.
+    Creates a row with a single element in it.
 
     ```HTML
     <div class="row {class_}">
         {item element with size specification}
     </div>
     ```
+
+    Keyword arguments not listed in the arguments section are turned into
+    element attributes on the created row.
 
     Arguments:
         item: The element the row should contain.
@@ -151,7 +158,8 @@ def one(item: ElementType,
     """
     return row(
         row_item(item, xs=xs, sm=sm, md=md, lg=lg, xl=xl),
-        class_=class_
+        class_=class_,
+        **kwargs
     )
 
 
