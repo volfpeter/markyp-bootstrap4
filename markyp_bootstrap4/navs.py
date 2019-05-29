@@ -23,22 +23,11 @@ class NavPosition(object):
     Enumeration class that lists possible `nav` positions.
     """
 
-    CENTER = "center"
+    CENTER = "justify-content-center"
 
     DEFAULT = None
 
-    END = "end"
-
-    @staticmethod
-    def get_class(position: Optional[str] = None) -> Optional[str]:
-        """
-        Returns the CSS class to set on the `nav` element to position it according
-        to the given value.
-
-        Arguments:
-            position: `NavPosition` constant specifying the desired position.
-        """
-        return f"justify-content-{position}" if position else None
+    END = "justify-content-end"
 
 
 class NavStyle(object):
@@ -48,19 +37,9 @@ class NavStyle(object):
 
     DEFAULT = None
 
-    PILLS = "pills"
+    PILLS = "nav-pills"
 
-    TABS = "tabs"
-
-    @staticmethod
-    def get_class(style: Optional[str] = None) -> Optional[str]:
-        """
-        Returns the CSS class to set on the `nav` element to style it to the given value.
-
-        Arguments:
-            style: `NavStyle` constant specifying the desired style.
-        """
-        return f"nav-{style}" if style else None
+    TABS = "nav-tabs"
 
 
 def nav(*args: ElementType,
@@ -95,8 +74,8 @@ def nav(*args: ElementType,
             "nav",
             "nav-fill" if fill else None,
             "nav-justified" if justified else None,
-            NavPosition.get_class(nav_position),
-            NavStyle.get_class(nav_style),
+            nav_position,
+            nav_style,
             class_
         ),
         **kwargs
