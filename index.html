@@ -8,18 +8,46 @@
 <meta name="keywords" content="markyp-html,markyp-bootstrap4,markup,Python,HTML,Bootstrap">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style >
-.section-anchor { margin-top: -54px; display: block; height: 54px; visibility: hidden; position: relative; }
+
+    .section-anchor {
+        margin-top: -54px;
+        display: block;
+        height: 54px;
+        visibility: hidden;
+        position: relative;
+    }
+
+    .sidebar-nav {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    .sidebar-sticky {
+        position: relative;
+        top: 0;
+        height: calc(100vh - 56px);
+        padding-top: 100px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    @supports ((position: -webkit-sticky) or (position: sticky)) {
+        .sidebar-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+        }
+    }
+    
 </style>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
 </head>
-<body class="bg-dark text-light mb-3">
-<div class="container">
+<body style="background-color: #41474D; position: relative;" data-spy="scroll" data-target="#sidebar-navbar" data-offset="1" class="text-light">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-<div class="container">
+<div class="container-fluid">
 <a href="#" class="navbar-brand">markyp-bootstrap4</a>
 <button type="button" data-toggle="collapse" data-target="#main-navbar-collapse" aria-controls="main-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 <div id="main-navbar-collapse" class="collapse navbar-collapse">
@@ -50,6 +78,31 @@
 </div>
 </div>
 </nav>
+<div class="container-fluid">
+<div class="row">
+<nav id="sidebar-navbar" class="sidebar-nav d-none d-md-block col-md-2 bg-light text-dark">
+<div class="sidebar-sticky">
+<ul class="nav nav-pills flex-column">
+<li class="nav-item"><h4 >Table of Contents</h4></li>
+<li class="nav-item"><a href="#alerts-and-badges" class="nav-link text-dark">Alerts and badges</a></li>
+<li class="nav-item"><a href="#breadcrumbs" class="nav-link text-dark">Breadcrumbs</a></li>
+<li class="nav-item"><a href="#buttons" class="nav-link text-dark">Buttons</a></li>
+<li class="nav-item"><a href="#cards" class="nav-link text-dark">Cards</a></li>
+<li class="nav-item"><a href="#carousels" class="nav-link text-dark">Carousels</a></li>
+<li class="nav-item"><a href="#collapses" class="nav-link text-dark">Collapses</a></li>
+<li class="nav-item"><a href="#dropdowns" class="nav-link text-dark">Dropdowns</a></li>
+<li class="nav-item"><a href="#forms" class="nav-link text-dark">Forms</a></li>
+<li class="nav-item"><a href="#input-groups" class="nav-link text-dark">Input groups</a></li>
+<li class="nav-item"><a href="#jumbotrons" class="nav-link text-dark">Jumbotrons</a></li>
+<li class="nav-item"><a href="#list-groups-with-tabs" class="nav-link text-dark">List groups with tabs</a></li>
+<li class="nav-item"><a href="#modals" class="nav-link text-dark">Modals</a></li>
+<li class="nav-item"><a href="#navs-with-navigated-tabs" class="nav-link text-dark">Navs with navigated tabs</a></li>
+<li class="nav-item"><a href="#navbars" class="nav-link text-dark">Navbars</a></li>
+</ul>
+</div>
+</nav>
+<div class="col-md-10">
+<div class="container-fluid">
 <div style="margin-top: 100px;" class="row">
 <div class="col-md-12">
 <h3 >Building web pages with Python, <a href="https://github.com/volfpeter/markyp"><code >markyp</code></a> , <a href="https://github.com/volfpeter/markyp-html"><code >markyp-html</code></a> and <a href="https://github.com/volfpeter/markyp-bootstrap4"><code >markyp-bootstrap4</code></a></h3>
@@ -697,7 +750,7 @@ div(
 <div class="col-md-12">
 <div id="acc-1">
 <div class="card bg-dark text-light">
-<h5 data-target="#acc-1-First" data-toggle="collapse" aria-controls="acc-1-First" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">First</button></h5>
+<h5 data-target="#acc-1-First" data-toggle="collapse" aria-controls="acc-1-First" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link text-light">First</button></h5>
 <div id="acc-1-First" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of first collapse within the accordion ...
@@ -705,7 +758,7 @@ Content of first collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h5 data-target="#acc-1-Second" data-toggle="collapse" aria-controls="acc-1-Second" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Second</button></h5>
+<h5 data-target="#acc-1-Second" data-toggle="collapse" aria-controls="acc-1-Second" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link text-light">Second</button></h5>
 <div id="acc-1-Second" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of second collapse within the accordion ...
@@ -713,7 +766,7 @@ Content of second collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h5 data-target="#acc-1-Third" data-toggle="collapse" aria-controls="acc-1-Third" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Third</button></h5>
+<h5 data-target="#acc-1-Third" data-toggle="collapse" aria-controls="acc-1-Third" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link text-light">Third</button></h5>
 <div id="acc-1-Third" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of third collapse within the accordion ...
@@ -721,7 +774,7 @@ Content of third collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h5 data-target="#acc-1-Fourth" data-toggle="collapse" aria-controls="acc-1-Fourth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fourth</button></h5>
+<h5 data-target="#acc-1-Fourth" data-toggle="collapse" aria-controls="acc-1-Fourth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link text-light">Fourth</button></h5>
 <div id="acc-1-Fourth" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of fourth collapse within the accordion ...
@@ -729,7 +782,7 @@ Content of fourth collapse within the accordion ...
 </div>
 </div>
 <div class="card bg-dark text-light">
-<h5 data-target="#acc-1-Fifth" data-toggle="collapse" aria-controls="acc-1-Fifth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link">Fifth</button></h5>
+<h5 data-target="#acc-1-Fifth" data-toggle="collapse" aria-controls="acc-1-Fifth" aria-expanded="false" class="card-title"><button type="button" class="btn btn-link text-light">Fifth</button></h5>
 <div id="acc-1-Fifth" data-parent="#acc-1" class="collapse">
 <div class="card-body bg-light text-dark">
 Content of fifth collapse within the accordion ...
@@ -1117,7 +1170,7 @@ navs.navigated_tabs(
 <div class="row">
 <div class="col-md-12">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<div class="container">
+<div class="container-fluid">
 <a href="#" class="navbar-brand">markyp-bootstrap4</a>
 <button type="button" data-toggle="collapse" data-target="#main-navbar-collapse" aria-controls="main-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 <div id="main-navbar-collapse" class="collapse navbar-collapse">
@@ -1176,6 +1229,12 @@ navbars.navbar(
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 <script >
 hljs.initHighlightingOnLoad();
