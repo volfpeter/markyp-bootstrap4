@@ -3,6 +3,8 @@ from typing import Dict
 from markyp import IElement
 
 from markyp_bootstrap4 import alerts
+from markyp_bootstrap4 import badges
+from markyp_bootstrap4 import breadcrumbs
 from markyp_bootstrap4 import cards
 from markyp_bootstrap4 import carousels
 from markyp_bootstrap4 import collapses
@@ -14,22 +16,21 @@ from markyp_bootstrap4 import list_groups
 from markyp_bootstrap4 import modals
 from markyp_bootstrap4 import navbars
 from markyp_bootstrap4 import navs
-from markyp_bootstrap4 import tabs
 from markyp_bootstrap4 import req
-from markyp_bootstrap4.badges import span_badge
-from markyp_bootstrap4.breadcrumbs import breadcrumb
+from markyp_bootstrap4 import scrollspy
+from markyp_bootstrap4 import tabs
 from markyp_bootstrap4.buttons import a_button, a_toggle,\
                                       b_button, b_toggle,\
                                       i_button, i_toggle,\
                                       l_button, l_toggle,\
                                       ButtonStyle
 from markyp_bootstrap4.colors import bg, text
-from markyp_bootstrap4.layout import container, margin, offset, row, row_break, row_item, one, two, three, col, PercentSize
+from markyp_bootstrap4.layout import container_fluid, margin, offset, row, row_break, row_item, one, two, three, col, PercentSize
 
 from markyp_highlightjs import python, js as hljs, themes as hlthemes
 
 from markyp_html import meta, join, style, webpage
-from markyp_html.block import div, hr
+from markyp_html.block import div, hr, nav
 from markyp_html.forms import form
 from markyp_html.inline import a, code, em, img, strong
 from markyp_html.text import h1, h2, h3, h4, h5, p
@@ -72,11 +73,48 @@ lipsum = (
     "Nullam ullamcorper venenatis ligula at blandit.")
 )
 
+
+custom_css = style(
+    """
+    .section-anchor {
+        margin-top: -54px;
+        display: block;
+        height: 54px;
+        visibility: hidden;
+        position: relative;
+    }
+
+    .sidebar-nav {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    .sidebar-sticky {
+        position: relative;
+        top: 0;
+        height: calc(100vh - 56px);
+        padding-top: 100px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    @supports ((position: -webkit-sticky) or (position: sticky)) {
+        .sidebar-sticky {
+            position: -webkit-sticky;
+            position: sticky;
+        }
+    }
+    """
+)
+
 class SectionRegistry(object):
 
     class Dropdown(IElement):
 
-        __slots__ = ("_registry")
+        __slots__ = ("_registry",)
 
         def __init__(self, registry):
             self._registry = registry
@@ -92,12 +130,32 @@ class SectionRegistry(object):
                 )
             ).markup
 
+    class SidebarNav(IElement):
+
+        __slots__ = ("_registry",)
+
+        def __init__(self, registry):
+            self._registry = registry
+
+        def __str__(self) -> str:
+            return navs.nav(
+                navs.nav_item(h4("Table of Contents")),
+                *[navs.nav_item(navs.nav_link(name, href=f"#{section_id}", class_=text.dark))
+                    for name, section_id in self._registry.items()],
+                class_="flex-column",
+                nav_style=navs.NavStyle.PILLS
+            ).markup
+
     def __init__(self):
         self._registry: Dict = {}
 
     @property
     def dropdown(self):
         return SectionRegistry.Dropdown(self)
+
+    @property
+    def sidebar_nav(self):
+        return SectionRegistry.SidebarNav(self)
 
     def items(self):
         return self._registry.items()
@@ -130,7 +188,7 @@ section_registry = SectionRegistry()
 
 def get_alert():
     return alerts.alert.primary(
-        h4("Alert with", span_badge.primary("primary"), "context."),
+        h4("Alert with", badges.span_badge.primary("primary"), "context."),
         hr(),
         python(
             'from markyp_html.text import h3\n'
@@ -142,7 +200,7 @@ def get_alert():
 
 def get_dismissable_alert():
     return alerts.dismissable.danger(
-        h4("Dismissable alert with", span_badge.danger("danger"), "context."),
+        h4("Dismissable alert with", badges.span_badge.danger("danger"), "context."),
         hr(),
         python(
             'from markyp_html.text import h3\n'
@@ -153,7 +211,7 @@ def get_dismissable_alert():
     )
 
 def get_breadcrumb():
-    return breadcrumb(
+    return breadcrumbs.breadcrumb(
         a(strong("Home"), href="#"),
         a("Topic", href="#"),
         a("Subtopic", href="#"),
@@ -669,7 +727,7 @@ def get_accordion():
     contents = [f"Content of {title.lower()} collapse within the accordion ..." for title in titles]
     items = [
         cards.card(
-            cards.title.h5(b_button.link(ttl), **collapses.button_args_for(f"{acc_id}-{ttl}")),
+            cards.title.h5(b_button.link(ttl, class_=text.light), **collapses.button_args_for(f"{acc_id}-{ttl}")),
             collapses.collapse(
                 cards.body(cnt, class_=join(bg.light, text.dark)),
                 identifier=f"{acc_id}-{ttl}",
@@ -870,7 +928,7 @@ def get_modal():
 def get_navbar(*, fixed = True):
     collapse_id = "main-navbar-collapse"
     return navbars.navbar(
-        container(
+        container_fluid(
             navbars.brand("markyp-bootstrap4"),
             navbars.navbar_toggler(collapse_id=collapse_id),
             navbars.collapse(
@@ -930,106 +988,115 @@ def get_nav():
     )
 
 page = webpage(
-    container(
-        get_navbar(),
-        one(
-            h3(
-                "Building web pages with Python,",
-                a(code("markyp"), href="https://github.com/volfpeter/markyp"), ",",
-                a(code("markyp-html"), href="https://github.com/volfpeter/markyp-html"), "and",
-                a(code("markyp-bootstrap4"), href="https://github.com/volfpeter/markyp-bootstrap4")
+    get_navbar(),
+    container_fluid(row(
+        nav(
+            div(section_registry.sidebar_nav, class_="sidebar-sticky"),
+            class_=join("sidebar-nav d-none d-md-block", col(md=2), bg.light, text.dark),
+            id="sidebar-navbar"
+        ),
+        row_item(
+            container_fluid(
+                one(
+                    h3(
+                        "Building web pages with Python,",
+                        a(code("markyp"), href="https://github.com/volfpeter/markyp"), ",",
+                        a(code("markyp-html"), href="https://github.com/volfpeter/markyp-html"), "and",
+                        a(code("markyp-bootstrap4"), href="https://github.com/volfpeter/markyp-bootstrap4")
+                    ),
+                    md=12,
+                    style="margin-top: 100px;"
+                ),
+                section_registry.section("Alerts and badges"),
+                one(get_alert(), md=12),
+                one(get_dismissable_alert(), md=12),
+                section_registry.section("Breadcrumbs"),
+                one(get_breadcrumb(), md=12),
+                one(get_breadcrumb_code(), md=12),
+                section_registry.section("Buttons"),
+                section_registry.subsection("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
+                get_buttons(),
+                hr(),
+                get_buttons_small(),
+                hr(),
+                get_buttons_large(),
+                hr(),
+                get_buttons_disabled(),
+                hr(),
+                get_buttons_block(),
+                section_registry.subsection("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
+                get_outline_buttons(),
+                hr(),
+                get_outline_buttons_small(),
+                hr(),
+                get_outline_buttons_large(),
+                hr(),
+                get_outline_buttons_disabled(),
+                hr(),
+                get_outline_buttons_block(),
+                section_registry.subsection("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
+                get_toggle_buttons(),
+                hr(),
+                get_toggle_buttons_small(),
+                hr(),
+                get_toggle_buttons_large(),
+                hr(),
+                get_toggle_buttons_disabled(),
+                hr(),
+                get_toggle_buttons_block(),
+                section_registry.subsection("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
+                get_outline_toggle_buttons(),
+                hr(),
+                get_outline_toggle_buttons_small(),
+                hr(),
+                get_outline_toggle_buttons_large(),
+                hr(),
+                get_outline_toggle_buttons_disabled(),
+                hr(),
+                get_outline_toggle_buttons_block(),
+                section_registry.section("Cards"),
+                three(
+                    get_card_left(), get_card_center(), get_card_right(),
+                    md=(4, 4, 4)
+                ),
+                section_registry.section("Carousels"),
+                one(get_carousel(), md=12),
+                section_registry.section("Collapses"),
+                section_registry.subsection("Collapse with multiple toggle buttons"),
+                one(get_collapse(), md=12),
+                section_registry.subsection("Accordion"),
+                one(get_accordion(), md=12),
+                section_registry.section("Dropdowns"),
+                row(*get_dropdown(), class_=col(md=12)),
+                section_registry.section("Forms"),
+                section_registry.subsection("Multiline login form"),
+                one(get_multiline_login_form(), md=10, class_=offset(md=1)),
+                section_registry.subsection("Grid login form"),
+                one(get_grid_login_form(), md=10, class_=offset(md=1)),
+                section_registry.subsection("Inline login form"),
+                one(get_inline_login_form(), md=10, class_=offset(md=1)),
+                section_registry.section("Input groups"),
+                row(*get_input_groups(), class_=col(md=12)),
+                section_registry.section("Jumbotrons"),
+                one(get_jumbotron(), md=12),
+                section_registry.section("List groups with tabs"),
+                two(*get_list_group(), md=(4, 8)),
+                section_registry.section("Modals"),
+                one(get_modal(), md=12),
+                section_registry.section("Navs with navigated tabs"),
+                two(*get_nav(), md=(12, 12)),
+                section_registry.section("Navbars"),
+                one(get_navbar(fixed=False), md=12),
+                one(get_navbar_example_code(), md=12)
             ),
-            md=12,
-            style="margin-top: 100px;"
-        ),
-        section_registry.section("Alerts and badges"),
-        one(get_alert(), md=12),
-        one(get_dismissable_alert(), md=12),
-        section_registry.section("Breadcrumbs"),
-        one(get_breadcrumb(), md=12),
-        one(get_breadcrumb_code(), md=12),
-        section_registry.section("Buttons"),
-        section_registry.subsection("Buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
-        get_buttons(),
-        hr(),
-        get_buttons_small(),
-        hr(),
-        get_buttons_large(),
-        hr(),
-        get_buttons_disabled(),
-        hr(),
-        get_buttons_block(),
-        section_registry.subsection("Outline buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
-        get_outline_buttons(),
-        hr(),
-        get_outline_buttons_small(),
-        hr(),
-        get_outline_buttons_large(),
-        hr(),
-        get_outline_buttons_disabled(),
-        hr(),
-        get_outline_buttons_block(),
-        section_registry.subsection("Toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"), ", and", code("<input>"), "elements"),
-        get_toggle_buttons(),
-        hr(),
-        get_toggle_buttons_small(),
-        hr(),
-        get_toggle_buttons_large(),
-        hr(),
-        get_toggle_buttons_disabled(),
-        hr(),
-        get_toggle_buttons_block(),
-        section_registry.subsection("Outline toggle buttons from", code("<a></a>"), ",", code("<button></button>"), ",", code("<label></label>"),  ", and", code("<input>"), "elements"),
-        get_outline_toggle_buttons(),
-        hr(),
-        get_outline_toggle_buttons_small(),
-        hr(),
-        get_outline_toggle_buttons_large(),
-        hr(),
-        get_outline_toggle_buttons_disabled(),
-        hr(),
-        get_outline_toggle_buttons_block(),
-        section_registry.section("Cards"),
-        three(
-            get_card_left(), get_card_center(), get_card_right(),
-            md=(4, 4, 4)
-        ),
-        section_registry.section("Carousels"),
-        one(get_carousel(), md=12),
-        section_registry.section("Collapses"),
-        section_registry.subsection("Collapse with multiple toggle buttons"),
-        one(get_collapse(), md=12),
-        section_registry.subsection("Accordion"),
-        one(get_accordion(), md=12),
-        section_registry.section("Dropdowns"),
-        row(*get_dropdown(), class_=col(md=12)),
-        section_registry.section("Forms"),
-        section_registry.subsection("Multiline login form"),
-        one(get_multiline_login_form(), md=10, class_=offset(md=1)),
-        section_registry.subsection("Grid login form"),
-        one(get_grid_login_form(), md=10, class_=offset(md=1)),
-        section_registry.subsection("Inline login form"),
-        one(get_inline_login_form(), md=10, class_=offset(md=1)),
-        section_registry.section("Input groups"),
-        row(*get_input_groups(), class_=col(md=12)),
-        section_registry.section("Jumbotrons"),
-        one(get_jumbotron(), md=12),
-        section_registry.section("List groups with tabs"),
-        two(*get_list_group(), md=(4, 8)),
-        section_registry.section("Modals"),
-        one(get_modal(), md=12),
-        section_registry.section("Navs with navigated tabs"),
-        two(*get_nav(), md=(12, 12)),
-        section_registry.section("Navbars"),
-        one(get_navbar(fixed=False), md=12),
-        one(get_navbar_example_code(), md=12)
-    ),
+            md=10
+        )
+    )),
     page_title="markyp-bootstrap4 demo page",
     head_elements=[
-        style('.section-anchor { margin-top: -54px; display: block; height: 54px; visibility: hidden; position: relative; }'),
+        custom_css,
         req.bootstrap_css,
-        *req.all_js,
-        hlthemes.github,
+        hlthemes.github
     ],
     metadata=[
         meta.author("Website Author"),
@@ -1039,9 +1106,12 @@ page = webpage(
         meta.viewport("width=device-width, initial-scale=1.0")
     ],
     javascript=[
+        *req.all_js,
         *hljs.js
     ],
-    class_=join(bg.dark, text.light, margin(bottom=3))
+    class_=text.light,
+    style="background-color: #41474D; position: relative;",
+    **scrollspy.spied_by("sidebar-navbar", offset=1)
 )
 
 
