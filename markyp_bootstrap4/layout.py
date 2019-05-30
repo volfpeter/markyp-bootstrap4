@@ -71,7 +71,9 @@ The ordered list of Bootstrap size identifier strings.
 # -----------------------------------------------------------------------------
 
 
-def container(*args: ElementType, class_: Optional[str] = None) -> div:
+def container(*args: ElementType,
+              class_: Optional[str] = None,
+              **kwargs: PropertyValue) -> div:
     """
     Bootstrap container element.
 
@@ -81,13 +83,18 @@ def container(*args: ElementType, class_: Optional[str] = None) -> div:
     </div>
     ```
 
+    Keyword arguments not listed in the arguments section are turned into
+    element attributes on the created container.
+
     Arguments:
         class_: Additional classes to add to the `container` `div` that wraps the given elements.
     """
-    return div(*args, class_=f"container {class_}" if class_ else "container")
+    return div(*args, class_=f"container {class_}" if class_ else "container", **kwargs)
 
 
-def container_fluid(*args: ElementType, class_: Optional[str] = None) -> div:
+def container_fluid(*args: ElementType,
+                    class_: Optional[str] = None,
+                    **kwargs: PropertyValue) -> div:
     """
     Bootstrap fluid container element.
 
@@ -97,10 +104,13 @@ def container_fluid(*args: ElementType, class_: Optional[str] = None) -> div:
     </div>
     ```
 
+    Keyword arguments not listed in the arguments section are turned into
+    element attributes on the created container.
+
     Arguments:
         class_: Additional classes to add to the `container` `div` that wraps the given elements.
     """
-    return div(*args, class_=f"container-fluid {class_}" if class_ else "container-fluid")
+    return div(*args, class_=f"container-fluid {class_}" if class_ else "container-fluid", **kwargs)
 
 
 # -- Rows
@@ -273,7 +283,8 @@ def row_item(*args: ElementType,
              sm: Optional[ColumnSize] = None,
              md: Optional[ColumnSize] = None,
              lg: Optional[ColumnSize] = None,
-             xl: Optional[ColumnSize] = None) -> div:
+             xl: Optional[ColumnSize] = None,
+             **kwargs: PropertyValue) -> div:
     """
     Bootstrap row item element: `<div class="{column-size-classes}"></div>`
 
@@ -282,6 +293,9 @@ def row_item(*args: ElementType,
         {positional arguments as children elements}
     </div>
     ```
+
+    Keyword arguments not listed in the arguments section are turned into
+    element attributes on the created element.
 
     Arguments:
         class_: Additional classes to add to the `div` (row item) that wraps `content`.
@@ -296,7 +310,7 @@ def row_item(*args: ElementType,
     """
     class_ = f"{autocol(xs, sm, md, lg, xl)} {class_}"\
         if class_ else autocol(xs, sm, md, lg, xl)
-    return div(*args, class_=class_)
+    return div(*args, class_=class_, **kwargs)
 
 
 # -- Utilities

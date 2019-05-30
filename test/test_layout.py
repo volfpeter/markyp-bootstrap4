@@ -11,6 +11,8 @@ def test_container():
         '<div class="container">\nfirst\nsecond\nthird\n</div>'
     assert container("first", "second", "third", class_="fancy-container").markup ==\
         '<div class="container fancy-container">\nfirst\nsecond\nthird\n</div>'
+    assert container("first", "second", "third", class_="fancy-container", attr=42).markup ==\
+        '<div attr="42" class="container fancy-container">\nfirst\nsecond\nthird\n</div>'
 
 def test_container_fluid():
     assert container_fluid("first", "second", "third").markup ==\
@@ -19,6 +21,8 @@ def test_container_fluid():
         '<div class="container-fluid">\nfirst\nsecond\nthird\n</div>'
     assert container_fluid("first", "second", "third", class_="fancy-container").markup ==\
         '<div class="container-fluid fancy-container">\nfirst\nsecond\nthird\n</div>'
+    assert container_fluid("first", "second", "third", class_="fancy-container", attr=42).markup ==\
+        '<div attr="42" class="container-fluid fancy-container">\nfirst\nsecond\nthird\n</div>'
 
 def test_row():
     assert row("foo", "bar").markup == '<div class="row">\nfoo\nbar\n</div>'
@@ -195,18 +199,25 @@ def test_row_break():
 def test_row_item():
     assert row_item("foo", "bar").markup == '<div class="col">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", class_="").markup == '<div class="col">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", class_="fancy-div").markup == '<div class="col fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", class_="fancy-div", attr=42).markup ==\
+        '<div attr="42" class="col fancy-div">\nfoo\nbar\n</div>'
 
-    assert row_item("foo", "bar", xs=6).markup == '<div class="col-xs-6">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", xs=6, class_="fancy-div").markup == '<div class="col-xs-6 fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", xs=6).markup ==\
+        '<div class="col-xs-6">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", xs=6, class_="fancy-div").markup ==\
+        '<div class="col-xs-6 fancy-div">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", sm=6).markup == '<div class="col-sm-6">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", sm=6, class_="fancy-div").markup == '<div class="col-sm-6 fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", sm=6, class_="fancy-div").markup ==\
+        '<div class="col-sm-6 fancy-div">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", md=6).markup == '<div class="col-md-6">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", md=6, class_="fancy-div").markup == '<div class="col-md-6 fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", md=6, class_="fancy-div").markup ==\
+        '<div class="col-md-6 fancy-div">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", lg=6).markup == '<div class="col-lg-6">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", lg=6, class_="fancy-div").markup == '<div class="col-lg-6 fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", lg=6, class_="fancy-div").markup ==\
+        '<div class="col-lg-6 fancy-div">\nfoo\nbar\n</div>'
     assert row_item("foo", "bar", xl=6).markup == '<div class="col-xl-6">\nfoo\nbar\n</div>'
-    assert row_item("foo", "bar", xl=6, class_="fancy-div").markup == '<div class="col-xl-6 fancy-div">\nfoo\nbar\n</div>'
+    assert row_item("foo", "bar", xl=6, class_="fancy-div").markup ==\
+        '<div class="col-xl-6 fancy-div">\nfoo\nbar\n</div>'
 
     assert row_item("foo", "bar", xs=12, sm=11, md=10, lg=9, xl=8).markup ==\
         '<div class="col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">\nfoo\nbar\n</div>'
