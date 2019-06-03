@@ -70,8 +70,9 @@
 <a type="button" href="#jumbotrons" class="dropdown-item">Jumbotrons</a>
 <a type="button" href="#list-groups-with-tabs" class="dropdown-item">List groups with tabs</a>
 <a type="button" href="#modals" class="dropdown-item">Modals</a>
-<a type="button" href="#navs-with-navigated-tabs" class="dropdown-item">Navs with navigated tabs</a>
+<a type="button" href="#navs-and-navigated-tabs" class="dropdown-item">Navs and navigated tabs</a>
 <a type="button" href="#navbars" class="dropdown-item">Navbars</a>
+<a type="button" href="#pagination" class="dropdown-item">Pagination</a>
 </div>
 </div>
 </div>
@@ -96,8 +97,9 @@
 <li class="nav-item"><a href="#jumbotrons" class="nav-link text-dark">Jumbotrons</a></li>
 <li class="nav-item"><a href="#list-groups-with-tabs" class="nav-link text-dark">List groups with tabs</a></li>
 <li class="nav-item"><a href="#modals" class="nav-link text-dark">Modals</a></li>
-<li class="nav-item"><a href="#navs-with-navigated-tabs" class="nav-link text-dark">Navs with navigated tabs</a></li>
+<li class="nav-item"><a href="#navs-and-navigated-tabs" class="nav-link text-dark">Navs and navigated tabs</a></li>
 <li class="nav-item"><a href="#navbars" class="nav-link text-dark">Navbars</a></li>
+<li class="nav-item"><a href="#pagination" class="nav-link text-dark">Pagination</a></li>
 </ul>
 </div>
 </nav>
@@ -1092,10 +1094,10 @@ modals.modal(
 </div>
 <div class="row">
 <div class="col-md-12">
-<div id="navs-with-navigated-tabs" class="section-anchor"></div>
+<div id="navs-and-navigated-tabs" class="section-anchor"></div>
 </div>
 <div class="col-md-12">
-<h3 id="navs-with-navigated-tabs" class="mt-4 mb-3">Navs with navigated tabs</h3>
+<h3 id="navs-and-navigated-tabs" class="mt-4 mb-3">Navs and navigated tabs</h3>
 </div>
 </div>
 <div class="row">
@@ -1193,8 +1195,9 @@ navs.navigated_tabs(
 <a type="button" href="#jumbotrons" class="dropdown-item">Jumbotrons</a>
 <a type="button" href="#list-groups-with-tabs" class="dropdown-item">List groups with tabs</a>
 <a type="button" href="#modals" class="dropdown-item">Modals</a>
-<a type="button" href="#navs-with-navigated-tabs" class="dropdown-item">Navs with navigated tabs</a>
+<a type="button" href="#navs-and-navigated-tabs" class="dropdown-item">Navs and navigated tabs</a>
 <a type="button" href="#navbars" class="dropdown-item">Navbars</a>
+<a type="button" href="#pagination" class="dropdown-item">Pagination</a>
 </div>
 </div>
 </div>
@@ -1224,6 +1227,70 @@ navbars.navbar(
     ),
     expand_point=navbars.ExpandPoint.LG,
     theme=navbars.Theme.DARK
+)</code>
+</pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div id="pagination" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="pagination" class="mt-4 mb-3">Pagination</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<nav aria-label="Pagination example">
+<ul class="pagination pagination-sm">
+<li class="page-item"><a href="#pagination" class="page-link">Previous</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">1</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">2</a></li>
+<li class="page-item active"><a href="#pagination" class="page-link">3</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">4</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">5</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">Next</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-md-12">
+<nav aria-label="Pagination example">
+<ul class="pagination justify-content-center">
+<li class="page-item"><a href="#pagination" class="page-link">Previous</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">1</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">2</a></li>
+<li class="page-item active"><a href="#pagination" class="page-link">3</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">4</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">5</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">Next</a></li>
+</ul>
+</nav>
+</div>
+<div class="col-md-12">
+<nav aria-label="Pagination example">
+<ul class="pagination pagination-lg justify-content-end">
+<li class="page-item"><a href="#pagination" class="page-link">Previous</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">1</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">2</a></li>
+<li class="page-item active"><a href="#pagination" class="page-link">3</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">4</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">5</a></li>
+<li class="page-item"><a href="#pagination" class="page-link">Next</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<pre >
+<code class="python">from markyp_bootstrap4 import pagination
+
+pagination.pagination(
+    *(pagination.page_item(item, active=index==3, href="#page-ref")
+        for index, item in enumerate(("Previous", "1", "2", "3", "Next"))),
+    aria_label="Pagination example",
+    position=pagination.PaginationPosition.CENTER,
+    size=pagination.PaginationSize.SMALL
 )</code>
 </pre>
 </div>
