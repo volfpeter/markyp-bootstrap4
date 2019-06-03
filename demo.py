@@ -16,6 +16,7 @@ from markyp_bootstrap4 import list_groups
 from markyp_bootstrap4 import modals
 from markyp_bootstrap4 import navbars
 from markyp_bootstrap4 import navs
+from markyp_bootstrap4 import pagination
 from markyp_bootstrap4 import req
 from markyp_bootstrap4 import scrollspy
 from markyp_bootstrap4 import tabs
@@ -987,6 +988,33 @@ def get_nav():
         nav_justified=True
     )
 
+def get_pagination():
+    def create(position, size):
+        return pagination.pagination(
+            *(pagination.page_item(item, active=index==3, href="#pagination")
+                for index, item in enumerate(("Previous", "1", "2", "3", "4", "5", "Next"))),
+            aria_label="Pagination example",
+            position=position,
+            size=size
+        )
+    return (
+        create(pagination.PaginationPosition.LEFT, pagination.PaginationSize.SMALL),
+        create(pagination.PaginationPosition.CENTER, pagination.PaginationSize.DEFAULT),
+        create(pagination.PaginationPosition.END, pagination.PaginationSize.LARGE)
+    )
+
+def get_pagination_example_code():
+    return python("\n".join((
+        'from markyp_bootstrap4 import pagination\n',
+        'pagination.pagination(',
+        '    *(pagination.page_item(item, active=index==3, href="#page-ref")',
+        '        for index, item in enumerate(("Previous", "1", "2", "3", "Next"))),',
+        '    aria_label="Pagination example",',
+        '    position=pagination.PaginationPosition.CENTER,',
+        '    size=pagination.PaginationSize.SMALL',
+        ')'
+    )))
+
 page = webpage(
     get_navbar(),
     container_fluid(row(
@@ -1083,11 +1111,14 @@ page = webpage(
                 two(*get_list_group(), md=(4, 8)),
                 section_registry.section("Modals"),
                 one(get_modal(), md=12),
-                section_registry.section("Navs with navigated tabs"),
+                section_registry.section("Navs and navigated tabs"),
                 two(*get_nav(), md=(12, 12)),
                 section_registry.section("Navbars"),
                 one(get_navbar(fixed=False), md=12),
-                one(get_navbar_example_code(), md=12)
+                one(get_navbar_example_code(), md=12),
+                section_registry.section("Pagination"),
+                three(*get_pagination(), md=(12, 12, 12)),
+                one(get_pagination_example_code(), md=12)
             ),
             md=10
         )
