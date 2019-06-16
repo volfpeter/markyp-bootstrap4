@@ -73,6 +73,9 @@
 <a type="button" href="#navs-and-navigated-tabs" class="dropdown-item">Navs and navigated tabs</a>
 <a type="button" href="#navbars" class="dropdown-item">Navbars</a>
 <a type="button" href="#pagination" class="dropdown-item">Pagination</a>
+<a type="button" href="#popovers" class="dropdown-item">Popovers</a>
+<a type="button" href="#progress" class="dropdown-item">Progress</a>
+<a type="button" href="#tooltips" class="dropdown-item">Tooltips</a>
 </div>
 </div>
 </div>
@@ -100,6 +103,9 @@
 <li class="nav-item"><a href="#navs-and-navigated-tabs" class="nav-link text-dark">Navs and navigated tabs</a></li>
 <li class="nav-item"><a href="#navbars" class="nav-link text-dark">Navbars</a></li>
 <li class="nav-item"><a href="#pagination" class="nav-link text-dark">Pagination</a></li>
+<li class="nav-item"><a href="#popovers" class="nav-link text-dark">Popovers</a></li>
+<li class="nav-item"><a href="#progress" class="nav-link text-dark">Progress</a></li>
+<li class="nav-item"><a href="#tooltips" class="nav-link text-dark">Tooltips</a></li>
 </ul>
 </div>
 </nav>
@@ -1198,6 +1204,9 @@ navs.navigated_tabs(
 <a type="button" href="#navs-and-navigated-tabs" class="dropdown-item">Navs and navigated tabs</a>
 <a type="button" href="#navbars" class="dropdown-item">Navbars</a>
 <a type="button" href="#pagination" class="dropdown-item">Pagination</a>
+<a type="button" href="#popovers" class="dropdown-item">Popovers</a>
+<a type="button" href="#progress" class="dropdown-item">Progress</a>
+<a type="button" href="#tooltips" class="dropdown-item">Tooltips</a>
 </div>
 </div>
 </div>
@@ -1295,6 +1304,135 @@ pagination.pagination(
 </pre>
 </div>
 </div>
+<div class="row">
+<div class="col-md-12">
+<div id="popovers" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="popovers" class="mt-4 mb-3">Popovers</h3>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12 mb-3">
+<button data-content="Popover content" data-placement="top" data-toggle="popover" type="button" class="btn btn-primary">Popover top</button>
+<button data-content="Popover content" data-placement="bottom" data-toggle="popover" type="button" class="btn btn-primary">Popover bottom</button>
+<button data-content="Popover content" data-placement="left" data-toggle="popover" type="button" class="btn btn-primary">Popover left</button>
+<button data-content="Popover content" data-placement="right" data-toggle="popover" type="button" class="btn btn-primary">Popover right</button>
+</div>
+<div class="col-md-12">
+<a data-content="Popover content" data-placement="top" data-toggle="popover" tabindex="0" data-trigger="focus" type="button" class="btn btn-info">Auto-dismissed popover - top</a>
+<a data-content="Popover content" data-placement="bottom" data-toggle="popover" tabindex="0" data-trigger="focus" type="button" class="btn btn-info">Auto-dismissed popover - bottom</a>
+<a data-content="Popover content" data-placement="left" data-toggle="popover" tabindex="0" data-trigger="focus" type="button" class="btn btn-info">Auto-dismissed popover - left</a>
+<a data-content="Popover content" data-placement="right" data-toggle="popover" tabindex="0" data-trigger="focus" data-container="body" type="button" class="btn btn-info">Auto-dismissed popover - right</a>
+</div>
+</div>
+<div class="row mt-3">
+<div class="col">
+<pre >
+<code class="python">from markyp_bootstrap4 import popovers
+from markyp_bootstrap4.buttons import a_button, b_button
+
+# Don't forget to add popovers.enable_popovers to the page.
+
+b_button.primary("Popover - top", **popovers.popover("Content"))
+b_button.primary("Popover - right", **popovers.popover("Content", placement=popovers.Placement.RIGHT))
+
+# For auto-dismissed popovers to work, also add popovers.enable_auto_dismiss to the page.
+
+a_button.info("Auto-dismissed - bottom", **popovers.popover("Content", auto_dismissed=True, placement=popovers.Placement.BOTTOM))
+a_button.info("Auto-dismissed - left", **popovers.popover("Content", auto_dismissed=True, title="Title", placement=popovers.Placement.LEFT))</code>
+</pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div id="progress" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="progress" class="mt-4 mb-3">Progress</h3>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<div style="height: 2rem;" class="progress mb-3">
+<div style="width: 33%;" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-primary">
+33%
+</div>
+</div>
+<div style="height: 1.5rem;" class="progress mb-3">
+<div style="width: 50%;" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-striped bg-secondary">
+50%
+</div>
+</div>
+<div class="progress mb-3">
+<div style="width: 75%;" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-striped progress-bar-animated bg-info"></div>
+</div>
+<div style="height: 0.5rem;" class="progress">
+<div style="width: 30%;" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-danger"></div>
+<div style="width: 30%;" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-warning"></div>
+<div style="width: 30%;" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-success"></div>
+</div>
+</div>
+</div>
+<div class="row mt-3">
+<div class="col">
+<pre >
+<code class="python">from markyp_bootstrap4 import progress
+from markyp_bootstrap4.colors import bg
+
+progress.progress("33%", value=33, bar_class=bg.primary, style="height: 2rem;"),
+progress.progress("50%", value=50, bar_class=bg.secondary, striped=True, style="height: 1.5rem;"),
+progress.progress(value=75, bar_class=bg.info, striped=True, animated=True),
+progress.progress_base(
+    progress.progressbar(value=30, class_=bg.danger),
+    progress.progressbar(value=30, class_=bg.warning),
+    progress.progressbar(value=30, class_=bg.success),
+    style="height: 0.5rem;"
+)</code>
+</pre>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div id="tooltips" class="section-anchor"></div>
+</div>
+<div class="col-md-12">
+<h3 id="tooltips" class="mt-4 mb-3">Tooltips</h3>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<a title="Tooltip" data-toggle="tooltip" data-placement="top" type="button" class="btn btn-success">Tooltip button - top</a>
+<a title="Tooltip" data-toggle="tooltip" data-placement="bottom" type="button" class="btn btn-success">Tooltip button - bottom</a>
+<a title="Tooltip" data-toggle="tooltip" data-placement="left" type="button" class="btn btn-success">Tooltip button - left</a>
+<a title="Tooltip" data-toggle="tooltip" data-placement="right" type="button" class="btn btn-success">Tooltip button - right</a>
+</div>
+</div>
+<div class="row mt-3">
+<div class="col">
+<pre >
+<code class="python">from markyp_bootstrap4 import tooltips
+from markyp_bootstrap4.buttons import a_button
+
+a_button.success(
+    "Tooltip button - top",
+    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.TOP)
+),
+a_button.success(
+    "Tooltip button - bottom",
+    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.BOTTOM)
+),
+a_button.success(
+    "Tooltip button - left",
+    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.LEFT)
+),
+a_button.success(
+    "Tooltip button - right",
+    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.RIGHT)
+)</code>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1305,6 +1443,15 @@ pagination.pagination(
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 <script >
 hljs.initHighlightingOnLoad();
+</script>
+<script >
+$(function () { $('[data-toggle="popover"]').popover() })
+</script>
+<script >
+$('.popover-dismiss').popover({ trigger: 'focus' })
+</script>
+<script >
+$(function () { $('[data-toggle="tooltip"]').tooltip() })
 </script>
 </body>
 </html>
