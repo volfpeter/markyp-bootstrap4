@@ -17,9 +17,12 @@ from markyp_bootstrap4 import modals
 from markyp_bootstrap4 import navbars
 from markyp_bootstrap4 import navs
 from markyp_bootstrap4 import pagination
+from markyp_bootstrap4 import popovers
+from markyp_bootstrap4 import progress
 from markyp_bootstrap4 import req
 from markyp_bootstrap4 import scrollspy
 from markyp_bootstrap4 import tabs
+from markyp_bootstrap4 import tooltips
 from markyp_bootstrap4.buttons import a_button, a_toggle,\
                                       b_button, b_toggle,\
                                       i_button, i_toggle,\
@@ -1015,6 +1018,158 @@ def get_pagination_example_code():
         ')'
     )))
 
+def get_popovers():
+    return (
+        b_button.primary(
+            "Popover top",
+            **popovers.popover(
+                "Popover content",
+                placement=popovers.Placement.TOP
+            )
+        ),
+        b_button.primary(
+            "Popover bottom",
+            **popovers.popover(
+                "Popover content",
+                placement=popovers.Placement.BOTTOM
+            )
+        ),
+        b_button.primary(
+            "Popover left",
+            **popovers.popover(
+                "Popover content",
+                placement=popovers.Placement.LEFT
+            )
+        ),
+        b_button.primary(
+            "Popover right",
+            **popovers.popover(
+                "Popover content",
+                placement=popovers.Placement.RIGHT
+            )
+        )
+    )
+
+def get_auto_dismissed_popovers():
+    return (
+        a_button.info(
+            "Auto-dismissed popover - top",
+            **popovers.popover(
+                "Popover content",
+                auto_dismissed=True,
+                placement=popovers.Placement.TOP
+            )
+        ),
+        a_button.info(
+            "Auto-dismissed popover - bottom",
+            **popovers.popover(
+                "Popover content",
+                auto_dismissed=True,
+                placement=popovers.Placement.BOTTOM
+            )
+        ),
+        a_button.info(
+            "Auto-dismissed popover - left",
+            **popovers.popover(
+                "Popover content",
+                auto_dismissed=True,
+                placement=popovers.Placement.LEFT
+            )
+        ),
+        a_button.info(
+            "Auto-dismissed popover - right",
+            **popovers.popover(
+                "Popover content",
+                auto_dismissed=True,
+                container="body",
+                placement=popovers.Placement.RIGHT
+            )
+        )
+    )
+
+def get_popover_example_code():
+    return python("\n".join((
+        'from markyp_bootstrap4 import popovers',
+        'from markyp_bootstrap4.buttons import a_button, b_button\n',
+        '# Don\'t forget to add popovers.enable_popovers to the page.\n',
+        'b_button.primary("Popover - top", **popovers.popover("Content"))',
+        'b_button.primary("Popover - right", **popovers.popover("Content", placement=popovers.Placement.RIGHT))',
+        '',
+        '# For auto-dismissed popovers to work, also add popovers.enable_auto_dismiss to the page.\n',
+        'a_button.info("Auto-dismissed - bottom", **popovers.popover("Content", auto_dismissed=True, placement=popovers.Placement.BOTTOM))',
+        'a_button.info("Auto-dismissed - left", **popovers.popover("Content", auto_dismissed=True, title="Title", placement=popovers.Placement.LEFT))'
+    )))
+
+def get_progressbar():
+    return (
+        progress.progress("33%", value=33, bar_class=bg.primary, class_=margin(bottom=3), style="height: 2rem;"),
+        progress.progress("50%", value=50, bar_class=bg.secondary, striped=True, class_=margin(bottom=3), style="height: 1.5rem;"),
+        progress.progress(value=75, bar_class=bg.info, striped=True, animated=True, class_=margin(bottom=3)),
+        progress.progress_base(
+            progress.progressbar(value=30, class_=bg.danger),
+            progress.progressbar(value=30, class_=bg.warning),
+            progress.progressbar(value=30, class_=bg.success),
+            style="height: 0.5rem;"
+        )
+    )
+
+def get_progressbar_example_code():
+    return python("\n".join((
+        'from markyp_bootstrap4 import progress',
+        'from markyp_bootstrap4.colors import bg\n',
+        'progress.progress("33%", value=33, bar_class=bg.primary, style="height: 2rem;"),',
+        'progress.progress("50%", value=50, bar_class=bg.secondary, striped=True, style="height: 1.5rem;"),',
+        'progress.progress(value=75, bar_class=bg.info, striped=True, animated=True),',
+        'progress.progress_base(',
+        '    progress.progressbar(value=30, class_=bg.danger),',
+        '    progress.progressbar(value=30, class_=bg.warning),',
+        '    progress.progressbar(value=30, class_=bg.success),',
+        '    style="height: 0.5rem;"',
+        ')'
+    )))
+
+def get_tooltips():
+    return (
+        a_button.success(
+            "Tooltip button - top",
+            **tooltips.tooltip("Tooltip", placement=tooltips.Placement.TOP)
+        ),
+        a_button.success(
+            "Tooltip button - bottom",
+            **tooltips.tooltip("Tooltip", placement=tooltips.Placement.BOTTOM)
+        ),
+        a_button.success(
+            "Tooltip button - left",
+            **tooltips.tooltip("Tooltip", placement=tooltips.Placement.LEFT)
+        ),
+        a_button.success(
+            "Tooltip button - right",
+            **tooltips.tooltip("Tooltip", placement=tooltips.Placement.RIGHT)
+        )
+    )
+
+def get_tooltip_example_code():
+    return python("\n".join((
+        'from markyp_bootstrap4 import tooltips',
+        'from markyp_bootstrap4.buttons import a_button\n',
+        'a_button.success(',
+        '    "Tooltip button - top",',
+        '    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.TOP)',
+        '),',
+        'a_button.success(',
+        '    "Tooltip button - bottom",',
+        '    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.BOTTOM)',
+        '),',
+        'a_button.success(',
+        '    "Tooltip button - left",',
+        '    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.LEFT)',
+        '),',
+        'a_button.success(',
+        '    "Tooltip button - right",',
+        '    **tooltips.tooltip("Tooltip", placement=tooltips.Placement.RIGHT)',
+        ')'
+    )))
+
 page = webpage(
     get_navbar(),
     container_fluid(row(
@@ -1118,7 +1273,19 @@ page = webpage(
                 one(get_navbar_example_code(), md=12),
                 section_registry.section("Pagination"),
                 three(*get_pagination(), md=(12, 12, 12)),
-                one(get_pagination_example_code(), md=12)
+                one(get_pagination_example_code(), md=12),
+                section_registry.section("Popovers"),
+                row(
+                    row_item(*get_popovers(), md=12, class_=margin(bottom=3)),
+                    row_item(*get_auto_dismissed_popovers(), md=12)
+                ),
+                one(get_popover_example_code(), class_=margin(top=3)),
+                section_registry.section("Progress"),
+                row(row_item(*get_progressbar())),
+                one(get_progressbar_example_code(), class_=margin(top=3)),
+                section_registry.section("Tooltips"),
+                row(row_item(*get_tooltips())),
+                one(get_tooltip_example_code(), class_=margin(top=3))
             ),
             md=10
         )
@@ -1138,7 +1305,10 @@ page = webpage(
     ],
     javascript=[
         *req.all_js,
-        *hljs.js
+        *hljs.js,
+        popovers.enable_popovers,
+        popovers.enable_auto_dismiss,
+        tooltips.enable_tooltips
     ],
     class_=text.light,
     style="background-color: #41474D; position: relative;",
