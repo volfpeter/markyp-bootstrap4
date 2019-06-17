@@ -20,7 +20,7 @@ class PaginationPosition(object):
     Enumeration class that lists pagination position options.
     """
 
-    LEFT = None
+    START = None
 
     CENTER = "justify-content-center"
 
@@ -131,7 +131,7 @@ def page_link(*args: ElementType,
 def pagination(*args: ElementType,
                aria_label: Optional[str] = "Pagination",
                class_: Optional[str] = None,
-               position: Optional[str] = PaginationPosition.LEFT,
+               position: Optional[str] = PaginationPosition.START,
                size: Optional[str] = PaginationSize.DEFAULT,
                wrap_in_nav: bool = True,
                **kwargs: PropertyValue) -> block.nav:
