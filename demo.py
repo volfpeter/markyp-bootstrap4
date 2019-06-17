@@ -1001,7 +1001,7 @@ def get_pagination():
             size=size
         )
     return (
-        create(pagination.PaginationPosition.LEFT, pagination.PaginationSize.SMALL),
+        create(pagination.PaginationPosition.START, pagination.PaginationSize.SMALL),
         create(pagination.PaginationPosition.CENTER, pagination.PaginationSize.DEFAULT),
         create(pagination.PaginationPosition.END, pagination.PaginationSize.LARGE)
     )
