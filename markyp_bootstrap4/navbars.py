@@ -4,7 +4,7 @@ Bootstrap navbar elements.
 See https://getbootstrap.com/docs/4.0/components/navbar/.
 """
 
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Type
 
 from markyp import ElementType, PropertyValue, elements
 from markyp_html import block, forms, inline, join, text
@@ -133,8 +133,8 @@ def navbar(*args: ElementType,
 
 def navbar_nav(*args: ElementType,
                class_: Optional[str] = None,
-               factory: elements.Element = block.div,
-               **kwargs: PropertyValue) -> block.nav:
+               factory: Type[elements.Element] = block.div,
+               **kwargs: PropertyValue) -> elements.Element:
     """
     Creates a `navbar-nav` element using the given factory.
 
@@ -168,8 +168,8 @@ def navbar_toggler(*,
         inline.span(class_="navbar-toggler-icon"),
         class_=join("navbar-toggler", class_),
         type="button",
-        **kwargs,
         **{
+            **kwargs,
             "data-toggle": "collapse",
             "data-target": f"#{collapse_id}",
             "aria-controls": collapse_id,
