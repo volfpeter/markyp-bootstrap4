@@ -5,7 +5,9 @@
 
 # markyp-bootstrap4
 
-Bootstrap 4 higher order components built on [markyp](https://github.com/volfpeter/markyp) and [markyp-html](https://github.com/volfpeter/markyp-html).
+Create Bootstrap 4 web pages using purely Python.
+
+The project is built on [markyp](https://github.com/volfpeter/markyp) and [markyp-html](https://github.com/volfpeter/markyp-html).
 
 ## Installation
 
