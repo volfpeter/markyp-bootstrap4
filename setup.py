@@ -23,7 +23,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), ROOT, "__init__.py"), 
 
 # Get the requirements from requirements.txt.
 req_filename = "requirements.txt"
-exp = re.compile("(?P<req>\\w+)\\s*(?P<op>[<>=!~]+)\\s*(?P<ver>[\\w.]+)")
+exp = re.compile("(?P<req>[-_\\w]+)\\s*(?P<op>[<>=!~]+)\\s*(?P<ver>[\\w.]+)")
 requirements = []
 with open(path.join(path.dirname(path.abspath(__file__)), req_filename)) as req_file:
     for line in req_file:
@@ -44,7 +44,7 @@ setup(
     author_email=_email,
     license=_license,
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
