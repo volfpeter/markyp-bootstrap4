@@ -76,7 +76,7 @@ Here is a list of things to notice in the example:
 
 - [markyp-html](https://github.com/volfpeter/markyp-html): Create custom or non-Bootstrap 4 components for you webpage.
 - [markyp-fontawesome](https://github.com/volfpeter/markyp-fontawesome): Add Font Awesome 5 icons to your webpage.
-- [markyp-highlightjs](github.com/volfpeter/markyp-highlightjs): Add syntax-highlighted code to your webpage.
+- [markyp-highlightjs](https://github.com/volfpeter/markyp-highlightjs): Add syntax-highlighted code to your webpage.
 
 ## Community guidelines
 
