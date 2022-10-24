@@ -8,11 +8,11 @@ from markyp_html import link, script
 
 
 __author__ = "Peter Volf"
-__copyright__ = "Copyright 2019, Peter Volf"
+__copyright__ = "Copyright 2022, Peter Volf"
 __email__ = "do.volfp@gmail.com"
 __license__ = "MIT"
 __url__ = "https://github.com/volfpeter/markyp-bootstrap4"
-__version__ = "0.1910.0"
+__version__ = "0.2210.1"
 
 
 __all__ = ("CDNs", "req")
@@ -151,11 +151,7 @@ class __BootstrapRequirements(object):
         """
         # Bootstrap must be the last item on the list (or at least it should come
         # after jQuery), otherwise some components won't work.
-        return (
-            self.jquery,
-            self.popper_js,
-            self.bootstrap_js
-        )
+        return (self.jquery, self.popper_js, self.bootstrap_js)
 
     @property
     def bootstrap_css(self) -> link:
@@ -184,6 +180,7 @@ class __BootstrapRequirements(object):
         Popper.js JavaScript import `script` element.
         """
         return script.ref(CDNs.PopperJS.js_url())
+
 
 req: __BootstrapRequirements = __BootstrapRequirements()
 """

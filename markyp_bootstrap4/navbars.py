@@ -4,16 +4,13 @@ Bootstrap navbar elements.
 See https://getbootstrap.com/docs/4.0/components/navbar/.
 """
 
-from typing import Optional, Tuple, Type
+from typing import Dict, Optional, Type
 
 from markyp import ElementType, PropertyValue, elements
 from markyp_html import block, forms, inline, join, text
 
 
-__all__ = (
-    "navbar_text", "ExpandPoint", "Theme", "brand",
-    "collapse", "navbar", "navbar_nav", "navbar_toggler"
-)
+__all__ = ("navbar_text", "ExpandPoint", "Theme", "brand", "collapse", "navbar", "navbar_nav", "navbar_toggler")
 
 
 navbar_text: text.StyledTextFactory = text.StyledTextFactory("navbar-text")
@@ -48,11 +45,7 @@ class Theme(object):
     LIGHT = "navbar-light"
 
 
-
-def brand(*args: ElementType,
-          class_: Optional[str] = None,
-          href: str = "#",
-          **kwargs: PropertyValue) -> inline.a:
+def brand(*args: ElementType, class_: Optional[str] = None, href: str = "#", **kwargs: PropertyValue) -> inline.a:
     """
     Creates an anchor element with `navbar-brand` style.
 
@@ -68,11 +61,14 @@ def brand(*args: ElementType,
     return inline.a(*args, href=href, class_=join("navbar-brand", class_), **kwargs)
 
 
-def collapse(*args: ElementType,
-             id: str,
-             class_: Optional[str] = None,
-             nav_factory: Optional[elements.Element] = None,
-             **kwargs: PropertyValue) -> block.div:
+def collapse(
+    *args: ElementType,
+    id: str,
+    class_: Optional[str] = None,
+    nav_factory: Optional[elements.Element] = None,
+    nav_attributes: Optional[Dict[str, PropertyValue]] = None,
+    **kwargs: PropertyValue,
+) -> block.div:
     """
     Creates a `navbar-collapse` element using the provided factory type.
 
@@ -90,20 +86,24 @@ def collapse(*args: ElementType,
         nav_factory: An optional factory type to create a `navbar_nav` wrapper around
                      the positional arguments given to the method. If `None`, then the
                      positional arguments will not be wrapped in any way.
+        nav_attributes: Attributes (keyword arguments) that should be passed on to the
+                        `navbar_nav` component.
     """
     return block.div(
-        *[navbar_nav(*args, factory=nav_factory)] if nav_factory is not None else args,
+        *[navbar_nav(*args, **(nav_attributes or {}), factory=nav_factory)] if nav_factory is not None else args,
         class_=join("collapse navbar-collapse", class_),
         id=id,
-        **kwargs
+        **kwargs,
     )
 
 
-def navbar(*args: ElementType,
-           class_: Optional[str] = None,
-           expand_point: Optional[str] = None,
-           theme: Optional[str] = None,
-           **kwargs: PropertyValue) -> block.nav:
+def navbar(
+    *args: ElementType,
+    class_: Optional[str] = None,
+    expand_point: Optional[str] = None,
+    theme: Optional[str] = None,
+    **kwargs: PropertyValue,
+) -> block.nav:
     """
     Creates a `navbar` element.
 
@@ -119,22 +119,15 @@ def navbar(*args: ElementType,
         theme: The theme of the navbar. It must be one of the constants from the
                `Theme` class or `None`.
     """
-    return block.nav(
-        *args,
-        class_=join(
-            "navbar",
-            expand_point,
-            theme,
-            class_
-        ),
-        **kwargs
-    )
+    return block.nav(*args, class_=join("navbar", expand_point, theme, class_), **kwargs)
 
 
-def navbar_nav(*args: ElementType,
-               class_: Optional[str] = None,
-               factory: Type[elements.Element] = block.div,
-               **kwargs: PropertyValue) -> elements.Element:
+def navbar_nav(
+    *args: ElementType,
+    class_: Optional[str] = None,
+    factory: Type[elements.Element] = block.div,
+    **kwargs: PropertyValue,
+) -> elements.Element:
     """
     Creates a `navbar-nav` element using the given factory.
 
@@ -150,10 +143,7 @@ def navbar_nav(*args: ElementType,
     return factory(*args, class_=join("navbar-nav", class_), **kwargs)
 
 
-def navbar_toggler(*,
-                   collapse_id: str,
-                   class_: Optional[str] = None,
-                   **kwargs: PropertyValue) -> forms.button:
+def navbar_toggler(*, collapse_id: str, class_: Optional[str] = None, **kwargs: PropertyValue) -> forms.button:
     """
     Creates a `navbar-toggler` button.
 
@@ -174,6 +164,6 @@ def navbar_toggler(*,
             "data-target": f"#{collapse_id}",
             "aria-controls": collapse_id,
             "aria-expanded": False,
-            "aria-label": "Toggle navigation"
-        }
+            "aria-label": "Toggle navigation",
+        },
     )
