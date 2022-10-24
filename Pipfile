@@ -10,6 +10,7 @@ sphinx = "*"
 recommonmark = "*"
 mypy = "*"
 pylint = "*"
+black = "*"
 
 [packages]
 markyp = "*"
@@ -17,4 +18,4 @@ markyp-html = "*"
 markyp-highlightjs = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.10"

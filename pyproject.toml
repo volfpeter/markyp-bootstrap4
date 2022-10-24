@@ -1,0 +1,5 @@
+[tool.black]
+line-length = 118
+
+[tool.mypy]
+show_error_codes = true
