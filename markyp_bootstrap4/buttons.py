@@ -14,13 +14,22 @@ from markyp_html.inline import a
 
 
 __all__ = (
-    "ButtonContext", "ButtonStyle", "BaseButtonFactory", "BaseToggleButtonFactory",
-    "ElementButtonFactory", "ElementToggleButtonFactory",
-    "StandaloneElementButtonFactory", "StandaloneElementToggleButtonFactory",
-    "a_button", "a_toggle",
-    "b_button", "b_toggle",
-    "i_button", "i_toggle",
-    "l_button", "l_toggle"
+    "ButtonContext",
+    "ButtonStyle",
+    "BaseButtonFactory",
+    "BaseToggleButtonFactory",
+    "ElementButtonFactory",
+    "ElementToggleButtonFactory",
+    "StandaloneElementButtonFactory",
+    "StandaloneElementToggleButtonFactory",
+    "a_button",
+    "a_toggle",
+    "b_button",
+    "b_toggle",
+    "i_button",
+    "i_toggle",
+    "l_button",
+    "l_toggle",
 )
 
 
@@ -75,10 +84,9 @@ class BaseButtonFactory(object):
 
     __slots__ = ()
 
-    def create_element(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       **kwargs: PropertyValue) -> ElementType:
+    def create_element(
+        self, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue
+    ) -> ElementType:
         """
         Creates a new element.
 
@@ -93,12 +101,9 @@ class BaseButtonFactory(object):
         """
         raise NotImplementedError("create_element() is abstract.")
 
-    def get_css_class(self,
-                      context: str,
-                      *,
-                      class_: Optional[str] = None,
-                      outline: bool = False,
-                      active: bool = False) -> str:
+    def get_css_class(
+        self, context: str, *, class_: Optional[str] = None, outline: bool = False, active: bool = False
+    ) -> str:
         """
         Returns the CSS class string to set on the created element.
 
@@ -113,11 +118,9 @@ class BaseButtonFactory(object):
             base += " active"
         return f"{base} {class_}" if class_ else base
 
-    def update_attributes(self,
-                          attributes: PropertyDict,
-                          *,
-                          disabled: bool = False,
-                          active: bool = False) -> PropertyDict:
+    def update_attributes(
+        self, attributes: PropertyDict, *, disabled: bool = False, active: bool = False
+    ) -> PropertyDict:
         """
         Updates the given dictionary of element attribute name-value pairs with the
         attributes that are required by the button that is being created.
@@ -130,19 +133,21 @@ class BaseButtonFactory(object):
             disabled: Whether the element should be disabled.
             active: Whether the button is active (i.e. selected).
         """
-        attributes["type"] = "button"
+        attributes["type"] = attributes.get("type", "button")
         if disabled:
             attributes["disabled"] = None
         if active:
             attributes["aria-pressed"] = True
         return attributes
 
-    def primary(self,
-                *args: ElementType,
-                class_: Optional[str] = None,
-                disabled: bool = False,
-                active: bool = False,
-                **kwargs: PropertyValue) -> ElementType:
+    def primary(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with primary context.
 
@@ -160,15 +165,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.PRIMARY, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def primary_outline(self,
-                        *args: ElementType,
-                        class_: Optional[str] = None,
-                        disabled: bool = False,
-                        active: bool = False,
-                        **kwargs: PropertyValue) -> ElementType:
+    def primary_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with primary context.
 
@@ -186,15 +193,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.PRIMARY, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def secondary(self,
-                  *args: ElementType,
-                  class_: Optional[str] = None,
-                  disabled: bool = False,
-                  active: bool = False,
-                  **kwargs: PropertyValue) -> ElementType:
+    def secondary(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with secondary context.
 
@@ -212,15 +221,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.SECONDARY, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def secondary_outline(self,
-                          *args: ElementType,
-                          class_: Optional[str] = None,
-                          disabled: bool = False,
-                          active: bool = False,
-                          **kwargs: PropertyValue) -> ElementType:
+    def secondary_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with secondary context.
 
@@ -238,15 +249,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.SECONDARY, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def success(self,
-                *args: ElementType,
-                class_: Optional[str] = None,
-                disabled: bool = False,
-                active: bool = False,
-                **kwargs: PropertyValue) -> ElementType:
+    def success(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with success context.
 
@@ -264,15 +277,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.SUCCESS, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def success_outline(self,
-                        *args: ElementType,
-                        class_: Optional[str] = None,
-                        disabled: bool = False,
-                        active: bool = False,
-                        **kwargs: PropertyValue) -> ElementType:
+    def success_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with success context.
 
@@ -290,15 +305,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.SUCCESS, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def danger(self,
-               *args: ElementType,
-               class_: Optional[str] = None,
-               disabled: bool = False,
-               active: bool = False,
-               **kwargs: PropertyValue) -> ElementType:
+    def danger(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with danger context.
 
@@ -316,15 +333,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.DANGER, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def danger_outline(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       disabled: bool = False,
-                       active: bool = False,
-                       **kwargs: PropertyValue) -> ElementType:
+    def danger_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with danger context.
 
@@ -342,15 +361,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.DANGER, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def warning(self,
-                *args: ElementType,
-                class_: Optional[str] = None,
-                disabled: bool = False,
-                active: bool = False,
-                **kwargs: PropertyValue) -> ElementType:
+    def warning(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with warning context.
 
@@ -368,15 +389,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.WARNING, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def warning_outline(self,
-                        *args: ElementType,
-                        class_: Optional[str] = None,
-                        disabled: bool = False,
-                        active: bool = False,
-                        **kwargs: PropertyValue) -> ElementType:
+    def warning_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with warning context.
 
@@ -394,15 +417,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.WARNING, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def info(self,
-             *args: ElementType,
-             class_: Optional[str] = None,
-             disabled: bool = False,
-             active: bool = False,
-             **kwargs: PropertyValue) -> ElementType:
+    def info(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with info context.
 
@@ -420,15 +445,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.INFO, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def info_outline(self,
-                     *args: ElementType,
-                    class_: Optional[str] = None,
-                    disabled: bool = False,
-                    active: bool = False,
-                    **kwargs: PropertyValue) -> ElementType:
+    def info_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with info context.
 
@@ -446,15 +473,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.INFO, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def light(self,
-              *args: ElementType,
-              class_: Optional[str] = None,
-              disabled: bool = False,
-              active: bool = False,
-              **kwargs: PropertyValue) -> ElementType:
+    def light(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with light context.
 
@@ -472,15 +501,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.LIGHT, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def light_outline(self,
-                      *args: ElementType,
-                      class_: Optional[str] = None,
-                      disabled: bool = False,
-                      active: bool = False,
-                      **kwargs: PropertyValue) -> ElementType:
+    def light_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with light context.
 
@@ -498,15 +529,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.LIGHT, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def dark(self,
-             *args: ElementType,
-             class_: Optional[str] = None,
-             disabled: bool = False,
-             active: bool = False,
-             **kwargs: PropertyValue) -> ElementType:
+    def dark(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with dark context.
 
@@ -524,15 +557,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.DARK, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def dark_outline(self,
-                     *args: ElementType,
-                     class_: Optional[str] = None,
-                     disabled: bool = False,
-                     active: bool = False,
-                     **kwargs: PropertyValue) -> ElementType:
+    def dark_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with dark context.
 
@@ -550,15 +585,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.DARK, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def link(self,
-             *args: ElementType,
-             class_: Optional[str] = None,
-             disabled: bool = False,
-             active: bool = False,
-             **kwargs: PropertyValue) -> ElementType:
+    def link(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new button with link context.
 
@@ -576,15 +613,17 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.LINK, class_=class_, outline=False, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
-    def link_outline(self,
-                     *args: ElementType,
-                     class_: Optional[str] = None,
-                     disabled: bool = False,
-                     active: bool = False,
-                     **kwargs: PropertyValue) -> ElementType:
+    def link_outline(
+        self,
+        *args: ElementType,
+        class_: Optional[str] = None,
+        disabled: bool = False,
+        active: bool = False,
+        **kwargs: PropertyValue,
+    ) -> ElementType:
         """
         Creates a new outline button with link context.
 
@@ -602,7 +641,7 @@ class BaseButtonFactory(object):
         return self.create_element(
             *args,
             class_=self.get_css_class(ButtonContext.LINK, class_=class_, outline=True, active=active),
-            **self.update_attributes(kwargs, disabled=disabled, active=active)
+            **self.update_attributes(kwargs, disabled=disabled, active=active),
         )
 
 
@@ -615,11 +654,9 @@ class BaseToggleButtonFactory(BaseButtonFactory):
 
     __slots__ = ()
 
-    def update_attributes(self,
-                          attributes: PropertyDict,
-                          *,
-                          disabled: bool = False,
-                          active: bool = False) -> PropertyDict:
+    def update_attributes(
+        self, attributes: PropertyDict, *, disabled: bool = False, active: bool = False
+    ) -> PropertyDict:
         attributes = super().update_attributes(attributes, disabled=disabled, active=active)
         attributes["aria-pressed"] = active
         attributes["autocomplete"] = "off"
@@ -647,10 +684,9 @@ class ElementButtonFactory(BaseButtonFactory):
         The type of the elements the object will produce.
         """
 
-    def create_element(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       **kwargs: PropertyValue) -> ElementType:
+    def create_element(
+        self, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue
+    ) -> ElementType:
         return self._generator(*args, class_=class_, **kwargs)
 
 
@@ -674,10 +710,9 @@ class ElementToggleButtonFactory(BaseToggleButtonFactory):
         The type of the elements the object will produce.
         """
 
-    def create_element(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       **kwargs: PropertyValue) -> ElementType:
+    def create_element(
+        self, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue
+    ) -> ElementType:
         return self._generator(*args, class_=class_, **kwargs)
 
 
@@ -688,10 +723,7 @@ class StandaloneElementButtonFactory(BaseButtonFactory):
 
     __slots__ = ("_generator", "_pos_arg_attr")
 
-    def __init__(self,
-                 generator: Type[StandaloneElement],
-                 *,
-                 pos_arg_attr: str = "value") -> None:
+    def __init__(self, generator: Type[StandaloneElement], *, pos_arg_attr: str = "value") -> None:
         """
         Initialization.
 
@@ -711,10 +743,9 @@ class StandaloneElementButtonFactory(BaseButtonFactory):
         the stringified version of positional arguments in.
         """
 
-    def create_element(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       **kwargs: PropertyValue) -> ElementType:
+    def create_element(
+        self, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue
+    ) -> ElementType:
         kwargs[self._pos_arg_attr] = " ".join(str(a) for a in args)
         return self._generator(class_=class_, **kwargs)
 
@@ -726,10 +757,7 @@ class StandaloneElementToggleButtonFactory(BaseToggleButtonFactory):
 
     __slots__ = ("_generator", "_pos_arg_attr")
 
-    def __init__(self,
-                 generator: Type[StandaloneElement],
-                 *,
-                 pos_arg_attr: str = "value") -> None:
+    def __init__(self, generator: Type[StandaloneElement], *, pos_arg_attr: str = "value") -> None:
         """
         Initialization.
 
@@ -749,10 +777,9 @@ class StandaloneElementToggleButtonFactory(BaseToggleButtonFactory):
         the stringified version of positional arguments in.
         """
 
-    def create_element(self,
-                       *args: ElementType,
-                       class_: Optional[str] = None,
-                       **kwargs: PropertyValue) -> ElementType:
+    def create_element(
+        self, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue
+    ) -> ElementType:
         kwargs[self._pos_arg_attr] = " ".join(str(a) for a in args)
         return self._generator(class_=class_, **kwargs)
 
