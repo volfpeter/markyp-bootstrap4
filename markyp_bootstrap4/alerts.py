@@ -6,7 +6,7 @@ See https://getbootstrap.com/docs/4.0/components/alerts/.
 
 from typing import Optional
 
-from markyp import ElementType
+from markyp import ElementType, PropertyValue
 from markyp_bootstrap4.elements import close_icon
 from markyp_html.block import div
 
@@ -24,7 +24,7 @@ class alert(div):
     __slots__ = ()
 
     @classmethod
-    def primary(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def primary(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `primary` context.
 
@@ -33,10 +33,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="primary", class_=class_)
+        return cls(*args, context="primary", class_=class_, **kwargs)
 
     @classmethod
-    def secondary(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def secondary(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `secondary` context.
 
@@ -45,10 +45,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="secondary", class_=class_)
+        return cls(*args, context="secondary", class_=class_, **kwargs)
 
     @classmethod
-    def success(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def success(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `success` context.
 
@@ -57,10 +57,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="success", class_=class_)
+        return cls(*args, context="success", class_=class_, **kwargs)
 
     @classmethod
-    def danger(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def danger(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `danger` context.
 
@@ -69,10 +69,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="danger", class_=class_)
+        return cls(*args, context="danger", class_=class_, **kwargs)
 
     @classmethod
-    def warning(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def warning(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `warning` context.
 
@@ -81,10 +81,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="warning", class_=class_)
+        return cls(*args, context="warning", class_=class_, **kwargs)
 
     @classmethod
-    def info(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def info(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `info` context.
 
@@ -93,10 +93,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="info", class_=class_)
+        return cls(*args, context="info", class_=class_, **kwargs)
 
     @classmethod
-    def light(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def light(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `light` context.
 
@@ -105,10 +105,10 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="light", class_=class_)
+        return cls(*args, context="light", class_=class_, **kwargs)
 
     @classmethod
-    def dark(cls, *args: ElementType, class_: Optional[str] = None) -> "alert":
+    def dark(cls, *args: ElementType, class_: Optional[str] = None, **kwargs: PropertyValue) -> "alert":
         """
         Returns an alert element with `dark` context.
 
@@ -117,12 +117,15 @@ class alert(div):
         Arguments:
             class_: Any additional CSS class names to add to the element.
         """
-        return cls(*args, context="dark", class_=class_)
+        return cls(*args, context="dark", class_=class_, **kwargs)
 
-    def __init__(self,
-                 *args: ElementType,
-                 context: str,
-                 class_: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        *args: ElementType,
+        context: str,
+        class_: Optional[str] = None,
+        **kwargs: PropertyValue,
+    ) -> None:
         """
         Initialization.
 
@@ -133,11 +136,7 @@ class alert(div):
             class_: Any additional CSS class names to add to the element.
         """
         base_class = f"alert alert-{context}"
-        super().__init__(
-            *args,
-            class_=f"{base_class} {class_}" if class_ else base_class,
-            role="alert"
-        )
+        super().__init__(*args, **kwargs, class_=f"{base_class} {class_}" if class_ else base_class, role="alert")
 
     @property
     def element_name(self) -> str:
@@ -153,10 +152,13 @@ class dismissable(alert):
 
     __slots__ = ()
 
-    def __init__(self,
-                 *args: ElementType,
-                 context: str,
-                 class_: Optional[str] = None) -> None:
+    def __init__(
+        self,
+        *args: ElementType,
+        context: str,
+        class_: Optional[str] = None,
+        **kwargs: PropertyValue,
+    ) -> None:
         """
         Initialization.
 
@@ -170,7 +172,9 @@ class dismissable(alert):
         """
         base_class = "alert-dismissible fade show"
         super().__init__(
-            *args, close_icon(**{"data-dismiss": "alert"}),
+            *args,
+            close_icon(**{"data-dismiss": "alert"}),
+            **kwargs,
             class_=f"{base_class} {class_}" if class_ else base_class,
-            context=context
+            context=context,
         )
